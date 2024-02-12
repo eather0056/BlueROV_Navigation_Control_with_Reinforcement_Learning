@@ -14,6 +14,22 @@ This research investigates the efficacy of various reinforcement learning algori
 
 ## Setup Instructions
 
+### Steps to Build the Unity Project:
+
+1. **Open the Project in Unity**:
+   - Launch Unity Hub and add the `Water` project by navigating to the location `/home/ether/Documents/Robotics_Navigation/underwater_env/Water`.
+   - Open the project in the Unity Editor.
+
+2. **Build the Project**:
+   - Within Unity, go to `File` > `Build Settings`.
+   - Select your target platform (for example, Linux if you're on Ubuntu).
+   - Click on `Build And Run` or `Build` if you want to just build without running.
+   - Choose an output directory where the executable will be placed. You could create a new folder within the `underwater_env` directory, like `Water`, and select that.
+
+3. **Verify the Build**:
+   - After the build process is complete, navigate to the output directory you selected (e.g., `/home/ether/Documents/Robotics_Navigation/underwater_env/Water`).
+   - Ensure there is an executable file for the Unity environment.
+     
 ### Virtual Environment Setup
 Create a Python 3.6 virtual environment named `UW_nav`:
 ```bash
