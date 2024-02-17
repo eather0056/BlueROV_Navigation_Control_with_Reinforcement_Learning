@@ -199,7 +199,7 @@ class DPT_depth():
                 plt.imshow(np.uint16(prediction * 65536))
                 plt.show()
 
-            cv2.imwrite("depth.png", ((prediction*65536).astype("uint16")), [cv2.IMWRITE_PNG_COMPRESSION, 0])
+            #cv2.imwrite("depth.png", ((prediction*65536).astype("uint16")), [cv2.IMWRITE_PNG_COMPRESSION, 0])
         return prediction
 
 class PosChannel(SideChannel):
