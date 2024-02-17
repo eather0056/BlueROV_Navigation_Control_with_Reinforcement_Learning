@@ -1,3 +1,6 @@
 [submodule "Unity"]
 	path = Unity
 	url = https://github.com/hdacnw/Underwater-RL.git
+[submodule "ml-agent"]
+	path = ml-agent
+	url = https://github.com/Unity-Technologies/ml-agents.git
