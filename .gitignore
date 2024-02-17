@@ -3,7 +3,8 @@
 /DPT/weights/
 /underwater_env
 /.idea
-/ml-agent/
+/ml-agent
+/ml-agents
 /core/DPT/weights/dpt_hybrid-midas-501f0c75.pt
 /core/DPT/weights/dpt_hybrid_kitti-cb926ef4.pt
 /core/DPT/weights/dpt_hybrid_nyu-2ce69ec7.pt
