@@ -75,5 +75,40 @@ This project contributes to the field of underwater robotics by:
 - Enhancing the robustness of underwater navigation systems through advanced sensor fusion and reward function refinement.
 - Providing insights into overcoming navigation failures in constrained underwater environments.-->
 
+### Running on cluster
+
+Create a new Conda environment:
+   ```bash
+   conda create --name <env-name>
+   ```
+Activate the Conda environment:
+   ```bash
+   conda activate <env-name>
+   ```
+Install Python 3.6:
+   ```bash
+   conda install python=3.6
+   ```
+Install gdown for downloading files from Google Drive:
+   ```bash
+   pip install gdown
+   ```
+Downloading Files from Google Drive
+To download files from Google Drive, you can use the `gdown` command followed by the file ID:
+```bash
+gdown --id <file_id>
+```
+Running Jupyter Notebook Locally
+
+To run Jupyter Notebook locally, you can use SSH tunneling:
+```bash
+ssh -N -L 8888:localhost:8888 mdeowan698@sms.lis-lab.fr
+```
+Then access Jupyter Notebook in your web browser using:
+```
+http://localhost:8888/
+```
+Install project dependencies follow Environment Setup
+
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
