@@ -276,3 +276,5 @@ if __name__ == '__main__':
     torch.multiprocessing.set_start_method('spawn')
     # Call the main loop function to start training.
     main_loop()
+    print("Training finished.")
+
