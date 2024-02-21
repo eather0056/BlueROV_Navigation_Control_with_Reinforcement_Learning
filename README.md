@@ -76,7 +76,18 @@ This project contributes to the field of underwater robotics by:
 - Providing insights into overcoming navigation failures in constrained underwater environments.-->
 
 ### Running on cluster
-
+Install wireguard to you local machine:
+   ```bash
+   sudo apt install wireguard
+   ```
+Up the wiregrad interface
+   ```bash
+   sudo wg-quick up ~/Downloads/mdeowan698.conf
+   ```
+Connect with cluster:
+   ```bash
+   ssh <<username>>@sms.lis-lab.fr
+   ```
 Create a new Conda environment:
    ```bash
    conda create --name <env-name>
