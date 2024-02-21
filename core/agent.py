@@ -171,6 +171,20 @@ def merge_log(log_list):
 
 
 class Agent:
+    """
+    Agent class for collecting samples from the environment using multiple threads.
+    Attributes:
+        env (list): List of environment instances.
+        policy: Policy model.
+        device: Torch device for computation.
+        custom_reward: Custom reward function.
+        running_state: Running state for normalization.
+        num_threads (int): Number of threads for collecting samples.
+        training (bool): Flag indicating whether the agent is in training mode.
+    Methods:
+        __init__: Initializes the Agent object with environment, policy, device, etc.
+        collect_samples: Collects samples from the environment using multiple threads.
+    """
 
     def __init__(self, env, policy, device, custom_reward=None, running_state=None, num_threads=1, training=True):
         self.env = env
@@ -182,12 +196,27 @@ class Agent:
         self.training = training
 
     def collect_samples(self, min_batch_size, mean_action=False, render=False):
+        """
+        Collects samples from the environment using multiple threads.
+        Args:
+            min_batch_size (int): Minimum batch size for each thread.
+            mean_action (bool, optional): Flag indicating whether to calculate mean action. Default is False.
+            render (bool, optional): Flag indicating whether to render the environment. Default is False.
+        Returns:
+            tuple: Batch of samples and logging information.
+        """
+        # Start timing
         t_start = time.time()
         to_device(torch.device('cpu'), self.policy)
+        
+        # Calculate batch size per thread
         thread_batch_size = int(math.floor(min_batch_size / self.num_threads))
+        # Create multiprocessing queue
         queue = multiprocessing.Queue()
+        # Initialize list for worker processes
         workers = []
 
+        # Create and start worker processes
         for i in range(self.num_threads-1):
             env = self.env[i+1]
             worker_args = (i+1, queue, env, self.policy, self.custom_reward, mean_action,
@@ -196,26 +225,41 @@ class Agent:
         for worker in workers:
             worker.start()
 
+        # Collect samples from the main thread
         memory, log = collect_samples(0, None, self.env[0], self.policy, self.custom_reward, mean_action,
                                       render, self.running_state, thread_batch_size, training=self.training)
                                       # render, None, thread_batch_size)
 
+        # Collect logs and memories from worker processes
         worker_logs = [None] * len(workers)
         worker_memories = [None] * len(workers)
         for _ in workers:
             pid, worker_memory, worker_log = queue.get()
             worker_memories[pid - 1] = worker_memory
             worker_logs[pid - 1] = worker_log
+
+        # Append memories from worker processes to the main memory
         for worker_memory in worker_memories:
             memory.append(worker_memory)
+
+        # Sample a batch from the collected memories
         batch = memory.sample()
+
+        # Merge logs if multiple threads are used
         if self.num_threads > 1:
             log_list = [log] + worker_logs
             log = merge_log(log_list)
+
+        # Move policy back to the original device
         to_device(self.device, self.policy)
+
+        # Calculate sample collection time
         t_end = time.time()
         log['sample_time'] = t_end - t_start
+
+        # Calculate statistics of actions in the batch
         log['action_mean'] = np.mean(np.vstack(batch.action), axis=0)
         log['action_min'] = np.min(np.vstack(batch.action), axis=0)
         log['action_max'] = np.max(np.vstack(batch.action), axis=0)
+
         return batch, log

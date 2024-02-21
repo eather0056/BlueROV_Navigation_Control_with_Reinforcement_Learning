@@ -130,7 +130,6 @@ running_state = ZFilter(img_depth_dim, goal_dim, ray_dim, clip=30)
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 # env.seed(args.seed)
-# commented line to set seeds for the environment, but it's likely not necessary.
 
 """define actor and critic"""
 # Define actor (policy) and critic (value) networks.
