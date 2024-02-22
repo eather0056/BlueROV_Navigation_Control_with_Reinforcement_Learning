@@ -33,7 +33,7 @@ This research investigates the efficacy of various reinforcement learning algori
 ### Virtual Environment Setup
 Create a Python 3.6 virtual environment named `UW_nav`:
 ```bash
-virtualenv --no-site-packages UW_nav --python=python3.6
+virtualenv UW_nav --python=python3.8
 ```
 
 Activate the virtual environment:
