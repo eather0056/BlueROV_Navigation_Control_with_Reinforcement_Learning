@@ -1,8 +1,9 @@
-gym==0.21.0
-scipy==1.5.4
-matplotlib==3.3.4
-opencv-python==4.2.0.32
-torch==1.10.1
+gym
+scipy
+matplotlib
+opencv-python
+torch
 torchvision
-tensorboard==2.7.0
-timm==0.4.5
+tensorboard
+timm
+nympy
