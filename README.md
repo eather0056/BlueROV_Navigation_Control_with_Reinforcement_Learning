@@ -100,7 +100,7 @@ Activate the Conda environment:
    ```
 Install Python 3.6:
    ```bash
-   conda install python=3.6
+   conda install python=3.8
    ```
 Install gdown for downloading files from Google Drive:
    ```bash
@@ -123,5 +123,13 @@ http://localhost:8888/
 ```
 Install project dependencies follow Environment Setup
 
+For running on Cluster GPU first check the aviblity of the GPU
+```bash
+info-cluster
+```
+Select specific GPU and alocate time you wanted to run
+```bash
+srun --time=02:00:00 --gres=gpu:1 --partition=mundus --mem=64G --pty bash -l
+```
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
