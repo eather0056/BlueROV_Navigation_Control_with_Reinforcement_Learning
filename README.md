@@ -131,5 +131,12 @@ Select specific GPU and alocate time you wanted to run
 ```bash
 srun --time=02:00:00 --gres=gpu:1 --partition=mundus --mem=64G --pty bash -l
 ```
+GPU status 
+nvidia-smi
+
+srun --time=02:00:00 --gres=gpu:2080:1 --partition=all --mem=64G --pty bash -l
+
+sbatch <file_name>
+
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.

@@ -101,10 +101,12 @@ parser.add_argument('--gpu-index', type=int, default=0, metavar='N')
 args = parser.parse_args()
 
 dtype = torch.float64
-torch.set_default_dtype(dtype)
+# torch.set_default_dtype(dtype)
 device = torch.device('cuda', index=args.gpu_index) if torch.cuda.is_available() else torch.device('cpu')
 if torch.cuda.is_available():
     torch.cuda.set_device(args.gpu_index)
+
+
 
 """environment"""
 env = [] # Initialize an empty list to store environment instances.
@@ -142,8 +144,8 @@ else:
     policy_net, value_net, running_state = pickle.load(open(args.model_path, "rb"))
 
 # Move policy and value networks to the specified device (GPU or CPU).
-policy_net.to(device)
-value_net.to(device)
+policy_net.to(dtype).to(device)
+value_net.to(dtype).to(device)
 
 # Initialize Adam optimizers for policy and value networks with the specified learning rate.
 optimizer_policy = torch.optim.Adam(policy_net.parameters(), lr=args.learning_rate)
@@ -199,9 +201,14 @@ def update_params(batch, i_iter):
                 actions[ind], advantages[ind], returns[ind], fixed_log_probs[ind]
 
             # Call the PPO step function to update the policy and value networks.
-            ppo_step(policy_net, value_net, optimizer_policy, optimizer_value, 1, imgs_depth_b,
-                     goals_b, rays_b, hist_actions_b, actions_b, returns_b, advantages_b,
-                     fixed_log_probs_b, args.clip_epsilon, args.l2_reg)
+            print("The types are:: ")
+            print(type(policy_net))
+            print(type(value_net))
+
+
+            ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
+                     goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
+                     fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
 
 
 def main_loop():
