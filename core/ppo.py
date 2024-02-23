@@ -1,13 +1,12 @@
 import torch
-
-
+# device = torch.device('cuda')
 def ppo_step(policy_net, value_net, optimizer_policy, optimizer_value, optim_value_iternum, imgs_depth,
-             goals, rays, hist_actions, actions, returns, advantages, fixed_log_probs, clip_epsilon, l2_reg):
+             goals, rays, hist_actions, actions, returns, advantages, fixed_log_probs, clip_epsilon, l2_reg, device = torch.device('cuda')):
 
     """update critic"""
     for _ in range(optim_value_iternum):
-        values_pred = value_net(imgs_depth, goals, rays, hist_actions)
-        value_loss = (values_pred - returns).pow(2).mean()
+        values_pred = value_net(imgs_depth, goals, rays, hist_actions).to(device)
+        value_loss = (values_pred - returns).pow(2).mean().to(device)
         # weight decay
         for param in value_net.parameters():
             value_loss += param.pow(2).sum() * l2_reg

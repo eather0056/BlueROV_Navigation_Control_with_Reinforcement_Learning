@@ -66,7 +66,7 @@ class DPT_depth():
                 backbone="vitl16_384", # Vision Transformer (ViT) architecture with 16 layers and an input size of 384x384 pixels.
                 non_negative=True, # the model predictions should be constrained to be non-negative.
                 enable_attention_hooks=False,
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
             self.normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 
         elif model_type == "dpt_hybrid":  # DPT-Hybrid
@@ -77,7 +77,7 @@ class DPT_depth():
                 backbone="vitb_rn50_384", # ViT architecture with a ResNet-50 backbone and an input size of 384x384 pixels.
                 non_negative=True,
                 enable_attention_hooks=False,
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
             self.normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 
         elif model_type == "dpt_hybrid_kitti":
@@ -92,7 +92,7 @@ class DPT_depth():
                 backbone="vitb_rn50_384",
                 non_negative=True,
                 enable_attention_hooks=False,
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
             self.normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 
         elif model_type == "dpt_hybrid_nyu":
@@ -108,7 +108,7 @@ class DPT_depth():
                 backbone="vitb_rn50_384",
                 non_negative=True,
                 enable_attention_hooks=False,
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
 
             self.normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 
@@ -118,7 +118,7 @@ class DPT_depth():
             self.model = MidasNet_large(
                 model_path, 
                 non_negative=True
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
 
             self.normalization = NormalizeImage( mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
@@ -128,7 +128,7 @@ class DPT_depth():
             self.model = MidasNet_small(
                 model_path, 
                 non_negative=True
-            ).float() # Compatable for 32 & 64
+            ).to(device).to(torch.float64) # Compatable for 32 & 64
 
             self.normalization = NormalizeImage(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
@@ -169,7 +169,7 @@ class DPT_depth():
         img_input = self.transform({"image": rgb_img})["image"] #resizing and normalization to prepare the image for input to the model.
         with torch.no_grad():
             # Model Inference
-            sample = torch.from_numpy(img_input).to(self.device).unsqueeze(0) # Converts the transformed image to tensor, moves it (CPU or GPU), and adds a batch dimension.
+            sample = torch.from_numpy(img_input).to(self.device).unsqueeze(0).to(torch.float64) # Converts the transformed image to tensor, moves it (CPU or GPU), and adds a batch dimension.
             if self.optimize == True and self.device == torch.device("cuda"):
                 sample = sample.to(memory_format=torch.channels_last)
                 sample = sample.half()
@@ -269,7 +269,7 @@ class Underwater_navigation():
         #unity_env = UnityEnvironment(os.path.abspath("./") + "/underwater_env/water",
                                      #side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)# Ether
         unity_env = UnityEnvironment(os.path.abspath("./underwater_env/build/build.x86_64"),
-                             side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)
+                             side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005,seed=0, no_graphics=True)
 
         # Apply randomization if enabled
         if self.randomization == True:
