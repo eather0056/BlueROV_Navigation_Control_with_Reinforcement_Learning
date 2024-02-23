@@ -106,8 +106,6 @@ device = torch.device('cuda', index=args.gpu_index) if torch.cuda.is_available()
 if torch.cuda.is_available():
     torch.cuda.set_device(args.gpu_index)
 
-
-
 """environment"""
 env = [] # Initialize an empty list to store environment instances.
 
@@ -201,11 +199,6 @@ def update_params(batch, i_iter):
                 actions[ind], advantages[ind], returns[ind], fixed_log_probs[ind]
 
             # Call the PPO step function to update the policy and value networks.
-            print("The types are:: ")
-            print(type(policy_net))
-            print(type(value_net))
-
-
             ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
                      goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
                      fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
