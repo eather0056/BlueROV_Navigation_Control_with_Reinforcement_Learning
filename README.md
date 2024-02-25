@@ -31,21 +31,23 @@ This research investigates the efficacy of various reinforcement learning algori
    - Ensure there is an executable file for the Unity environment.
      
 ### Virtual Environment Setup
-Create a Python 3.6 virtual environment named `UW_nav`:
+Create a Python 3.8 virtual environment named `ROV`:
 ```bash
-virtualenv UW_nav --python=python3.8
+conda create --name ROV python=3.8
 ```
 
 Activate the virtual environment:
 ```bash
-source ~/UW_nav/bin/activate
+conda activate ROV
 ```
-
 Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-
+# CUDA 12.1 (Optional)
+```bash
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+```
 ### ML-Agents Setup
 Clone the ML-Agents repository and navigate to it:
 ```bash
@@ -123,20 +125,51 @@ http://localhost:8888/
 ```
 Install project dependencies follow Environment Setup
 
-For running on Cluster GPU first check the aviblity of the GPU
+# Running on Cluster GPU
+
+Before running your code on the Cluster GPU, please ensure that a GPU is available and allocate the necessary resources.
+
+## Check GPU Availability
+
+To check the availability of GPUs on the cluster, run:
+
 ```bash
 info-cluster
 ```
-Select specific GPU and alocate time you wanted to run
+
+## Select GPU and Allocate Time
+
+Once you've verified GPU availability, select a specific GPU and allocate the desired runtime using the following command:
+
 ```bash
 srun --time=02:00:00 --gres=gpu:1 --partition=mundus --mem=64G --pty bash -l
 ```
-GPU status 
+
+Replace `--gres=gpu:1` with the number of GPUs you need, `--partition=mundus` with the appropriate partition, and adjust `--time` and `--mem` as needed.
+
+## GPU Status
+
+To check the status of the GPU, use the following command:
+
+```bash
 nvidia-smi
+```
 
-srun --time=02:00:00 --gres=gpu:2080:1 --partition=all --mem=64G --pty bash -l
+## Additional Commands
 
-sbatch <file_name>
+- Check GPU status for a specific GPU type:
+  ```bash
+  srun --time=02:00:00 --gres=gpu:2080:1 --partition=all --mem=64G --pty bash -l
+  ```
 
+- View queued jobs for a specific user:
+  ```bash
+  squeue --user  mdeowan698
+  ```
+
+- Submit a job file:
+  ```bash
+  sbatch <file_name>
+  ```
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
