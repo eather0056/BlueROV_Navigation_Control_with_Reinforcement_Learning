@@ -2,8 +2,12 @@ import argparse  # Import the argparse library for parsing command-line argument
 import os  
 import sys  # Import the sys library for accessing some variables used or maintained by the Python interpreter and functions that interact strongly with the interpreter.
 import pickle  # Import the pickle library for serializing and de-serializing Python object structures, also called marshalling or flattening.
-import time  
+import time
+import wandb  
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+# Initialize wandb
+wandb.init(project='bluerov_navigaion_conrol', entity='eather0056')
 
 # Import utilities and classes from custom modules.
 from utils import *  # Import all from the utils module, which include functions and classes for data preprocessing, normalization, etc.
@@ -170,6 +174,10 @@ def update_params(batch, i_iter):
     rewards = torch.from_numpy(np.stack(batch.reward)).to(dtype).to(device)
     masks = torch.from_numpy(np.stack(batch.mask)).to(dtype).to(device)
     
+    # Initialize accumulaors for losses
+    total_policy_loss = 0
+    total_value_loss = 0
+
     # Calculate the values and fixed log probabilities using the value and policy networks.
     with torch.no_grad():
         values = value_net(imgs_depth, goals, rays, hist_actions)
@@ -199,12 +207,26 @@ def update_params(batch, i_iter):
                 actions[ind], advantages[ind], returns[ind], fixed_log_probs[ind]
 
             # Call the PPO step function to update the policy and value networks.
-            ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
+            policy_loss, value_loss = ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
                      goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
                      fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
 
+            total_policy_loss += policy_loss.item() # loss is a tensor
+            total_value_loss += value_loss.item()
+
+    # Compute average losses over all optimization steps
+    avg_policy_loss = total_value_loss / (optim_iter_num * optim_epochs)
+    avg_value_loss = total_value_loss / (optim_iter_num * optim_epochs)
+
+
+    return avg_policy_loss, avg_value_loss
 
 def main_loop():
+    avgrage_rewards = []
+    policy_losses = []
+    value_losses = []
+
+
     # Iterate over a specified number of iterations.
     for i_iter in range(args.max_iter_num):
         """generate multiple trajectories that reach the minimum batch_size"""
@@ -213,7 +235,7 @@ def main_loop():
         t0 = time.time()  # Record the start time for update_params.
 
         # Update the parameters of the policy and value networks using the collected batch of samples.
-        update_params(batch, i_iter)
+        policy_loss, value_loss = update_params(batch, i_iter)
         t1 = time.time()  # Record the end time for update_params.
 
         """evaluate with determinstic action (remove noise for exploration)"""
@@ -221,6 +243,19 @@ def main_loop():
         if args.eval_batch_size > 0:
             _, log_eval = agent.collect_samples(args.eval_batch_size, mean_action=True)
         t2 = time.time()  # Record the end time for evaluation.
+
+        # avgrage_rewards.append(log['avg_reward'])
+        # policy_losses.append(policy_loss)
+        # value_losses.append(value_loss)
+
+        # Log metrics to wandb 
+        wandb.log({'Iteraion': i_iter,
+                   'Average Reward': log['avg_reward'],
+                   'Policy Loss': policy_loss,
+                   'Value Loss': value_loss,
+                   'sampling Time': log['sample_time'],
+                   'Update Time': t1 - t0,
+                   'Evaluation Time': t2 - t1})
 
         # Print training status logs at specified intervals.
         if i_iter % args.log_interval == 0:
