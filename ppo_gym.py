@@ -218,6 +218,7 @@ def update_params(batch, i_iter):
     avg_policy_loss = total_value_loss / (optim_iter_num * optim_epochs)
     avg_value_loss = total_value_loss / (optim_iter_num * optim_epochs)
 
+
     return avg_policy_loss, avg_value_loss
 
 def main_loop():
