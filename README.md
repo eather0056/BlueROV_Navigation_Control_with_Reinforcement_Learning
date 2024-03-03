@@ -44,7 +44,7 @@ Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-# CUDA 12.1 (Optional)
+### CUDA 12.1 (Optional)
 ```bash
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
 ```
@@ -59,6 +59,10 @@ Install the `ml-agents-envs` and `gym-unity` packages:
 ```bash
 pip install -e ./ml-agents-envs
 pip install gym-unity==0.27.0
+```
+Later you might encounter error is due to the deprecation of the `np.bool` alias in NumPy. To resolve this, you can modify the code where `np.bool` is being used to simply use `bool` instead. Locate the file `BlueROV_Navigation-Control/ml-agents/ml-agents-envs/mlagents_envs/rpc_utils.py` and go to line 376, 392 and 400 where `np.bool` is being used. Change `np.bool` to `bool`. 
+```python
+dtype=bool,
 ```
 
 ### Training and Testing
@@ -167,9 +171,14 @@ nvidia-smi
   squeue --user  mdeowan698
   ```
 
-- Submit a job file:
+- Submit a job file using `.slurm` file:
   ```bash
   sbatch <file_name>
+  ```
+
+- Cancel the job
+  ```bash
+  scancel <job_id>
   ```
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.

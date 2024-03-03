@@ -3,8 +3,8 @@
 #SBATCH --job-nam=UW_C #Job name
 #SBATCH --partition=all #gpu partition
 #SBATCH --mem=64G #ram alocation
-#SBATCH -o /mundus/mdeowan698/Test_UW_C_R_gpu.log #parmeter log
-#SBATCH -e /mundus/mdeowan698/Test_UW_C_E_gpu.log #error log
+#SBATCH -o /mundus/mdeowan698/UW_C_R_wandb.log #parmeter log
+#SBATCH -e /mundus/mdeowan698/UW_C_E_wandb.log #error log
 #SBATCH --gres=gpu:a100-20:1
 #SBATCH --partition=all # any gpu
 
