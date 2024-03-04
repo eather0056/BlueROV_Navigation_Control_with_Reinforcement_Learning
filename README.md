@@ -44,6 +44,7 @@ Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
 ### CUDA 12.1 (Optional)
 ```bash
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
@@ -170,7 +171,7 @@ nvidia-smi
   ```bash
   squeue --user  mdeowan698
   ```
-
+  
 - Submit a job file using `.slurm` file:
   ```bash
   sbatch <file_name>

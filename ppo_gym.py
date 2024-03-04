@@ -220,6 +220,8 @@ def update_params(batch, i_iter):
 
     return avg_policy_loss, avg_value_loss
 
+    return avg_policy_loss, avg_value_loss
+
 def main_loop():
     avgrage_rewards = []
     policy_losses = []
