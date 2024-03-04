@@ -130,11 +130,11 @@ http://localhost:8888/
 ```
 Install project dependencies follow Environment Setup
 
-# Running on Cluster GPU
+### Running on Cluster GPU
 
 Before running your code on the Cluster GPU, please ensure that a GPU is available and allocate the necessary resources.
 
-## Check GPU Availability
+### Check GPU Availability
 
 To check the availability of GPUs on the cluster, run:
 
@@ -142,7 +142,7 @@ To check the availability of GPUs on the cluster, run:
 info-cluster
 ```
 
-## Select GPU and Allocate Time
+### Select GPU and Allocate Time
 
 Once you've verified GPU availability, select a specific GPU and allocate the desired runtime using the following command:
 
@@ -152,7 +152,7 @@ srun --time=02:00:00 --gres=gpu:1 --partition=mundus --mem=64G --pty bash -l
 
 Replace `--gres=gpu:1` with the number of GPUs you need, `--partition=mundus` with the appropriate partition, and adjust `--time` and `--mem` as needed.
 
-## GPU Status
+### GPU Status
 
 To check the status of the GPU, use the following command:
 
@@ -160,7 +160,7 @@ To check the status of the GPU, use the following command:
 nvidia-smi
 ```
 
-## Additional Commands
+### Additional Commands
 
 - Check GPU status for a specific GPU type:
   ```bash
