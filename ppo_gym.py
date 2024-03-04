@@ -211,13 +211,14 @@ def update_params(batch, i_iter):
                      goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
                      fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
 
-            total_policy_loss += policy_loss.item() # loss is a tensor
-            total_value_loss += value_loss.item()
+            total_policy_loss += policy_loss
+            total_value_loss += value_loss
 
     # Compute average losses over all optimization steps
     avg_policy_loss = total_value_loss / (optim_iter_num * optim_epochs)
     avg_value_loss = total_value_loss / (optim_iter_num * optim_epochs)
 
+    return avg_policy_loss, avg_value_loss
 
     return avg_policy_loss, avg_value_loss
 
