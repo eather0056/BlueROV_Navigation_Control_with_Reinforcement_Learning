@@ -6,9 +6,6 @@ import time
 import wandb  
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-# Initialize wandb
-wandb.init(project='bluerov_navigaion_conrol', entity='eather0056')
-
 # Import utilities and classes from custom modules.
 from utils import *  # Import all from the utils module, which include functions and classes for data preprocessing, normalization, etc.
 from models.mlp_policy import Policy  # Import the Policy class from the mlp_policy module, which defines the policy network architecture.
@@ -103,6 +100,9 @@ parser.add_argument('--gpu-index', type=int, default=0, metavar='N')
 
 # Parse the command-line arguments and store them in 'args' object.
 args = parser.parse_args()
+
+# Initialize wandb
+wandb.init(project='bluerov_navigaion_conrol', entity='eather0056', config=args)
 
 dtype = torch.float64
 # torch.set_default_dtype(dtype)
@@ -227,7 +227,6 @@ def main_loop():
     policy_losses = []
     value_losses = []
 
-
     # Iterate over a specified number of iterations.
     for i_iter in range(args.max_iter_num):
         """generate multiple trajectories that reach the minimum batch_size"""
@@ -245,28 +244,32 @@ def main_loop():
             _, log_eval = agent.collect_samples(args.eval_batch_size, mean_action=True)
         t2 = time.time()  # Record the end time for evaluation.
 
-        # avgrage_rewards.append(log['avg_reward'])
-        # policy_losses.append(policy_loss)
-        # value_losses.append(value_loss)
-
-        # Log metrics to wandb 
-        wandb.log({'Iteraion': i_iter,
-                   'Average Reward': log['avg_reward'],
-                   'Policy Loss': policy_loss,
-                   'Value Loss': value_loss,
-                   'sampling Time': log['sample_time'],
-                   'Update Time': t1 - t0,
-                   'Evaluation Time': t2 - t1})
-
         # Print training status logs at specified intervals.
         if i_iter % args.log_interval == 0:
+            log_data = {
+                'Iteration_Number': i_iter,
+                'Sample_Time_Sec': log['sample_time'],
+                'Update_Duration_Sec': t1 - t0,
+                'Evaluation_Duration_Sec': t2 - t1,
+                'Training_Reward_Minimum': log['min_reward'],
+                'Training_Reward_Maximum': log['max_reward'],
+                'Training_Reward_Average': log['avg_reward'],
+                'Number_of_Episodes': log['num_episodes'],
+                'Success_Ratio': log.get('ratio_success', 0),
+                'Average_Steps_Per_Success': log.get('avg_steps_success', 0),
+                'Average_Last_Reward': log.get('avg_last_reward', 0)
+            }
+
             if args.eval_batch_size > 0:
+                log_data['eval_R_avg'] = log_eval['avg_reward']
                 print('{}\tT_sample {:.4f}\tT_update {:.4f}\tT_eval {:.4f}\ttrain_R_min {:.2f}\ttrain_R_max {:.2f}\ttrain_R_avg {:.2f}\teval_R_avg {:.2f}'.format(
                     i_iter, log['sample_time'], t1-t0, t2-t1, log['min_reward'], log['max_reward'], log['avg_reward'], log_eval['avg_reward']))
             else:
                 print(
                 '{}\tT_sample {:.4f}\tT_update {:.4f}\tT_eval {:.4f}\ttrain_R_min {:.2f}\ttrain_R_max {:.2f}\ttrain_R_avg {:.2f}\t'.format(
                     i_iter, log['sample_time'], t1 - t0, t2 - t1, log['min_reward'], log['max_reward'], log['avg_reward']))
+                
+            wandb.log(log_data) # Log metrics to wandb 
 
         # Write training statistics to a text file.
         if args.randomization == 1:
