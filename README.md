@@ -93,6 +93,16 @@ Up the wiregrad interface
    ```bash
    sudo wg-quick up ~/Downloads/mdeowan698.conf
    ```
+Connect with cluster for hosting VS Code:
+   ```bash
+   srun --time=05:00:00 --gres=gpu:1 --mem=64G --partition=mundus --pty bash -l
+   ```
+Change host config according  to node
+
+to see prosses uses 
+htop --user mdeowan698
+
+
 Connect with cluster:
    ```bash
    ssh <<username>>@sms.lis-lab.fr
