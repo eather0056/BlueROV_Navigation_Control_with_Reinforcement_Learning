@@ -1,3 +1,10 @@
+# import torch.multiprocessing as mp
+
+# try:
+#     mp.set_start_method('spawn', force=True)  # Use 'force=True' to forcibly set the method if needed
+# except RuntimeError as e:
+#     print(f"Skipping set_start_method due to: {e}")
+
 import argparse  # Import the argparse library for parsing command-line arguments.
 import os  
 import sys  # Import the sys library for accessing some variables used or maintained by the Python interpreter and functions that interact strongly with the interpreter.
@@ -272,9 +279,11 @@ def main_loop():
         torch.cuda.empty_cache()
 
 if __name__ == '__main__':
-    # Set the start method for multiprocessing to 'spawn'.
-    torch.multiprocessing.set_start_method('spawn')
-    # Call the main loop function to start training.
+    try:
+        torch.multiprocessing.set_start_method('spawn')
+    except RuntimeError as e:
+        print(f"Cannot set multiprocessing start method: {e}")
+
     main_loop()
     print("Training finished.")
 
