@@ -1,0 +1,3 @@
+git rm -rf --cached .
+git add .
+ git commit -m "git ignore removed and added again"
