@@ -1,7 +1,8 @@
 # Import necessary libraries
 import numpy as np                  
 import cv2                         
-import matplotlib.pyplot as plt    
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm    
 import torch                       
 import time                        
 import uuid                        # Library for generating universally unique identifiers
@@ -23,6 +24,8 @@ from DPT.dpt.models import DPTDepthModel                # Depth prediction model
 from DPT.dpt.midas_net import MidasNet_large            # Pre-trained MIDASNet model (large version)
 from DPT.dpt.midas_net_custom import MidasNet_small     # Pre-trained MIDASNet model (small version)
 from DPT.dpt.transforms import Resize, NormalizeImage, PrepareForNet  # Transforms for depth prediction
+
+from transformers import AutoImageProcessor, AutoModelForDepthEstimation
 
 # Constants for depth image dimensions
 DEPTH_IMAGE_WIDTH = 160    # Width of the depth image
@@ -225,6 +228,42 @@ class PosChannel(SideChannel):
         msg.write_float32_list(data)
         super().queue_message_to_send(msg) # Adds the message to the queue of messages 
 
+class DepthAnything:
+    THRESHOLD = np.finfo("float").eps
+    def __init__(self, device):
+        self.device = torch.device(device)
+        # Initialize the model and processor
+        self.image_processor = AutoImageProcessor.from_pretrained("LiheYoung/depth-anything-small-hf")
+        self.model_df = AutoModelForDepthEstimation.from_pretrained("LiheYoung/depth-anything-small-hf").to(self.device)
+        
+    def depth_estimation(self, rgb_img):
+        inputs = self.image_processor(images=rgb_img, return_tensors="pt", do_rescale=False).to(self.device)
+    
+        with torch.no_grad():
+            # Forward pass through the model
+            outputs = self.model_df(**inputs)
+            predicted_depth = outputs.predicted_depth
+
+        # Interpolate to original size
+        prediction = torch.nn.functional.interpolate(
+            predicted_depth.unsqueeze(1),
+            size=(DEPTH_IMAGE_HEIGHT, DEPTH_IMAGE_WIDTH),
+            mode="bicubic",
+            align_corners=False,
+        ).squeeze().cpu().numpy()
+
+        # Normalize the depth map
+        depth_min = prediction.min()
+        depth_max = prediction.max()
+
+        if depth_max - depth_min > self.THRESHOLD:
+            prediction = (prediction - depth_min) / (depth_max - depth_min)  # Normalize depth map to [0, 1]
+        else:  # Uniform depth values
+            prediction = np.zeros(prediction.shape, dtype=prediction.dtype)  # Set prediction to zeros
+
+        return prediction
+    
+
 class Underwater_navigation():
     def __init__(self, depth_prediction_model, adaptation, randomization, rank, HIST, start_goal_pos=None, training=True):
         """
@@ -249,6 +288,8 @@ class Underwater_navigation():
         self.training = training
         self.twist_range = 30 # degree
         self.vertical_range = 0.1
+        self.depth_prediction_model= depth_prediction_model
+
         # Define action space
         self.action_space = spaces.Box(
             np.array([-self.twist_range, -self.vertical_range]).astype(np.float32),
@@ -264,6 +305,7 @@ class Underwater_navigation():
         # Initialize PosChannel for communication with Unity environment
         self.pos_info = PosChannel()
         config_channel = EngineConfigurationChannel()
+        self.depth_estimator = DepthAnything(device=self.device)
 
         # Create Unity environment
         #unity_env = UnityEnvironment(os.path.abspath("./") + "/underwater_env/water",
@@ -363,8 +405,12 @@ class Underwater_navigation():
         obs_img_ray, _, done, _ = self.env.step([0, 0])
 
         # observations per frame, Get depth predictions from the depth prediction model
-        obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
-        # Calculate ray observations #ether
+        if self.depth_prediction_model == "dpt":
+            obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
+        else:
+            obs_preddepth = self.depth_estimator.depth_estimation(obs_img_ray[0] ** 0.45)
+
+        # Calculate ray observations 
         # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
         #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
         obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
@@ -408,9 +454,12 @@ class Underwater_navigation():
         # Perform a step in the environment based on the provided action
         obs_img_ray, _, done, _ = self.env.step([action_ver, action_rot])
 
-        # Obtain depth predictions from the depth prediction model
-        obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
-        
+        # observations per frame, Get depth predictions from the depth prediction model
+        if self.depth_prediction_model == "dpt":
+            obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
+        else:
+            obs_preddepth = self.depth_estimator.depth_estimation(obs_img_ray[0] ** 0.45)
+
         # Calculate ray observations #ether
         # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
         #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])

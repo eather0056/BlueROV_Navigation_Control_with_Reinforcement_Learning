@@ -81,8 +81,7 @@ This project contributes to the field of underwater robotics by:
 - Comparatively analyzing the performance of A2C, PPO, and TRPO in map-less navigation scenarios.
 - Enhancing the robustness of underwater navigation systems through advanced sensor fusion and reward function refinement.
 - Providing insights into overcoming navigation failures in constrained underwater environments.
-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
-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 -->
+-->
 
 ### Running on cluster
 Install wireguard to you local machine:
@@ -97,11 +96,8 @@ Connect with cluster for hosting VS Code:
    ```bash
    srun --time=05:00:00 --gres=gpu:1 --mem=64G --partition=mundus --pty bash -l
    ```
-Change host config according  to node
-
-to see prosses uses 
-htop --user mdeowan698
-
+Adjust host configuration based on the node requirements.
+To monitor the process usage, execute: htop --user <user_id>.
 
 Connect with cluster:
    ```bash
@@ -139,6 +135,13 @@ Then access Jupyter Notebook in your web browser using:
 http://localhost:8888/
 ```
 Install project dependencies follow Environment Setup
+
+### Modificaion for running on Cluster
+
+Set UnityEnvironment() parameter, Underwater_navigation class line around 320
+```python
+no_graphics=True
+```
 
 ### Running on Cluster GPU
 

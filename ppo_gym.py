@@ -311,9 +311,11 @@ def main_loop():
         torch.cuda.empty_cache()
 
 if __name__ == '__main__':
-    # Set the start method for multiprocessing to 'spawn'.
-    torch.multiprocessing.set_start_method('spawn')
-    # Call the main loop function to start training.
+    try:
+        torch.multiprocessing.set_start_method('spawn')
+    except RuntimeError as e:
+        print(f"Cannot set multiprocessing start method: {e}")
+
     main_loop()
     print("Training finished.")
 
