@@ -136,13 +136,13 @@ http://localhost:8888/
 ```
 Install project dependencies follow Environment Setup
 
+
 ### Modificaion for running on Cluster
 
 Set UnityEnvironment() parameter, Underwater_navigation class line around 320
 ```python
 no_graphics=True
 ```
-
 ### Running on Cluster GPU
 
 Before running your code on the Cluster GPU, please ensure that a GPU is available and allocate the necessary resources.

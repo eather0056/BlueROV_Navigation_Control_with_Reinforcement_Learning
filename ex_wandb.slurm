@@ -16,3 +16,4 @@ conda activate ROV
 CUDA_LAUNCH_BLOCKING=1 python3 trpo_gym.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5 --gpu-index 0 --adaptation 0 --max-iter-num 200
 #CUDA_LAUNCH_BLOCKING=1 python3 ppo_gym_test.py --env-name navigation --eval-batch-size 2000 --hist-length 5
 # gpu:a100-20:1
+
