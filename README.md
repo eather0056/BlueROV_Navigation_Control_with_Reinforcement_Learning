@@ -1,4 +1,4 @@
-# Advancing Map-less Underwater Navigation
+# Advancing Map-less Underwater Navigation (This branch will run on local PC)
 
 ## Research Question
 How can the performance and robustness of map-less underwater navigation for low-cost underwater robots be enhanced by comparing and integrating Advanced Actor-Critic (A2C), Proximal Policy Optimization (PPO), and Trust Region Policy Optimization (TRPO) algorithms, while addressing the challenge of navigation failure in constrained environments?
@@ -31,9 +31,9 @@ This research investigates the efficacy of various reinforcement learning algori
    - Ensure there is an executable file for the Unity environment.
      
 ### Virtual Environment Setup
-Create a Python 3.6 virtual environment named `UW_nav`:
+Create a Python 3.8 virtual environment named `UW_nav`:
 ```bash
-virtualenv --no-site-packages UW_nav --python=python3.6
+virtualenv --no-site-packages UW_nav --python=python3.8
 ```
 
 Activate the virtual environment:
@@ -58,11 +58,20 @@ Install the `ml-agents-envs` and `gym-unity` packages:
 pip install -e ./ml-agents-envs
 pip install gym-unity==0.27.0
 ```
+### Depth anyhing 
+Install git huggingface transformers
+```bash
+pip install git+https://github.com/huggingface/transformers.git
+```
 
 ### Training and Testing
 For training the models, run:
 ```bash
-python3 ppo_gym.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5
+python3 ppo_gym.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5 --depth-prediction-model deph_anytthing
+```
+or
+```bash
+python3 ppo_gym.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5 --depth-prediction-model dpt
 ```
 
 For testing the models, run:
@@ -74,54 +83,7 @@ This project contributes to the field of underwater robotics by:
 - Comparatively analyzing the performance of A2C, PPO, and TRPO in map-less navigation scenarios.
 - Enhancing the robustness of underwater navigation systems through advanced sensor fusion and reward function refinement.
 - Providing insights into overcoming navigation failures in constrained underwater environments.
-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
-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 -->
-
-### Running on cluster
-Install wireguard to you local machine:
-   ```bash
-   sudo apt install wireguard
-   ```
-Up the wiregrad interface
-   ```bash
-   sudo wg-quick up ~/Downloads/mdeowan698.conf
-   ```
-Connect with cluster:
-   ```bash
-   ssh <<username>>@sms.lis-lab.fr
-   ```
-Create a new Conda environment:
-   ```bash
-   conda create --name <env-name>
-   ```
-Activate the Conda environment:
-   ```bash
-   conda activate <env-name>
-   ```
-Install Python 3.6:
-   ```bash
-   conda install python=3.6
-   ```
-Install gdown for downloading files from Google Drive:
-   ```bash
-   pip install gdown
-   ```
-Downloading Files from Google Drive
-To download files from Google Drive, you can use the `gdown` command followed by the file ID:
-```bash
-gdown --id <file_id>
-```
-Running Jupyter Notebook Locally
-
-To run Jupyter Notebook locally, you can use SSH tunneling:
-```bash
-ssh -N -L 8888:localhost:8888 mdeowan698@sms.lis-lab.fr
-```
-Then access Jupyter Notebook in your web browser using:
-```
-http://localhost:8888/
-```
-Install project dependencies follow Environment Setup
+-->
 
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.

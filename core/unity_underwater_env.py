@@ -203,7 +203,22 @@ class DPT_depth():
                 plt.imshow(np.uint16(prediction * 65536))
                 plt.show()
 
-            #cv2.imwrite("depth.png", ((prediction*65536).astype("uint16")), [cv2.IMWRITE_PNG_COMPRESSION, 0])
+            # Apply the 'plasma' colormap
+            colored_image = cm.plasma(prediction, bytes=True)  # This returns RGBA image
+            # Convert RGBA to BGR for OpenCV
+            colored_image_bgr = cv2.cvtColor(colored_image, cv2.COLOR_RGBA2BGR)
+
+            # bounding box coordinates
+            x1, y1 = 55, 50  # Top-left corner
+            x2, y2 = 110, 93  # Bottom-right corner
+
+            # Draw the bounding box on the image
+            color = (0, 255, 0)  # Green color
+            thickness = 2  # Thickness of the bounding box
+            cv2.rectangle(colored_image_bgr, (x1, y1), (x2, y2), color, thickness)
+
+            # Save the resulting image with OpenCV
+            cv2.imwrite("midas_depth_colored.png", colored_image_bgr, [cv2.IMWRITE_PNG_COMPRESSION, 0])
         return prediction
 
 class PosChannel(SideChannel):
@@ -238,7 +253,7 @@ class DepthAnything:
         self.model_df = AutoModelForDepthEstimation.from_pretrained("LiheYoung/depth-anything-small-hf")
         
     def depth_estimation(self, rgb_img):
-        inputs = self.image_processor(images=rgb_img, return_tensors="pt").to(self.device)
+        inputs = self.image_processor(images=rgb_img, return_tensors="pt", do_rescale=False).to(self.device)
         processed_image = rgb_img
 
         # rescale to 0-65535 for 16-bit but ensure it makes sense for your data
@@ -269,17 +284,22 @@ class DepthAnything:
         else:  # Uniform depth values
             prediction = np.zeros(prediction.shape, dtype=prediction.dtype)  # Set prediction to zeros
 
-        # Optionally display the depth map
-        # plt.imshow(np.uint16(prediction * 65536))
-        # plt.show()
- 
         # Apply the 'plasma' colormap
         colored_image = cm.plasma(prediction, bytes=True)  # This returns RGBA image
         # Convert RGBA to BGR for OpenCV
         colored_image_bgr = cv2.cvtColor(colored_image, cv2.COLOR_RGBA2BGR)
-        # Save the resulting image with OpenCV
-        cv2.imwrite("depth_colored.png", colored_image_bgr, [cv2.IMWRITE_PNG_COMPRESSION, 0])
 
+        # bounding box coordinates
+        x1, y1 = 55, 50  # Top-left corner
+        x2, y2 = 110, 93  # Bottom-right corner
+
+        # Draw the bounding box on the image
+        color = (0, 255, 0)  # Green color
+        thickness = 2  # Thickness of the bounding box
+        cv2.rectangle(colored_image_bgr, (x1, y1), (x2, y2), color, thickness)
+
+        # Save the resulting image with OpenCV
+        cv2.imwrite("depth_anything_colored.png", colored_image_bgr, [cv2.IMWRITE_PNG_COMPRESSION, 0])
         return prediction
     
 class Underwater_navigation():
@@ -327,7 +347,7 @@ class Underwater_navigation():
 
         # Create Unity environment
         #unity_env = UnityEnvironment(os.path.abspath("./") + "/underwater_env/build",
-                                     #side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)# Ether
+                                     #side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)
         unity_env = UnityEnvironment(os.path.abspath("./underwater_env/build/build.x86_64"),
                              side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005,seed=0, no_graphics=False)
 
@@ -477,7 +497,20 @@ class Underwater_navigation():
             obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
         else:
             obs_preddepth = self.depth_estimator.depth_estimation(obs_img_ray[0] ** 0.45)
-        
+
+        scale_factor = 1  # scale factor 
+        distances = obs_preddepth * scale_factor
+
+        # bounding box coordinates
+        x1, y1 = 55, 50  # Top-left corner
+        x2, y2 = 110, 93  # Bottom-right corner
+
+        # Extract depth values within the bounding box region
+        depth_in_box = distances[y1:y2+1, x1:x2+1]
+
+        # Calculate the average depth within the bounding box
+        average_depth = np.mean(depth_in_box)
+
         # Calculate ray observations #ether
         # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
         #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
@@ -507,15 +540,30 @@ class Underwater_navigation():
         obstacle_distance_vertical = np.min([obs_img_ray[0][28], obs_img_ray[0][19],
                                              obs_img_ray[0][17], obs_img_ray[0][15],
                                              obs_img_ray[0][13], obs_img_ray[0][11]]) * 8 * 0.5
-        
+
+        print("Average depth within the bounding box:", average_depth)
+        print("obstacle_distance:", obstacle_distance)
+        print("obstacle_distance_vertical:", obstacle_distance_vertical)
+
         # If obstacle_distance is less than 0.5 (indicating that the robot is too close to obstacles).
         # If the absolute value of the robot's y-position (obs_goal_depthfromwater[3]) is less than 0.24 (indicating proximity to the water surface).
         # If obstacle_distance_vertical is less than 0.12 (indicating proximity to obstacles in the vertical direction).
-        if obstacle_distance < 0.5 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
+        # if obstacle_distance < 0.5 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
+        #     reward_obstacle = -10
+        #     done = True # the done flag is set to True to indicate that the episode is finished
+        #     print("Too close to the obstacle, seafloor or water surface!",
+        #           "\nhorizontal distance to nearest obstacle:", obstacle_distance,
+        #           "\ndistance to water surface", np.abs(obs_goal_depthfromwater[3]),
+        #           "\nvertical distance to nearest obstacle:", obstacle_distance_vertical)
+        # else:
+        #     reward_obstacle = 0
+
+        # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        if average_depth > 0.7 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
             reward_obstacle = -10
             done = True # the done flag is set to True to indicate that the episode is finished
             print("Too close to the obstacle, seafloor or water surface!",
-                  "\nhorizontal distance to nearest obstacle:", obstacle_distance,
+                  "\nhorizontal distance to nearest obstacle:", average_depth,
                   "\ndistance to water surface", np.abs(obs_goal_depthfromwater[3]),
                   "\nvertical distance to nearest obstacle:", obstacle_distance_vertical)
         else:
@@ -559,9 +607,16 @@ class Underwater_navigation():
             
         '''# 4. give negative rewards if the robot too often turns its direction or is near any obstacle'''
         reward_turning = 0 # This component penalizes the agent for excessive changes in direction. 
-        if 0.5 <= obstacle_distance < 1.:
-            reward_goal_reaching_horizontal *= (obstacle_distance - 0.5) / 0.5
-            reward_obstacle -= (1 - obstacle_distance) * 2
+        # if 0.5 <= obstacle_distance < 1.:
+        #     reward_goal_reaching_horizontal *= (obstacle_distance - 0.5) / 0.5
+        #     reward_obstacle -= (1 - obstacle_distance) * 2
+        # # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
+        # # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
+
+        # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        if 0.5 <= average_depth < .69:
+            reward_goal_reaching_horizontal *= (average_depth - 0.5) / 0.5
+            reward_obstacle -= (1 - average_depth) * 2
         # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
         # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
 
