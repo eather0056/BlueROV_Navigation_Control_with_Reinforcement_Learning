@@ -65,3 +65,17 @@ class Policy(nn.Module):
     def get_log_prob(self, depth_img, goal, ray, hist_action, actions):
         action_mean, action_log_std, action_std = self.forward(depth_img, goal, ray, hist_action)
         return normal_log_density(actions, action_mean, action_log_std, action_std)
+    
+    def get_fim(self, depth_img, goal, ray, hist_action):
+        mean, _, _ = self.forward(depth_img, goal, ray, hist_action)
+        cov_inv = self.action_log_std.exp().pow(-2).squeeze(0).repeat(depth_img.size(0))
+        param_count = 0
+        std_index = 0
+        id = 0
+        for name, param in self.named_parameters():
+            if name == "action_log_std":
+                std_id = id
+                std_index = param_count
+            param_count += param.view(-1).shape[0]
+            id += 1
+        return cov_inv.detach(), mean, {'std_id': std_id, 'std_index': std_index}
