@@ -10,13 +10,14 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from utils import *  # Import all from the utils module, which include functions and classes for data preprocessing, normalization, etc.
 from models.mlp_policy import Policy  # Import the Policy class from the mlp_policy module, which defines the policy network architecture.
 from models.mlp_critic import Value  # Import the Value class from the mlp_critic module, which defines the value network architecture.
-from core.ppo import ppo_step  # Import the ppo_step function from the ppo module, which implements a single step of the PPO algorithm.
+from models.mlp_policy_disc import DiscretePolicy
+from core.a2c import a2c_step
 from core.common import estimate_advantages  # Import the estimate_advantages function from the common module, which computes advantage estimates for use in policy optimization.
 from core.agent import Agent  # Import the Agent class from the agent module, which encapsulates the interaction between a policy and an environment.
 from core.unity_underwater_env import Underwater_navigation  # Import the Underwater_navigation class from the unity_underwater_env module, which defines the underwater navigation environment.
 
 # Create an argument parser object with a description of the script. take input from command line
-parser = argparse.ArgumentParser(description='PyTorch PPO example')
+parser = argparse.ArgumentParser(description='PyTorch A2C example')
 
 # Argument for specifying the environment name to run. Default is "Hopper-v2".
 parser.add_argument('--env-name', default="Hopper-v2", metavar='G',
@@ -59,9 +60,9 @@ parser.add_argument('--adaptation', type=int, default=1, metavar='G')
 # Argument for specifying the depth prediction model. Default is "dpt".
 parser.add_argument('--depth-prediction-model', default="dpt", metavar='G')
 
-# Argument for specifying the clipping epsilon for PPO. Default is 0.2.
+# Argument for specifying the clipping epsilon for A2C. Default is 0.2.
 parser.add_argument('--clip-epsilon', type=float, default=0.2, metavar='N',
-                    help='clipping epsilon for PPO')
+                    help='clipping epsilon for A2C')
 
 # Argument for specifying the number of consecutive history infos. Default is 4.
 parser.add_argument('--hist-length', type=int, default=4, metavar='N',
@@ -75,9 +76,9 @@ parser.add_argument('--num-threads', type=int, default=1, metavar='N',
 parser.add_argument('--seed', type=int, default=1, metavar='N',
                     help='random seed (default: 1)')
 
-# Argument for specifying the minimal batch size per PPO update. Default is 2048.
+# Argument for specifying the minimal batch size per A2C update. Default is 2048.
 parser.add_argument('--min-batch-size', type=int, default=2048, metavar='N',
-                    help='minimal batch size per PPO update (default: 2048)')
+                    help='minimal batch size per A2C update (default: 2048)')
 
 # Argument for specifying the minimal batch size for evaluation. Default is 2048.
 parser.add_argument('--eval-batch-size', type=int, default=2048, metavar='N',
@@ -164,7 +165,7 @@ optim_batch_size = 64
 # - num_threads: Number of threads used for parallel environment interaction.
 agent = Agent(env, policy_net, device, running_state=running_state, num_threads=args.num_threads)
 
-def update_params(batch, i_iter):
+def update_params(batch):
     # Convert numpy arrays from the batch to PyTorch tensors and move them to the appropriate device (GPU or CPU).
     imgs_depth = torch.from_numpy(np.stack(batch.img_depth)).to(dtype).to(device)
     goals = torch.from_numpy(np.stack(batch.goal)).to(dtype).to(device)
@@ -175,48 +176,22 @@ def update_params(batch, i_iter):
     masks = torch.from_numpy(np.stack(batch.mask)).to(dtype).to(device)
     
     # Initialize accumulaors for losses
-    total_policy_loss = 0
-    total_value_loss = 0
+    policy_loss = 0
+    value_loss = 0
 
     # Calculate the values and fixed log probabilities using the value and policy networks.
     with torch.no_grad():
         values = value_net(imgs_depth, goals, rays, hist_actions)
-        fixed_log_probs = policy_net.get_log_prob(imgs_depth, goals, rays, hist_actions, actions)
 
     # Estimate advantages and returns using the rewards, masks, and values.
     advantages, returns = estimate_advantages(rewards, masks, values, args.gamma, args.tau, device)
 
-    # Perform mini-batch PPO update for multiple epochs.
-    optim_iter_num = int(math.ceil(imgs_depth.shape[0] / optim_batch_size))
-    for _ in range(optim_epochs):
-        # Shuffle indices for mini-batch updates.
-        perm = np.arange(imgs_depth.shape[0])
-        np.random.shuffle(perm)
-        perm = LongTensor(perm).to(device)
-
-        # Apply permutation to the tensors.
-        imgs_depth, goals, rays, hist_actions, actions, returns, advantages, fixed_log_probs = \
-            imgs_depth[perm].clone(), goals[perm].clone(), rays[perm].clone(), hist_actions[perm].clone(), actions[perm].clone(),\
-            returns[perm].clone(), advantages[perm].clone(), fixed_log_probs[perm].clone()
-
-        # Perform mini-batch updates.
-        for i in range(optim_iter_num):
-            ind = slice(i * optim_batch_size, min((i + 1) * optim_batch_size, imgs_depth.shape[0]))
-            imgs_depth_b, goals_b, rays_b, hist_actions_b, actions_b, advantages_b, returns_b, fixed_log_probs_b = \
-                imgs_depth[ind], goals[ind], rays[ind], hist_actions[ind], \
-                actions[ind], advantages[ind], returns[ind], fixed_log_probs[ind]
-
-            # Call the PPO step function to update the policy and value networks.
-            policy_loss, value_loss = ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
-                     goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
-                     fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
-
-            total_policy_loss += policy_loss
-            total_value_loss += value_loss
-
-    # Compute average losses over all optimization steps
-    avg_policy_loss = total_value_loss / (optim_iter_num * optim_epochs)
-    avg_value_loss = total_value_loss / (optim_iter_num * optim_epochs)
+    """perform TRPO update"""
+    policy_loss, value_loss = a2c_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, imgs_depth.to(dtype).to(device),
+                     goals.to(dtype).to(device), rays.to(dtype).to(device), hist_actions.to(dtype).to(device), actions.to(dtype).to(device), returns.to(dtype).to(device), advantages.to(dtype).to(device), args.l2_reg, device)
+    
+    avg_policy_loss = policy_loss
+    avg_value_loss = value_loss
 
     return avg_policy_loss, avg_value_loss
 
@@ -233,7 +208,7 @@ def main_loop():
         t0 = time.time()  # Record the start time for update_params.
 
         # Update the parameters of the policy and value networks using the collected batch of samples.
-        policy_loss, value_loss = update_params(batch, i_iter)
+        policy_loss, value_loss = update_params(batch)
         t1 = time.time()  # Record the end time for update_params.
 
         """evaluate with determinstic action (remove noise for exploration)"""
@@ -274,11 +249,11 @@ def main_loop():
         # Write training statistics to a text file.
         if args.randomization == 1:
             if args.adaptation == 1:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_adapt_Env_B.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt.txt'.format(args.env_name)), "a")
             else:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand_Env_B.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand.txt'.format(args.env_name)), "a")
         else:
-            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_norand_Env_B.txt'.format(args.env_name)), "a")
+            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand.txt'.format(args.env_name)), "a")
         data = [str(i_iter), " ", str(log['avg_reward']), " ", str(log['num_episodes']),
                 " ", str(log['ratio_success']), " ", str(log['avg_steps_success']), " ", str(log['avg_last_reward']), "\n"]
         for element in data:
@@ -293,17 +268,17 @@ def main_loop():
                 if args.adaptation == 1:
                     # Save the networks with adaptation suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_ppo_adapt_Env_B.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt.p'.format(args.env_name)),
                                      'wb'))
                 else:
                     # Save the networks with randomization suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand_Env_B.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand.p'.format(args.env_name)),
                                      'wb'))
             else:
                 # Save the networks with no randomization suffix in the file name.
                 pickle.dump((policy_net, value_net, running_state),
-                        open(os.path.join(assets_dir(), 'learned_models/{}_ppo_norand_Env_B.p'.format(args.env_name)), 'wb'))
+                        open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand.p'.format(args.env_name)), 'wb'))
             # Move networks back to the specified device after saving.
             to_device(device, policy_net, value_net)
 

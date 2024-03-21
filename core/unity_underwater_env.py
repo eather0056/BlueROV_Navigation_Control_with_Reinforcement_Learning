@@ -310,7 +310,7 @@ class Underwater_navigation():
         # Create Unity environment
         #unity_env = UnityEnvironment(os.path.abspath("./") + "/underwater_env/water",
                                      #side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)# Ether
-        unity_env = UnityEnvironment(os.path.abspath("./underwater_env/build/build.x86_64"),
+        unity_env = UnityEnvironment(os.path.abspath("./underwater_env/Env_B/Env_B.x86_64"),
                              side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005,seed=0, no_graphics=True)
 
         # Apply randomization if enabled
@@ -460,12 +460,12 @@ class Underwater_navigation():
         else:
             obs_preddepth = self.depth_estimator.depth_estimation(obs_img_ray[0] ** 0.45)
 
-        # Calculate ray observations #ether
-        # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
-        #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
+        # Calculate ray observations
+        obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
+                                    obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
         
-        obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
-                                    obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
+        # obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
+        #                             obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
         
         # obs_ray = np.array([0]), got goal-related information
         obs_goal_depthfromwater = self.pos_info.goal_depthfromwater_info()
@@ -483,12 +483,12 @@ class Underwater_navigation():
         obstacle_distance = np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
                              obs_img_ray[1][7], obs_img_ray[1][9], obs_img_ray[1][11],
                              obs_img_ray[1][13], obs_img_ray[1][15], obs_img_ray[1][17]]) * 8 * 0.5
-        # obstacle_distance_vertical = np.min([obs_img_ray[1][81], obs_img_ray[1][79],
-        #                                      obs_img_ray[1][77], obs_img_ray[1][75],
-        #                                      obs_img_ray[1][73], obs_img_ray[1][71]]) * 8 * 0.5
-        obstacle_distance_vertical = np.min([obs_img_ray[0][28], obs_img_ray[0][19],
-                                             obs_img_ray[0][17], obs_img_ray[0][15],
-                                             obs_img_ray[0][13], obs_img_ray[0][11]]) * 8 * 0.5
+        obstacle_distance_vertical = np.min([obs_img_ray[1][81], obs_img_ray[1][79],
+                                             obs_img_ray[1][77], obs_img_ray[1][75],
+                                             obs_img_ray[1][73], obs_img_ray[1][71]]) * 8 * 0.5
+        # obstacle_distance_vertical = np.min([obs_img_ray[0][28], obs_img_ray[0][19],
+        #                                      obs_img_ray[0][17], obs_img_ray[0][15],
+        #                                      obs_img_ray[0][13], obs_img_ray[0][11]]) * 8 * 0.5
         
         # If obstacle_distance is less than 0.5 (indicating that the robot is too close to obstacles).
         # If the absolute value of the robot's y-position (obs_goal_depthfromwater[3]) is less than 0.24 (indicating proximity to the water surface).
