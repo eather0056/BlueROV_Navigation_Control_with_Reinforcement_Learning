@@ -331,6 +331,9 @@ class Underwater_navigation():
         self.twist_range = 30 # degree
         self.vertical_range = 0.1
         self.depth_prediction_model= depth_prediction_model
+        self.agent_position_history = []  # Initialize as empty
+        self.is_stuck_flag = False
+        self.last_action = []
         # Define action space
         self.action_space = spaces.Box(
             np.array([-self.twist_range, -self.vertical_range]).astype(np.float32),
@@ -567,7 +570,7 @@ class Underwater_navigation():
         else:
             reward_obstacle = 0
 
-        # # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        '''# # Training without Sonar reading, obstacal distance estimation using only monocular camera'''
         # if average_depth > 0.7 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
         #     reward_obstacle = -10
         #     done = True # the done flag is set to True to indicate that the episode is finished
@@ -622,15 +625,53 @@ class Underwater_navigation():
         # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
         # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
 
-        # # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        ''' Training without Sonar reading, obstacal distance estimation using only monocular camera'''
         # if 0.5 <= average_depth < .69:
         #     reward_goal_reaching_horizontal *= (average_depth - 0.5) / 0.5
         #     reward_obstacle -= (1 - average_depth) * 2
         # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
         # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
+            
+        '''# 5. Giving a small positive reward or a negative rewards for repetative action in a scenario as well as exploration is encouraged to escape stuk situation'''
+        agent_positions = [obs_goal_depthfromwater[4], obs_goal_depthfromwater[3], obs_goal_depthfromwater[5]]
+        # Update the position history
+        self.agent_position_history.append(agent_positions)
+            
+        # Calculate displacement over the last N steps to check if the agent is stuck
+        N = 10  # Number of steps to look back
+        stuck_threshold = 0.1  # Minimum displacement to not be considered stuck
+        if len(self.agent_position_history) >= N:
+            old_position = self.agent_position_history[-N]
+            current_position = self.agent_position_history[-1]
+            displacement = np.sqrt(np.sum((np.array(current_position) - np.array(old_position))**2))
+
+            if displacement < stuck_threshold:
+                if not self.is_stuck_flag:
+                    print("Agent appears to be stuck.")
+                self.is_stuck_flag = True
+            else:
+                self.is_stuck_flag = False
+
+        # Refine reward based on stuck condition
+        # Constants for reward adjustment
+        exploration_incentive = 1  # Reward for encouraging movement
+        repeat_action_penalty = 2  # Penalty for repeating an action while stuck
+
+        # Check if the agent is stuck
+        if self.is_stuck_flag:
+            # Encourage exploration by rewarding movement
+            stuck_reward += exploration_incentive  # Encourage the agent to move to potentially get unstuck
+            # Penalize repeating the same action while stuck to encourage trying different strategies
+            if hasattr(self, 'last_action') and self.last_action == action:
+                stuck_reward -= repeat_action_penalty
+        else:
+            stuck_reward = 0
+
+        # Update the last_action attribute for comparison in the next step
+        self.last_action = action
 
         reward = reward_obstacle + reward_goal_reached + \
-                 reward_goal_reaching_horizontal + reward_goal_reaching_vertical + reward_turning
+                 reward_goal_reaching_horizontal + reward_goal_reaching_vertical + reward_turning + stuck_reward
         self.step_count += 1
         # print(self.step_count)
 
@@ -653,23 +694,6 @@ class Underwater_navigation():
         obs_ray = np.reshape(np.array(obs_ray), (1, 1))  # single beam sonar and adaptation representation
         self.obs_rays = np.append(obs_ray, self.obs_rays[:(self.HIST - 1), :], axis=0)
 
-        # # construct the observations of depth images, goal infos, and rays for consecutive 4 frames
-        # obs_preddepth = np.reshape(obs_preddepth, (1, DEPTH_IMAGE_HEIGHT, DEPTH_IMAGE_WIDTH))
-        # self.obs_preddepths_buffer = np.append(obs_preddepth,
-        #                                        self.obs_preddepths_buffer[:(2 ** (self.HIST - 1) - 1), :, :], axis=0)
-        # self.obs_preddepths = np.stack((self.obs_preddepths_buffer[0], self.obs_preddepths_buffer[1],
-        #                                self.obs_preddepths_buffer[3], self.obs_preddepths_buffer[7]), axis=0)
-        #
-        # obs_goal = np.reshape(np.array(obs_goal_depthfromwater[0:3]), (1, DIM_GOAL))
-        # self.obs_goals_buffer = np.append(obs_goal, self.obs_goals_buffer[:(2 ** (self.HIST - 1) - 1), :], axis=0)
-        # self.obs_goals = np.stack((self.obs_goals_buffer[0], self.obs_goals_buffer[1],
-        #                                 self.obs_goals_buffer[3], self.obs_goals_buffer[7]), axis=0)
-        #
-        # obs_ray = np.reshape(np.array(obs_ray), (1, 1))  # single beam sonar
-        # self.obs_rays_buffer = np.append(obs_ray, self.obs_rays_buffer[:(2 ** (self.HIST - 1) - 1), :], axis=0)
-        # self.obs_rays = np.stack((self.obs_rays_buffer[0], self.obs_rays_buffer[1],
-        #                            self.obs_rays_buffer[3], self.obs_rays_buffer[7]), axis=0)
-        #
         obs_action = np.reshape(action, (1, DIM_ACTION))
         self.obs_actions = np.append(obs_action, self.obs_actions[:(self.HIST - 1), :], axis=0)
 
@@ -682,50 +706,17 @@ class Underwater_navigation():
         # cv2.imwrite("img_depth_pred_step.png", 256 * self.obs_preddepths[0])
 
         if self.training == False:
-            # my_open = open(os.path.join(assets_dir(), 'learned_models/agent_trajectory.csv'), "a")
-            # data = [str(agent_position[0]), ",", str(agent_position[1]), ",",
-            #         str(agent_position[2]), "\n"]
-            # for element in data:
-            #     my_open.write(element)
-            # my_open.close()
-
             # Define the file path for the CSV
             csv_filename = os.path.join(assets_dir(), 'learned_models/ppo_Env_B_agent_trajectory.csv')
-
-            # Assuming agent_position is defined as described in your previous code
-            agent_position = [obs_goal_depthfromwater[3], obs_goal_depthfromwater[4], obs_goal_depthfromwater[5], obs_goal_depthfromwater[0]]
+            agent_position = [obs_goal_depthfromwater[4], obs_goal_depthfromwater[3], obs_goal_depthfromwater[5], obs_goal_depthfromwater[0]]
 
             # Write the agent_position array to the CSV file
             with open(csv_filename, 'a', newline='') as csvfile:
                 csv_writer = csv.writer(csvfile)
                 # Write header only if the file is empty
                 if os.path.getsize(csv_filename) == 0:
-                    csv_writer.writerow(['Y', 'X', 'Z', 'H_D'])  # Write header row
+                    csv_writer.writerow(['X', 'Y', 'Z', 'H_D'])  # Write header row
                 csv_writer.writerow(agent_position)   # Write agent_position data
 
         return self.obs_preddepths, self.obs_goals, self.obs_rays, self.obs_actions, reward, done, 0
 
-# env = []
-# for i in range(1):
-#     env.append(Underwater_navigation('midas', True, True, i, 4))
-#
-# while True:
-#     a = 0
-#     done = False
-#     cam, goal, ray, action, visibility = env[0].reset()
-#     # cam, goal, ray = env[1].reset()
-#     # cam, goal, ray = env[2].reset()
-#     # cam, goal, ray = env[3].reset()
-#     # cam, goal, ray = env2.reset()
-#     print(a, ray)
-#     while not done:
-#         cam, goal, ray, action, visibility, reward, done, _ = env[0].step([0, 1.0])
-#         print(goal, ray, action)
-#         # cam, goal, ray, reward, done, _ = env[1].step([0.0, 0.0])
-#         # cam, goal, ray, reward, done, _ = env[2].step([0.0, 0.0])
-#         # cam, goal, ray, reward, done, _ = env[3].step([0.0, 0.0])
-#         # cam, goal, ray, reward, done, _ = env2.step([0.0, 0.0])
-#         # print(a, ray)
-#         a += 1
-#         # print(obs[1], np.shape(obs[1]))
-#         # cv2.imwrite("img2.png", 256 * cv2.cvtColor(obs[0], cv2.COLOR_RGB2BGR))
