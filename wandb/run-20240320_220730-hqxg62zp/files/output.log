@@ -1,0 +1,442 @@
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: My Behavior?team=0
+/home/ether/miniconda3/envs/ROV/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+Loading weights:  /home/ether/Documents/BlueROV_Navigation-Control/DPT/weights/midas_v21_small-70d6b9c8.pt
+Using cache found in /home/ether/.cache/torch/hub/rwightman_gen-efficientnet-pytorch_master
+1710968862.3002653
+Average depth within the bounding box: 0.20971045
+obstacle_distance: 2.9504475593566895
+obstacle_distance_vertical: 0.23912039399147034
+Average depth within the bounding box: 0.19227016
+obstacle_distance: 2.6981022357940674
+obstacle_distance_vertical: 0.30137380957603455
+Average depth within the bounding box: 0.19951741
+obstacle_distance: 2.775792121887207
+obstacle_distance_vertical: 0.4098140001296997
+Average depth within the bounding box: 0.23958826
+obstacle_distance: 3.1827073097229004
+obstacle_distance_vertical: 0.40852096676826477
+Average depth within the bounding box: 0.21868515
+obstacle_distance: 2.7330360412597656
+obstacle_distance_vertical: 0.4251721501350403
+Average depth within the bounding box: 0.21185651
+obstacle_distance: 2.6459014415740967
+obstacle_distance_vertical: 0.3932374119758606
+Average depth within the bounding box: 0.20434484
+obstacle_distance: 2.471813917160034
+obstacle_distance_vertical: 0.33903229236602783
+Average depth within the bounding box: 0.22466345
+obstacle_distance: 2.374483585357666
+obstacle_distance_vertical: 0.25149765610694885
+Average depth within the bounding box: 0.21934015
+obstacle_distance: 2.298672676086426
+obstacle_distance_vertical: 0.16453689336776733
+Average depth within the bounding box: 0.23587316
+obstacle_distance: 2.1808531284332275
+obstacle_distance_vertical: 0.10456699877977371
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.1808531284332275
+distance to water surface 3.643367290496826
+vertical distance to nearest obstacle: 0.10456699877977371
+reward for one episode -10.681570958808692
+Average depth within the bounding box: 0.17662066
+obstacle_distance: 3.0153968334198
+obstacle_distance_vertical: 0.1721135973930359
+Average depth within the bounding box: 0.20758772
+obstacle_distance: 2.735412359237671
+obstacle_distance_vertical: 0.15007632970809937
+Average depth within the bounding box: 0.16587508
+obstacle_distance: 2.76600980758667
+obstacle_distance_vertical: 0.18038219213485718
+Average depth within the bounding box: 0.15942276
+obstacle_distance: 2.5276153087615967
+obstacle_distance_vertical: 0.1286119669675827
+Average depth within the bounding box: 0.21978661
+obstacle_distance: 2.4385721683502197
+obstacle_distance_vertical: 0.021475303918123245
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.4385721683502197
+distance to water surface 3.7240216732025146
+vertical distance to nearest obstacle: 0.021475303918123245
+reward for one episode -11.831675223070183
+Average depth within the bounding box: 0.23549409
+obstacle_distance: 2.787860155105591
+obstacle_distance_vertical: 0.13027377426624298
+Average depth within the bounding box: 0.20897977
+obstacle_distance: 2.704747200012207
+obstacle_distance_vertical: 0.020389072597026825
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.704747200012207
+distance to water surface 3.725074052810669
+vertical distance to nearest obstacle: 0.020389072597026825
+reward for one episode -11.839996995418222
+Average depth within the bounding box: 0.26218897
+obstacle_distance: 3.88334584236145
+obstacle_distance_vertical: 0.12988968193531036
+Average depth within the bounding box: 0.2512405
+obstacle_distance: 3.8422653675079346
+obstacle_distance_vertical: 0.06947730481624603
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.8422653675079346
+distance to water surface 3.6788876056671143
+vertical distance to nearest obstacle: 0.06947730481624603
+reward for one episode -11.161724010558984
+Average depth within the bounding box: 0.2092075
+obstacle_distance: 2.8491077423095703
+obstacle_distance_vertical: 0.1934625506401062
+Average depth within the bounding box: 0.1618843
+obstacle_distance: 2.8953006267547607
+obstacle_distance_vertical: 0.13087411224842072
+Average depth within the bounding box: 0.20962426
+obstacle_distance: 2.6393938064575195
+obstacle_distance_vertical: 0.03580402582883835
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.6393938064575195
+distance to water surface 3.7098422050476074
+vertical distance to nearest obstacle: 0.03580402582883835
+reward for one episode -11.869398560488147
+Average depth within the bounding box: 0.25810608
+obstacle_distance: 3.9918529987335205
+obstacle_distance_vertical: 0.1343340277671814
+Average depth within the bounding box: 0.27598572
+obstacle_distance: 3.7525315284729004
+obstacle_distance_vertical: 0.06562182307243347
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.7525315284729004
+distance to water surface 3.682190179824829
+vertical distance to nearest obstacle: 0.06562182307243347
+reward for one episode -11.250723343334322
+Average depth within the bounding box: 0.4675503
+obstacle_distance: 3.954991579055786
+obstacle_distance_vertical: 0.15651743113994598
+Average depth within the bounding box: 0.24332936
+obstacle_distance: 3.379399299621582
+obstacle_distance_vertical: 0.18432274460792542
+Average depth within the bounding box: 0.4096693
+obstacle_distance: 3.650773763656616
+obstacle_distance_vertical: 0.1985446810722351
+Average depth within the bounding box: 0.32154796
+obstacle_distance: 3.417776584625244
+obstacle_distance_vertical: 0.18716853857040405
+Average depth within the bounding box: 0.66586494
+obstacle_distance: 3.148148775100708
+obstacle_distance_vertical: 0.12988704442977905
+Average depth within the bounding box: 0.6188255
+obstacle_distance: 2.8133137226104736
+obstacle_distance_vertical: 0.11364194750785828
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.8133137226104736
+distance to water surface 3.636908531188965
+vertical distance to nearest obstacle: 0.11364194750785828
+reward for one episode -10.4323130595441
+Average depth within the bounding box: 0.27038738
+obstacle_distance: 3.7307045459747314
+obstacle_distance_vertical: 0.18756143748760223
+Average depth within the bounding box: 0.22958319
+obstacle_distance: 3.7250568866729736
+obstacle_distance_vertical: 0.15647928416728973
+Average depth within the bounding box: 0.26219535
+obstacle_distance: 3.575167417526245
+obstacle_distance_vertical: 0.08831784129142761
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.575167417526245
+distance to water surface 3.657660484313965
+vertical distance to nearest obstacle: 0.08831784129142761
+reward for one episode -11.65898053363233
+Average depth within the bounding box: 0.23221013
+obstacle_distance: 2.854658365249634
+obstacle_distance_vertical: 0.13573116064071655
+Average depth within the bounding box: 0.20311795
+obstacle_distance: 3.0755627155303955
+obstacle_distance_vertical: 0.08981892466545105
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.0755627155303955
+distance to water surface 3.659392833709717
+vertical distance to nearest obstacle: 0.08981892466545105
+reward for one episode -10.87547372982691
+Average depth within the bounding box: 0.20655146
+obstacle_distance: 3.9715912342071533
+obstacle_distance_vertical: 0.19330589473247528
+Average depth within the bounding box: 0.2140383
+obstacle_distance: 3.842012882232666
+obstacle_distance_vertical: 0.09630818665027618
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.842012882232666
+distance to water surface 3.6493139266967773
+vertical distance to nearest obstacle: 0.09630818665027618
+reward for one episode -11.58984128366505
+Average depth within the bounding box: 0.18939333
+obstacle_distance: 3.9442200660705566
+obstacle_distance_vertical: 0.175672709941864
+Average depth within the bounding box: 0.51819104
+obstacle_distance: 3.3925304412841797
+obstacle_distance_vertical: 0.17464250326156616
+Average depth within the bounding box: 0.24692868
+obstacle_distance: 3.7000210285186768
+obstacle_distance_vertical: 0.11244816333055496
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.7000210285186768
+distance to water surface 3.633603811264038
+vertical distance to nearest obstacle: 0.11244816333055496
+reward for one episode -10.935036269756157
+Average depth within the bounding box: 0.2195926
+obstacle_distance: 3.9606900215148926
+obstacle_distance_vertical: 0.13656754791736603
+Average depth within the bounding box: 0.22221786
+obstacle_distance: 3.884296178817749
+obstacle_distance_vertical: 0.05282329022884369
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.884296178817749
+distance to water surface 3.694169282913208
+vertical distance to nearest obstacle: 0.05282329022884369
+reward for one episode -11.511673274400403
+Average depth within the bounding box: 0.1332625
+obstacle_distance: 2.851510524749756
+obstacle_distance_vertical: 0.2580384314060211
+Average depth within the bounding box: 0.16466723
+obstacle_distance: 3.0261127948760986
+obstacle_distance_vertical: 0.27409687638282776
+Average depth within the bounding box: 0.1599712
+obstacle_distance: 2.8773353099823
+obstacle_distance_vertical: 0.32818615436553955
+Average depth within the bounding box: 0.1474996
+obstacle_distance: 3.101299285888672
+obstacle_distance_vertical: 0.35701784491539
+Average depth within the bounding box: 0.25265375
+obstacle_distance: 3.1489310264587402
+obstacle_distance_vertical: 0.4274142384529114
+Average depth within the bounding box: 0.19121495
+obstacle_distance: 3.163703441619873
+obstacle_distance_vertical: 0.5368669629096985
+Average depth within the bounding box: 0.19274533
+obstacle_distance: 3.041640520095825
+obstacle_distance_vertical: 0.6511774659156799
+Average depth within the bounding box: 0.08675487
+obstacle_distance: 2.867111921310425
+obstacle_distance_vertical: 0.6836625933647156
+Average depth within the bounding box: 0.12817709
+obstacle_distance: 2.817657709121704
+obstacle_distance_vertical: 0.650704562664032
+Average depth within the bounding box: 0.11880326
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.650907576084137
+Average depth within the bounding box: 0.15994571
+obstacle_distance: 3.076436996459961
+obstacle_distance_vertical: 0.5909067988395691
+Average depth within the bounding box: 0.14654204
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.5209790468215942
+Average depth within the bounding box: 0.14261776
+obstacle_distance: 2.1118476390838623
+obstacle_distance_vertical: 0.46604517102241516
+Average depth within the bounding box: 0.33000457
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.51295405626297
+Average depth within the bounding box: 0.26468194
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.557547390460968
+Average depth within the bounding box: 0.32340452
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.6349144577980042
+Average depth within the bounding box: 0.31490758
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.7187573313713074
+Average depth within the bounding box: 0.350735
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.7951260209083557
+Average depth within the bounding box: 0.2777807
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8378363251686096
+Average depth within the bounding box: 0.32816017
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.7798967957496643
+Average depth within the bounding box: 0.28142804
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.7608233690261841
+Average depth within the bounding box: 0.111603096
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8082523345947266
+Average depth within the bounding box: 0.04779335
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8026200532913208
+Average depth within the bounding box: 0.062255308
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8545312881469727
+Average depth within the bounding box: 0.06591043
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.9156741499900818
+Average depth within the bounding box: 0.051870164
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0029382705688477
+Average depth within the bounding box: 0.19168492
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1144896745681763
+Average depth within the bounding box: 0.15959582
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.183821678161621
+Average depth within the bounding box: 0.12382722
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1655659675598145
+Average depth within the bounding box: 0.14405316
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1928142309188843
+Average depth within the bounding box: 0.28107312
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2868613004684448
+Average depth within the bounding box: 0.23661777
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3992555141448975
+Average depth within the bounding box: 0.3633089
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.5008494853973389
+Average depth within the bounding box: 0.3603333
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.586600661277771
+Average depth within the bounding box: 0.38667557
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.5815943479537964
+Average depth within the bounding box: 0.41174287
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.534569501876831
+Average depth within the bounding box: 0.33464834
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4465968608856201
+Average depth within the bounding box: 0.23169425
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3575056791305542
+Average depth within the bounding box: 0.38987917
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2712057828903198
+Average depth within the bounding box: 0.33207437
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2546634674072266
+Average depth within the bounding box: 0.32327893
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2411473989486694
+Average depth within the bounding box: 0.27563754
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.223036766052246
+Average depth within the bounding box: 0.34172583
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2328944206237793
+Average depth within the bounding box: 0.3270586
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2079890966415405
+Average depth within the bounding box: 0.28772786
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2580556869506836
+Average depth within the bounding box: 0.3531718
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2276228666305542
+Average depth within the bounding box: 0.27737755
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.130630612373352
+Average depth within the bounding box: 0.28745082
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1367520093917847
+Average depth within the bounding box: 0.12950888
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0906133651733398
+Average depth within the bounding box: 0.24165142
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0568113327026367
+Average depth within the bounding box: 0.23749448
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.106082558631897
+Average depth within the bounding box: 0.17342056
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1242846250534058
+Average depth within the bounding box: 0.21545967
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.052276611328125
+Average depth within the bounding box: 0.3071558
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.9426231384277344
+Average depth within the bounding box: 0.3259344
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.9135828614234924
+Average depth within the bounding box: 0.26635122
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8490392565727234
+Average depth within the bounding box: 0.24826288
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.8766352534294128
+Average depth within the bounding box: 0.28980726
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.9369217157363892
+Average depth within the bounding box: 0.3314744
+obstacle_distance: 3.8959014415740967
+obstacle_distance_vertical: 1.0191783905029297
+Average depth within the bounding box: 0.24364112
+obstacle_distance: 3.8850197792053223
+obstacle_distance_vertical: 1.0889712572097778
+Average depth within the bounding box: 0.081492536
+obstacle_distance: 3.7950215339660645
+obstacle_distance_vertical: 1.0430574417114258
+Average depth within the bounding box: 0.10586097
+obstacle_distance: 3.9883246421813965
+obstacle_distance_vertical: 0.9366492629051208
+Average depth within the bounding box: 0.21107431
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.9510990381240845
+Average depth within the bounding box: 0.31281513
+obstacle_distance: 3.935544490814209
+obstacle_distance_vertical: 0.9808053970336914
+Average depth within the bounding box: 0.2157706
+obstacle_distance: 3.872915029525757
+obstacle_distance_vertical: 0.9855155348777771
+Average depth within the bounding box: 0.23965251
+obstacle_distance: 3.5663130283355713
+obstacle_distance_vertical: 0.973136842250824
+Average depth within the bounding box: 0.07879926
+obstacle_distance: 3.649014949798584
+obstacle_distance_vertical: 1.0340176820755005
+Average depth within the bounding box: 0.17517531
+obstacle_distance: 3.4203104972839355
+obstacle_distance_vertical: 1.0543689727783203
+Average depth within the bounding box: 0.14049189
+obstacle_distance: 3.3358781337738037
+obstacle_distance_vertical: 1.0156164169311523
+Average depth within the bounding box: 0.18305348
+obstacle_distance: 3.2295732498168945
+obstacle_distance_vertical: 1.0644091367721558
+Average depth within the bounding box: 0.14616199
+obstacle_distance: 3.111821174621582
+obstacle_distance_vertical: 1.033818244934082
+Average depth within the bounding box: 0.21245044
+obstacle_distance: 2.9884979724884033
+obstacle_distance_vertical: 1.0085678100585938
+Average depth within the bounding box: 0.24714844
+obstacle_distance: 2.8599390983581543
+obstacle_distance_vertical: 0.981422483921051
+Average depth within the bounding box: 0.19690883
+obstacle_distance: 2.722240447998047
+obstacle_distance_vertical: 0.9656943678855896
+Average depth within the bounding box: 0.23743278
+obstacle_distance: 2.596148729324341
+obstacle_distance_vertical: 1.0153279304504395
+Average depth within the bounding box: 0.187681
+obstacle_distance: 2.4605205059051514
+obstacle_distance_vertical: 1.1139847040176392
+Average depth within the bounding box: 0.109477475
+obstacle_distance: 2.3265373706817627
+obstacle_distance_vertical: 1.1323261260986328
+Average depth within the bounding box: 0.1561778
+obstacle_distance: 2.192263126373291
+obstacle_distance_vertical: 1.183274269104004
+Average depth within the bounding box: 0.16975968
+obstacle_distance: 2.0563812255859375
+obstacle_distance_vertical: 1.1583963632583618
+Average depth within the bounding box: 0.1283918
+obstacle_distance: 1.9217337369918823
+obstacle_distance_vertical: 1.1251287460327148
+Average depth within the bounding box: 0.086328745
+obstacle_distance: 1.7799572944641113
+obstacle_distance_vertical: 1.0920954942703247
+Average depth within the bounding box: 0.16861437
+obstacle_distance: 1.6469944715499878
+obstacle_distance_vertical: 1.1306620836257935
+Average depth within the bounding box: 0.08090128
+obstacle_distance: 1.5052111148834229
+obstacle_distance_vertical: 1.1536918878555298

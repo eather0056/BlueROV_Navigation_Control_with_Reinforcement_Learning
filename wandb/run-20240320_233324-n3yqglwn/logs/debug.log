@@ -1,0 +1,27 @@
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Current SDK version is 0.16.4
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Configure stats pid to 28297
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Loading settings from /home/ether/.config/wandb/settings
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Loading settings from /home/ether/Documents/BlueROV_Navigation-Control/wandb/settings
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-03-20 23:33:24,326 INFO    MainThread:28297 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'ppo_gym.py', 'program_abspath': '/home/ether/Documents/BlueROV_Navigation-Control/ppo_gym.py', 'program': 'ppo_gym.py'}
+2024-03-20 23:33:24,327 INFO    MainThread:28297 [wandb_init.py:_log_setup():526] Logging user logs to /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_233324-n3yqglwn/logs/debug.log
+2024-03-20 23:33:24,327 INFO    MainThread:28297 [wandb_init.py:_log_setup():527] Logging internal logs to /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_233324-n3yqglwn/logs/debug-internal.log
+2024-03-20 23:33:24,327 INFO    MainThread:28297 [wandb_init.py:init():566] calling init triggers
+2024-03-20 23:33:24,327 INFO    MainThread:28297 [wandb_init.py:init():573] wandb.init called with sweep_config: {}
+config: {'env_name': 'navigation', 'model_path': None, 'render': False, 'log_std': -0.0, 'gamma': 0.99, 'tau': 0.95, 'l2_reg': 0.001, 'learning_rate': 3e-05, 'randomization': 1, 'adaptation': 1, 'depth_prediction_model': 'dpt', 'clip_epsilon': 0.2, 'hist_length': 5, 'num_threads': 1, 'seed': 1, 'min_batch_size': 2048, 'eval_batch_size': 0, 'max_iter_num': 200, 'log_interval': 1, 'save_model_interval': 5, 'gpu_index': 0}
+2024-03-20 23:33:24,327 INFO    MainThread:28297 [wandb_init.py:init():616] starting backend
+2024-03-20 23:33:24,328 INFO    MainThread:28297 [wandb_init.py:init():620] setting up manager
+2024-03-20 23:33:24,340 INFO    MainThread:28297 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-03-20 23:33:24,343 INFO    MainThread:28297 [wandb_init.py:init():628] backend started and connected
+2024-03-20 23:33:24,363 INFO    MainThread:28297 [wandb_init.py:init():720] updated telemetry
+2024-03-20 23:33:24,383 INFO    MainThread:28297 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-03-20 23:33:24,973 INFO    MainThread:28297 [wandb_run.py:_on_init():2262] communicating current version
+2024-03-20 23:33:25,133 INFO    MainThread:28297 [wandb_run.py:_on_init():2271] got version response 
+2024-03-20 23:33:25,133 INFO    MainThread:28297 [wandb_init.py:init():804] starting run threads in backend
+2024-03-20 23:33:26,870 INFO    MainThread:28297 [wandb_run.py:_console_start():2241] atexit reg
+2024-03-20 23:33:26,870 INFO    MainThread:28297 [wandb_run.py:_redirect():2096] redirect: wrap_raw
+2024-03-20 23:33:26,870 INFO    MainThread:28297 [wandb_run.py:_redirect():2161] Wrapping output streams.
+2024-03-20 23:33:26,870 INFO    MainThread:28297 [wandb_run.py:_redirect():2186] Redirects installed.
+2024-03-20 23:33:26,871 INFO    MainThread:28297 [wandb_init.py:init():847] run started, returning control to user process
+2024-03-20 23:33:59,345 WARNING MsgRouterThr:28297 [router.py:message_loop():77] message_loop has been closed

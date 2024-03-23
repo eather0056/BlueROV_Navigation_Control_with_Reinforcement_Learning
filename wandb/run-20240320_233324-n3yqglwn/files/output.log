@@ -1,0 +1,205 @@
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: My Behavior?team=0
+/home/ether/miniconda3/envs/ROV/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+Loading weights:  /home/ether/Documents/BlueROV_Navigation-Control/DPT/weights/midas_v21_small-70d6b9c8.pt
+Using cache found in /home/ether/.cache/torch/hub/rwightman_gen-efficientnet-pytorch_master
+1710974019.1684246
+Current position: Y: -3.5100982189178467 X: 18.227144241333008 Z: 10.506072044372559
+Average depth within the bounding box: 0.06834032
+obstacle_distance: 2.949892282485962
+obstacle_distance_vertical: 0.23927249014377594
+Current position: Y: -3.452333450317383 X: 18.05923080444336 Z: 10.537424087524414
+Average depth within the bounding box: 0.41053852
+obstacle_distance: 2.6981184482574463
+obstacle_distance_vertical: 0.3016160726547241
+Current position: Y: -3.344451665878296 X: 17.895896911621094 Z: 10.591264724731445
+Average depth within the bounding box: 0.5698303
+obstacle_distance: 2.7754592895507812
+obstacle_distance_vertical: 0.4100674092769623
+Current position: Y: -3.339017152786255 X: 17.72923469543457 Z: 10.633432388305664
+Average depth within the bounding box: 0.59497535
+obstacle_distance: 3.181871175765991
+obstacle_distance_vertical: 0.408801406621933
+Current position: Y: -3.326308488845825 X: 17.558706283569336 Z: 10.655640602111816
+Average depth within the bounding box: 0.44414708
+obstacle_distance: 2.732870101928711
+obstacle_distance_vertical: 0.4256993532180786
+Current position: Y: -3.353123664855957 X: 17.3919734954834 Z: 10.698053359985352
+Average depth within the bounding box: 0.62857777
+obstacle_distance: 2.6457440853118896
+obstacle_distance_vertical: 0.39408600330352783
+Current position: Y: -3.407975196838379 X: 17.228988647460938 Z: 10.753814697265625
+Average depth within the bounding box: 0.039075747
+obstacle_distance: 2.4716148376464844
+obstacle_distance_vertical: 0.34016311168670654
+Current position: Y: -3.4930033683776855 X: 17.076038360595703 Z: 10.831846237182617
+Average depth within the bounding box: 0.41245747
+obstacle_distance: 2.3739356994628906
+obstacle_distance_vertical: 0.25273722410202026
+Current position: Y: -3.5811948776245117 X: 16.934961318969727 Z: 10.930115699768066
+Average depth within the bounding box: 0.4893523
+obstacle_distance: 2.298006534576416
+obstacle_distance_vertical: 0.16568510234355927
+Current position: Y: -3.6422080993652344 X: 16.788490295410156 Z: 11.020672798156738
+Average depth within the bounding box: 0.32393983
+obstacle_distance: 2.180394411087036
+obstacle_distance_vertical: 0.10573001205921173
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.180394411087036
+distance to water surface 3.6422080993652344
+vertical distance to nearest obstacle: 0.10573001205921173
+reward for one episode -10.671514905574355
+Current position: Y: -3.57464861869812 X: 18.168912887573242 Z: 10.548120498657227
+Average depth within the bounding box: 0.20538709
+obstacle_distance: 3.0153841972351074
+obstacle_distance_vertical: 0.17212525010108948
+Current position: Y: -3.6001501083374023 X: 17.998477935791016 Z: 10.571045875549316
+Average depth within the bounding box: 0.2045992
+obstacle_distance: 2.7353427410125732
+obstacle_distance_vertical: 0.15005964040756226
+Current position: Y: -3.5713281631469727 X: 17.831504821777344 Z: 10.61319351196289
+Average depth within the bounding box: 0.17463621
+obstacle_distance: 2.765886068344116
+obstacle_distance_vertical: 0.18035048246383667
+Current position: Y: -3.6176047325134277 X: 17.666879653930664 Z: 10.663476943969727
+Average depth within the bounding box: 0.17892228
+obstacle_distance: 2.527621269226074
+obstacle_distance_vertical: 0.12857574224472046
+Current position: Y: -3.7240586280822754 X: 17.516887664794922 Z: 10.745925903320312
+Average depth within the bounding box: 0.2879246
+obstacle_distance: 2.4385640621185303
+obstacle_distance_vertical: 0.021438591182231903
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.4385640621185303
+distance to water surface 3.7240586280822754
+vertical distance to nearest obstacle: 0.021438591182231903
+reward for one episode -11.832365940869078
+Current position: Y: -3.6156342029571533 X: 18.171184539794922 Z: 10.554879188537598
+Average depth within the bounding box: 0.4914318
+obstacle_distance: 2.787856340408325
+obstacle_distance_vertical: 0.13027377426624298
+Current position: Y: -3.725074052810669 X: 18.006193161010742 Z: 10.600138664245605
+Average depth within the bounding box: 0.40838045
+obstacle_distance: 2.7047431468963623
+obstacle_distance_vertical: 0.020389072597026825
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.7047431468963623
+distance to water surface 3.725074052810669
+vertical distance to nearest obstacle: 0.020389072597026825
+reward for one episode -11.839996995418222
+Current position: Y: -3.6160178184509277 X: 18.161819458007812 Z: 10.52380084991455
+Average depth within the bounding box: 0.23146442
+obstacle_distance: 3.8833842277526855
+obstacle_distance_vertical: 0.12988968193531036
+Current position: Y: -3.6788625717163086 X: 17.99367332458496 Z: 10.490619659423828
+Average depth within the bounding box: 0.23879752
+obstacle_distance: 3.8423519134521484
+obstacle_distance_vertical: 0.06950376182794571
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.8423519134521484
+distance to water surface 3.6788625717163086
+vertical distance to nearest obstacle: 0.06950376182794571
+reward for one episode -11.161338140850633
+Current position: Y: -3.5541718006134033 X: 18.15992546081543 Z: 10.484787940979004
+Average depth within the bounding box: 0.6104865
+obstacle_distance: 2.8491098880767822
+obstacle_distance_vertical: 0.1935819685459137
+Current position: Y: -3.6160733699798584 X: 17.991397857666016 Z: 10.518701553344727
+Average depth within the bounding box: 0.109639995
+obstacle_distance: 2.8956007957458496
+obstacle_distance_vertical: 0.13132233917713165
+Current position: Y: -3.7092294692993164 X: 17.825164794921875 Z: 10.5631742477417
+Average depth within the bounding box: 0.72237974
+obstacle_distance: 2.639195442199707
+obstacle_distance_vertical: 0.03641841933131218
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.639195442199707
+distance to water surface 3.7092294692993164
+vertical distance to nearest obstacle: 0.03641841933131218
+reward for one episode -11.863972045587145
+Current position: Y: -3.611704111099243 X: 18.160701751708984 Z: 10.517992973327637
+Average depth within the bounding box: 0.24270625
+obstacle_distance: 3.9918384552001953
+obstacle_distance_vertical: 0.13434430956840515
+Current position: Y: -3.68217134475708 X: 17.991973876953125 Z: 10.485034942626953
+Average depth within the bounding box: 0.21155179
+obstacle_distance: 3.7528140544891357
+obstacle_distance_vertical: 0.0656416267156601
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.7528140544891357
+distance to water surface 3.68217134475708
+vertical distance to nearest obstacle: 0.0656416267156601
+reward for one episode -11.250670646953395
+Current position: Y: -3.5894129276275635 X: 18.157245635986328 Z: 10.475577354431152
+Average depth within the bounding box: 0.23089619
+obstacle_distance: 3.9549899101257324
+obstacle_distance_vertical: 0.15652792155742645
+Current position: Y: -3.5691895484924316 X: 17.987430572509766 Z: 10.448026657104492
+Average depth within the bounding box: 0.22512837
+obstacle_distance: 3.379410743713379
+obstacle_distance_vertical: 0.18433323502540588
+Current position: Y: -3.550807237625122 X: 17.816120147705078 Z: 10.431507110595703
+Average depth within the bounding box: 0.22634806
+obstacle_distance: 3.650791645050049
+obstacle_distance_vertical: 0.1983732283115387
+Current position: Y: -3.5630292892456055 X: 17.64707374572754 Z: 10.398776054382324
+Average depth within the bounding box: 0.25516826
+obstacle_distance: 3.4178638458251953
+obstacle_distance_vertical: 0.18666595220565796
+Current position: Y: -3.6176435947418213 X: 17.476070404052734 Z: 10.381807327270508
+Average depth within the bounding box: 0.23090528
+obstacle_distance: 3.1470460891723633
+obstacle_distance_vertical: 0.12912362813949585
+Current position: Y: -3.637857437133789 X: 17.306228637695312 Z: 10.402905464172363
+Average depth within the bounding box: 0.22418194
+obstacle_distance: 2.81329607963562
+obstacle_distance_vertical: 0.11268564313650131
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 2.81329607963562
+distance to water surface 3.637857437133789
+vertical distance to nearest obstacle: 0.11268564313650131
+reward for one episode -10.441329153490695
+Current position: Y: -3.5585012435913086 X: 18.157936096191406 Z: 10.514348030090332
+Average depth within the bounding box: 0.2860445
+obstacle_distance: 3.730282783508301
+obstacle_distance_vertical: 0.18747848272323608
+Current position: Y: -3.593613624572754 X: 17.988338470458984 Z: 10.487658500671387
+Average depth within the bounding box: 0.24882211
+obstacle_distance: 3.724925994873047
+obstacle_distance_vertical: 0.15644019842147827
+Current position: Y: -3.657674551010132 X: 17.823461532592773 Z: 10.43901252746582
+Average depth within the bounding box: 0.27288094
+obstacle_distance: 3.5751805305480957
+obstacle_distance_vertical: 0.08830399066209793
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.5751805305480957
+distance to water surface 3.657674551010132
+vertical distance to nearest obstacle: 0.08830399066209793
+reward for one episode -11.658303430985285
+Current position: Y: -3.6101796627044678 X: 18.157835006713867 Z: 10.490909576416016
+Average depth within the bounding box: 0.22345996
+obstacle_distance: 2.854485511779785
+obstacle_distance_vertical: 0.13573497533798218
+Current position: Y: -3.6594316959381104 X: 17.988361358642578 Z: 10.520501136779785
+Average depth within the bounding box: 0.19734125
+obstacle_distance: 3.074800729751587
+obstacle_distance_vertical: 0.08977743983268738
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.074800729751587
+distance to water surface 3.6594316959381104
+vertical distance to nearest obstacle: 0.08977743983268738
+reward for one episode -10.876102269985568
+Current position: Y: -3.553896427154541 X: 18.156620025634766 Z: 10.502924919128418
+Average depth within the bounding box: 0.21820737
+obstacle_distance: 3.9716053009033203
+obstacle_distance_vertical: 0.1932920664548874
+Current position: Y: -3.6493191719055176 X: 17.99087142944336 Z: 10.459840774536133
+Average depth within the bounding box: 0.23090999
+obstacle_distance: 3.842346668243408
+obstacle_distance_vertical: 0.09630319476127625
+Too close to the obstacle, seafloor or water surface!
+horizontal distance to nearest obstacle: 3.842346668243408
+distance to water surface 3.6493191719055176
+vertical distance to nearest obstacle: 0.09630319476127625
+reward for one episode -11.58959997929781

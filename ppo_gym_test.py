@@ -63,7 +63,7 @@ if torch.cuda.is_available():
 """environment"""
 env = []
 # start_goal_pos = [15., -2.5, -15, 0., 270., 0., -20, -1.5, 20] # test0
-start_goal_pos = [15., -2.5, -15, 0., 270., 0., 5, -1.5,-5] # test0
+# start_goal_pos = [15., -2.5, -15, 0., 270., 0., 5, -1.5,-5] # test0
 # start_goal_pos = [14, -3.42, 0., 0., 0., 0., -6.67, -1.97, -3.45] # test3
 # start_goal_pos = [8, -3.42, 2.76, 0., 270., 0., -7.67, -1.97, 1.45] # test5
 # start_goal_pos = [10, -1.5, 0, 0., 270., 0., -10, -3.5, 0] # test6
@@ -71,7 +71,7 @@ start_goal_pos = [15., -2.5, -15, 0., 270., 0., 5, -1.5,-5] # test0
 # for the paper's image
 # start_goal_pos = [9, -3.42, -1., 0., 270., 0., -6.67, -1.97, -3.45] # test3
 # start_goal_pos = [4.367, -1.81, -0.63, 0., 270., 0., -7.67, -1.97, 1.45] # test5
-# start_goal_pos = [5.2, -4.37, 4.77, 0., 250., 0., -10, -3.5, 0] # test6
+start_goal_pos = [5.2, -4.37, 4.77, 0., 250., 0., -10, -3.5, 0] # test6
 
 
 for i in range(args.num_threads):
@@ -84,7 +84,7 @@ ray_dim = env[0].observation_space_ray
 """define actor and critic"""
 if args.randomization == True:
     policy_net, value_net, running_state = pickle.load(
-        open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand.p'.format(args.env_name,
+        open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand_Env_C.p'.format(args.env_name,
                                                                       args.hist_length)), "rb"))
 else:
     policy_net, value_net, running_state = pickle.load(

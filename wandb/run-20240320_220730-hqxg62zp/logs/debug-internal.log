@@ -1,0 +1,232 @@
+2024-03-20 22:07:30,067 INFO    StreamThr :22960 [internal.py:wandb_internal():86] W&B internal server running at pid: 22960, started at: 2024-03-20 22:07:30.066631
+2024-03-20 22:07:30,068 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status
+2024-03-20 22:07:30,082 INFO    WriterThread:22960 [datastore.py:open_for_write():87] open: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/run-hqxg62zp.wandb
+2024-03-20 22:07:30,083 DEBUG   SenderThread:22960 [sender.py:send():378] send: header
+2024-03-20 22:07:30,100 DEBUG   SenderThread:22960 [sender.py:send():378] send: run
+2024-03-20 22:07:30,685 INFO    SenderThread:22960 [dir_watcher.py:__init__():211] watching files in: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files
+2024-03-20 22:07:30,685 INFO    SenderThread:22960 [sender.py:_start_run_threads():1099] run started: hqxg62zp with start time 1710968850.071098
+2024-03-20 22:07:30,811 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: check_version
+2024-03-20 22:07:30,811 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: check_version
+2024-03-20 22:07:30,979 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: run_start
+2024-03-20 22:07:30,980 DEBUG   HandlerThread:22960 [system_info.py:__init__():26] System info init
+2024-03-20 22:07:30,980 DEBUG   HandlerThread:22960 [system_info.py:__init__():41] System info init done
+2024-03-20 22:07:30,980 INFO    HandlerThread:22960 [system_monitor.py:start():194] Starting system monitor
+2024-03-20 22:07:30,980 INFO    SystemMonitor:22960 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-20 22:07:30,981 INFO    HandlerThread:22960 [system_monitor.py:probe():214] Collecting system info
+2024-03-20 22:07:30,981 INFO    SystemMonitor:22960 [interfaces.py:start():190] Started cpu monitoring
+2024-03-20 22:07:30,982 INFO    SystemMonitor:22960 [interfaces.py:start():190] Started disk monitoring
+2024-03-20 22:07:30,983 INFO    SystemMonitor:22960 [interfaces.py:start():190] Started memory monitoring
+2024-03-20 22:07:30,984 INFO    SystemMonitor:22960 [interfaces.py:start():190] Started network monitoring
+2024-03-20 22:07:31,005 DEBUG   HandlerThread:22960 [system_info.py:probe():150] Probing system
+2024-03-20 22:07:31,009 DEBUG   HandlerThread:22960 [system_info.py:_probe_git():135] Probing git
+2024-03-20 22:07:31,019 DEBUG   HandlerThread:22960 [system_info.py:_probe_git():143] Probing git done
+2024-03-20 22:07:31,020 DEBUG   HandlerThread:22960 [system_info.py:probe():198] Probing system done
+2024-03-20 22:07:31,020 DEBUG   HandlerThread:22960 [system_monitor.py:probe():223] {'os': 'Linux-5.4.0-150-generic-x86_64-with-glibc2.17', 'python': '3.8.18', 'heartbeatAt': '2024-03-20T21:07:31.005997', 'startedAt': '2024-03-20T21:07:30.057974', 'docker': None, 'cuda': None, 'args': ('--save-model-interval', '5', '--env-name', 'navigation', '--eval-batch-size', '0', '--min-batch-size', '2048', '--num-threads', '1', '--hist-length', '5'), 'state': 'running', 'program': 'ppo_gym.py', 'codePathLocal': 'ppo_gym.py', 'codePath': 'ppo_gym.py', 'git': {'remote': 'https://github.com/eather0056/BlueROV_Navigation-Control.git', 'commit': '5ab93eae135996ceeddbcd96ed2a0207cdd5bd43'}, 'email': 'mdeather0056@gmail.com', 'root': '/home/ether/Documents/BlueROV_Navigation-Control', 'host': 'ether', 'username': 'ether', 'executable': '/home/ether/miniconda3/envs/ROV/bin/python3', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3285.8993750000004, 'min': 400.0, 'max': 4800.0}, 'cpu_freq_per_core': [{'current': 3292.538, 'min': 400.0, 'max': 4800.0}, {'current': 3301.748, 'min': 400.0, 'max': 4800.0}, {'current': 3311.75, 'min': 400.0, 'max': 4800.0}, {'current': 3284.786, 'min': 400.0, 'max': 4800.0}, {'current': 3241.83, 'min': 400.0, 'max': 4800.0}, {'current': 3217.301, 'min': 400.0, 'max': 4800.0}, {'current': 3309.095, 'min': 400.0, 'max': 4800.0}, {'current': 3328.147, 'min': 400.0, 'max': 4800.0}], 'disk': {'/': {'total': 118.63518905639648, 'used': 103.41530990600586}}, 'memory': {'total': 15.447891235351562}}
+2024-03-20 22:07:31,020 INFO    HandlerThread:22960 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-20 22:07:31,020 INFO    HandlerThread:22960 [system_monitor.py:probe():227] Publishing system info
+2024-03-20 22:07:31,020 DEBUG   HandlerThread:22960 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2024-03-20 22:07:31,686 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_created():271] file/dir created: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/conda-environment.yaml
+2024-03-20 22:07:32,686 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/conda-environment.yaml
+2024-03-20 22:07:32,728 DEBUG   HandlerThread:22960 [system_info.py:_save_conda():219] Saving conda packages done
+2024-03-20 22:07:32,729 INFO    HandlerThread:22960 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-20 22:07:32,736 DEBUG   SenderThread:22960 [sender.py:send():378] send: files
+2024-03-20 22:07:32,736 INFO    SenderThread:22960 [sender.py:_save_file():1365] saving file wandb-metadata.json with policy now
+2024-03-20 22:07:32,827 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-20 22:07:32,827 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: python_packages
+2024-03-20 22:07:32,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-20 22:07:32,828 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: stop_status
+2024-03-20 22:07:32,829 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-20 22:07:33,139 DEBUG   SenderThread:22960 [sender.py:send():378] send: telemetry
+2024-03-20 22:07:33,431 INFO    wandb-upload_0:22960 [upload_job.py:push():131] Uploaded file /tmp/tmpjqd5q1v4wandb/xwq0r2is-wandb-metadata.json
+2024-03-20 22:07:33,686 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_created():271] file/dir created: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/wandb-metadata.json
+2024-03-20 22:07:33,686 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_created():271] file/dir created: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/requirements.txt
+2024-03-20 22:07:35,140 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:07:36,687 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_created():271] file/dir created: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:38,688 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:39,688 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:40,700 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:07:42,689 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:43,690 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:44,690 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:46,113 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:07:46,691 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:47,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-20 22:07:47,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-20 22:07:47,829 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: stop_status
+2024-03-20 22:07:48,691 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:50,692 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:51,582 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:07:52,693 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:54,694 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:56,618 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:07:56,695 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:07:58,697 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:00,697 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:01,906 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:02,698 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:02,698 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/config.yaml
+2024-03-20 22:08:02,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-20 22:08:02,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-20 22:08:02,828 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: stop_status
+2024-03-20 22:08:04,699 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:06,700 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:07,318 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:08,701 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:10,701 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:12,382 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:12,702 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:14,703 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:16,704 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:17,410 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:17,828 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-20 22:08:17,828 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: stop_status
+2024-03-20 22:08:17,831 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-20 22:08:18,705 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:20,706 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:21,074 DEBUG   SenderThread:22960 [sender.py:send():378] send: exit
+2024-03-20 22:08:21,075 INFO    SenderThread:22960 [sender.py:send_exit():585] handling exit code: 0
+2024-03-20 22:08:21,075 INFO    SenderThread:22960 [sender.py:send_exit():587] handling runtime: 50
+2024-03-20 22:08:21,076 INFO    SenderThread:22960 [sender.py:_save_file():1365] saving file wandb-summary.json with policy end
+2024-03-20 22:08:21,076 INFO    SenderThread:22960 [sender.py:send_exit():593] send defer
+2024-03-20 22:08:21,077 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,077 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-20 22:08:21,078 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,078 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 0
+2024-03-20 22:08:21,078 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 1
+2024-03-20 22:08:21,078 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,079 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-20 22:08:21,079 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,080 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 1
+2024-03-20 22:08:21,080 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 2
+2024-03-20 22:08:21,080 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,080 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-20 22:08:21,081 INFO    HandlerThread:22960 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-20 22:08:21,081 DEBUG   SystemMonitor:22960 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-20 22:08:21,081 DEBUG   SystemMonitor:22960 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-20 22:08:21,082 DEBUG   SystemMonitor:22960 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-20 22:08:21,084 INFO    HandlerThread:22960 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-20 22:08:21,085 INFO    HandlerThread:22960 [interfaces.py:finish():202] Joined disk monitor
+2024-03-20 22:08:21,085 INFO    HandlerThread:22960 [interfaces.py:finish():202] Joined memory monitor
+2024-03-20 22:08:21,086 INFO    HandlerThread:22960 [interfaces.py:finish():202] Joined network monitor
+2024-03-20 22:08:21,087 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,088 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 2
+2024-03-20 22:08:21,088 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 3
+2024-03-20 22:08:21,088 DEBUG   SenderThread:22960 [sender.py:send():378] send: stats
+2024-03-20 22:08:21,089 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,089 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-20 22:08:21,090 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,090 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 3
+2024-03-20 22:08:21,091 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 4
+2024-03-20 22:08:21,091 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,091 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-20 22:08:21,092 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,092 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 4
+2024-03-20 22:08:21,092 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 5
+2024-03-20 22:08:21,093 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,093 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-20 22:08:21,094 DEBUG   SenderThread:22960 [sender.py:send():378] send: summary
+2024-03-20 22:08:21,095 INFO    SenderThread:22960 [sender.py:_save_file():1365] saving file wandb-summary.json with policy end
+2024-03-20 22:08:21,096 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,096 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 5
+2024-03-20 22:08:21,096 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 6
+2024-03-20 22:08:21,096 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,096 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-20 22:08:21,097 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,097 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 6
+2024-03-20 22:08:21,098 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 7
+2024-03-20 22:08:21,098 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:21,099 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:21,099 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-20 22:08:21,100 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:21,100 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 7
+2024-03-20 22:08:21,706 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_created():271] file/dir created: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/wandb-summary.json
+2024-03-20 22:08:22,074 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-20 22:08:22,706 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:22,760 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 8
+2024-03-20 22:08:22,760 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: poll_exit
+2024-03-20 22:08:22,761 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:22,761 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-20 22:08:22,761 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:22,761 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 8
+2024-03-20 22:08:22,762 INFO    SenderThread:22960 [job_builder.py:build():298] Attempting to build job artifact
+2024-03-20 22:08:22,762 INFO    SenderThread:22960 [job_builder.py:_get_source_type():428] is repo sourced job
+2024-03-20 22:08:22,793 INFO    SenderThread:22960 [job_builder.py:build():404] adding wandb-job metadata file
+2024-03-20 22:08:22,800 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 9
+2024-03-20 22:08:22,800 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:22,800 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-20 22:08:22,800 DEBUG   SenderThread:22960 [sender.py:send():378] send: artifact
+2024-03-20 22:08:23,076 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-20 22:08:23,707 INFO    Thread-12 :22960 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:24,433 INFO    wandb-upload_1:22960 [upload_job.py:push():89] Uploaded file /home/ether/.local/share/wandb/artifacts/staging/tmp_bzm4pga
+2024-03-20 22:08:24,434 INFO    wandb-upload_0:22960 [upload_job.py:push():89] Uploaded file /home/ether/.local/share/wandb/artifacts/staging/tmps000cm8e
+2024-03-20 22:08:25,862 INFO    SenderThread:22960 [sender.py:send_artifact():1443] sent artifact job-https___github.com_eather0056_BlueROV_Navigation-Control.git_ppo_gym.py - {'id': 'QXJ0aWZhY3Q6NzY0NTY4ODU1', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjE0NTAwMTExNw==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NzU4Nzc5Nzc4', 'versionIndex': 9}}}
+2024-03-20 22:08:25,862 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:25,862 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 9
+2024-03-20 22:08:25,863 INFO    SenderThread:22960 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-20 22:08:26,709 INFO    SenderThread:22960 [dir_watcher.py:finish():388] scan: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files
+2024-03-20 22:08:26,709 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log output.log
+2024-03-20 22:08:26,709 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/wandb-summary.json wandb-summary.json
+2024-03-20 22:08:26,709 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/wandb-metadata.json wandb-metadata.json
+2024-03-20 22:08:26,709 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/config.yaml config.yaml
+2024-03-20 22:08:26,710 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/requirements.txt requirements.txt
+2024-03-20 22:08:26,710 INFO    SenderThread:22960 [dir_watcher.py:finish():402] scan save: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/conda-environment.yaml conda-environment.yaml
+2024-03-20 22:08:26,710 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 10
+2024-03-20 22:08:26,710 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: poll_exit
+2024-03-20 22:08:26,710 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:26,710 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-20 22:08:26,721 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:26,724 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 10
+2024-03-20 22:08:26,724 INFO    SenderThread:22960 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-20 22:08:27,077 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-20 22:08:27,078 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: poll_exit
+2024-03-20 22:08:27,087 INFO    wandb-upload_0:22960 [upload_job.py:push():131] Uploaded file /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/config.yaml
+2024-03-20 22:08:27,093 INFO    wandb-upload_2:22960 [upload_job.py:push():131] Uploaded file /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/wandb-summary.json
+2024-03-20 22:08:27,396 INFO    wandb-upload_1:22960 [upload_job.py:push():131] Uploaded file /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/output.log
+2024-03-20 22:08:27,397 INFO    wandb-upload_4:22960 [upload_job.py:push():131] Uploaded file /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/conda-environment.yaml
+2024-03-20 22:08:27,397 INFO    wandb-upload_3:22960 [upload_job.py:push():131] Uploaded file /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/files/requirements.txt
+2024-03-20 22:08:27,598 INFO    Thread-11 :22960 [sender.py:transition_state():613] send defer: 11
+2024-03-20 22:08:27,598 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:27,598 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-20 22:08:27,599 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:27,599 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 11
+2024-03-20 22:08:27,599 INFO    SenderThread:22960 [file_pusher.py:join():178] waiting for file pusher
+2024-03-20 22:08:27,599 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 12
+2024-03-20 22:08:27,599 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:27,599 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-20 22:08:27,599 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:27,599 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 12
+2024-03-20 22:08:27,599 INFO    SenderThread:22960 [file_stream.py:finish():595] file stream finish called
+2024-03-20 22:08:27,805 INFO    SenderThread:22960 [file_stream.py:finish():599] file stream finish is done
+2024-03-20 22:08:27,805 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 13
+2024-03-20 22:08:27,806 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:27,806 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-20 22:08:27,806 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: status_report
+2024-03-20 22:08:27,806 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:27,806 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 13
+2024-03-20 22:08:27,806 INFO    SenderThread:22960 [sender.py:transition_state():613] send defer: 14
+2024-03-20 22:08:27,806 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: defer
+2024-03-20 22:08:27,807 INFO    HandlerThread:22960 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-20 22:08:27,807 DEBUG   SenderThread:22960 [sender.py:send():378] send: final
+2024-03-20 22:08:27,807 DEBUG   SenderThread:22960 [sender.py:send():378] send: footer
+2024-03-20 22:08:27,807 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: defer
+2024-03-20 22:08:27,807 INFO    SenderThread:22960 [sender.py:send_request_defer():609] handle sender defer: 14
+2024-03-20 22:08:27,808 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-20 22:08:27,808 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-20 22:08:27,808 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: server_info
+2024-03-20 22:08:27,808 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-20 22:08:27,808 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-20 22:08:27,809 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-20 22:08:27,809 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: poll_exit
+2024-03-20 22:08:27,809 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: poll_exit
+2024-03-20 22:08:27,810 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: server_info
+2024-03-20 22:08:27,812 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: job_info
+2024-03-20 22:08:28,011 DEBUG   SenderThread:22960 [sender.py:send_request():405] send_request: job_info
+2024-03-20 22:08:28,011 INFO    MainThread:22960 [wandb_run.py:_footer_history_summary_info():3851] rendering history
+2024-03-20 22:08:28,011 INFO    MainThread:22960 [wandb_run.py:_footer_history_summary_info():3883] rendering summary
+2024-03-20 22:08:28,011 INFO    MainThread:22960 [wandb_run.py:_footer_sync_info():3810] logging synced files
+2024-03-20 22:08:28,012 DEBUG   HandlerThread:22960 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-20 22:08:28,012 INFO    HandlerThread:22960 [handler.py:finish():869] shutting down handler
+2024-03-20 22:08:28,813 INFO    WriterThread:22960 [datastore.py:close():296] close: /home/ether/Documents/BlueROV_Navigation-Control/wandb/run-20240320_220730-hqxg62zp/run-hqxg62zp.wandb
+2024-03-20 22:08:29,011 INFO    SenderThread:22960 [sender.py:finish():1521] shutting down sender
+2024-03-20 22:08:29,011 INFO    SenderThread:22960 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-20 22:08:29,011 INFO    SenderThread:22960 [file_pusher.py:join():178] waiting for file pusher

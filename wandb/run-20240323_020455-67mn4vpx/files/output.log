@@ -1,0 +1,703 @@
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: My Behavior?team=0
+/home/ether/miniconda3/envs/ROV/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+Loading weights:  /home/ether/Documents/BlueROV_Navigation-Control/DPT/weights/midas_v21_small-70d6b9c8.pt
+Using cache found in /home/ether/.cache/torch/hub/rwightman_gen-efficientnet-pytorch_master
+1711155907.4045362
+Current position: X: 3.492717742919922 Y: -1.1294431686401367 Z: -7.587426662445068
+Average depth within the bounding box: 0.14292431
+obstacle_distance: 3.455273151397705
+obstacle_distance_vertical: 2.619919776916504
+Current position: X: 3.3337936401367188 Y: -1.0717549324035645 Z: -7.649832725524902
+Average depth within the bounding box: 0.13440268
+obstacle_distance: 3.3813459873199463
+obstacle_distance_vertical: 2.68219256401062
+Current position: X: 3.166788101196289 Y: -0.9638825058937073 Z: -7.690891742706299
+Average depth within the bounding box: 0.15252008
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.790635585784912
+Current position: X: 3.003201723098755 Y: -0.9608466625213623 Z: -7.743756294250488
+Average depth within the bounding box: 0.14354369
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.7868218421936035
+Current position: X: 2.8469674587249756 Y: -0.9507432579994202 Z: -7.815619468688965
+Average depth within the bounding box: 0.10603305
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.8011844158172607
+Current position: X: 2.6832313537597656 Y: -0.9774884581565857 Z: -7.86844539642334
+Average depth within the bounding box: 0.108116336
+obstacle_distance: 2.9862003326416016
+obstacle_distance_vertical: 2.769768476486206
+Current position: X: 2.515630006790161 Y: -1.0312288999557495 Z: -7.90826416015625
+Average depth within the bounding box: 0.30679417
+obstacle_distance: 2.9547972679138184
+obstacle_distance_vertical: 2.7169508934020996
+Current position: X: 2.344642400741577 Y: -1.1157946586608887 Z: -7.92398738861084
+Average depth within the bounding box: 0.26808468
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.6299498081207275
+Current position: X: 2.1728808879852295 Y: -1.2043207883834839 Z: -7.916411399841309
+Average depth within the bounding box: 0.25537005
+obstacle_distance: 2.588355779647827
+obstacle_distance_vertical: 2.542534828186035
+Current position: X: 2.0006961822509766 Y: -1.2674813270568848 Z: -7.918889999389648
+Average depth within the bounding box: 0.26091817
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.480335235595703
+Current position: X: 1.8294450044631958 Y: -1.3429718017578125 Z: -7.902341842651367
+Average depth within the bounding box: 0.24727033
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.403541326522827
+Current position: X: 1.6622394323349 Y: -1.3691314458847046 Z: -7.862366676330566
+Average depth within the bounding box: 0.19466552
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.3811817169189453
+Current position: X: 1.5012309551239014 Y: -1.3393787145614624 Z: -7.801425457000732
+Average depth within the bounding box: 0.1411053
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.4122984409332275
+Current position: X: 1.343887448310852 Y: -1.3856569528579712 Z: -7.731661319732666
+Average depth within the bounding box: 0.23792884
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.360522508621216
+Current position: X: 1.205083966255188 Y: -1.4921103715896606 Z: -7.631534099578857
+Average depth within the bounding box: 0.264677
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.2533862590789795
+Current position: X: 1.0963181257247925 Y: -1.6060473918914795 Z: -7.499887466430664
+Average depth within the bounding box: 0.40887678
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.139364004135132
+Current position: X: 1.0252554416656494 Y: -1.7209151983261108 Z: -7.344699382781982
+Average depth within the bounding box: 0.22791402
+obstacle_distance: 4.0
+obstacle_distance_vertical: 2.0244851112365723
+Current position: X: 0.9817730784416199 Y: -1.835898995399475 Z: -7.178567409515381
+Average depth within the bounding box: 0.40554684
+obstacle_distance: 3.9373269081115723
+obstacle_distance_vertical: 1.909500241279602
+Current position: X: 0.9199430346488953 Y: -1.900315761566162 Z: -7.018445014953613
+Average depth within the bounding box: 0.41603595
+obstacle_distance: 3.724749803543091
+obstacle_distance_vertical: 1.84823477268219
+Current position: X: 0.8374964594841003 Y: -1.9483054876327515 Z: -6.867611408233643
+Average depth within the bounding box: 0.47539243
+obstacle_distance: 3.625657320022583
+obstacle_distance_vertical: 1.7995116710662842
+Current position: X: 0.770574152469635 Y: -2.005068302154541 Z: -6.709003925323486
+Average depth within the bounding box: 0.38572803
+obstacle_distance: 3.4426300525665283
+obstacle_distance_vertical: 1.742611289024353
+Current position: X: 0.7123015522956848 Y: -2.0951104164123535 Z: -6.547045707702637
+Average depth within the bounding box: 0.24129635
+obstacle_distance: 3.2861902713775635
+obstacle_distance_vertical: 1.650572657585144
+Current position: X: 0.6708935499191284 Y: -2.1994926929473877 Z: -6.380064487457275
+Average depth within the bounding box: 0.46779317
+obstacle_distance: 3.170116424560547
+obstacle_distance_vertical: 1.5464104413986206
+Current position: X: 0.6129289865493774 Y: -2.264130115509033 Z: -6.217942237854004
+Average depth within the bounding box: 0.34837157
+obstacle_distance: 3.045999526977539
+obstacle_distance_vertical: 1.4841258525848389
+Current position: X: 0.5483201146125793 Y: -2.3478589057922363 Z: -6.058373928070068
+Average depth within the bounding box: 0.287136
+obstacle_distance: 2.881754159927368
+obstacle_distance_vertical: 1.3978958129882812
+Current position: X: 0.468338280916214 Y: -2.329667806625366 Z: -5.906044960021973
+Average depth within the bounding box: 0.330762
+obstacle_distance: 2.760075807571411
+obstacle_distance_vertical: 1.423831820487976
+Current position: X: 0.3983464539051056 Y: -2.3084397315979004 Z: -5.748813152313232
+Average depth within the bounding box: 0.27402312
+obstacle_distance: 2.641695976257324
+obstacle_distance_vertical: 1.440930962562561
+Current position: X: 0.3137241303920746 Y: -2.3139731884002686 Z: -5.598852157592773
+Average depth within the bounding box: 0.30261657
+obstacle_distance: 2.564605712890625
+obstacle_distance_vertical: 1.4360321760177612
+Current position: X: 0.24350208044052124 Y: -2.3595778942108154 Z: -5.442013263702393
+Average depth within the bounding box: 0.4262928
+obstacle_distance: 2.458015203475952
+obstacle_distance_vertical: 1.3875770568847656
+Current position: X: 0.20993341505527496 Y: -2.370154857635498 Z: -5.2742133140563965
+Average depth within the bounding box: 0.23435934
+obstacle_distance: 2.319986343383789
+obstacle_distance_vertical: 1.380771517753601
+Current position: X: 0.2036999762058258 Y: -2.4246585369110107 Z: -5.102441787719727
+Average depth within the bounding box: 0.40378022
+obstacle_distance: 2.107651948928833
+obstacle_distance_vertical: 1.3214282989501953
+Current position: X: 0.18173430860042572 Y: -2.4555702209472656 Z: -4.9320597648620605
+Average depth within the bounding box: 0.3314675
+obstacle_distance: 2.0166308879852295
+obstacle_distance_vertical: 1.2946852445602417
+Current position: X: 0.1386088877916336 Y: -2.517422914505005 Z: -4.765622138977051
+Average depth within the bounding box: 0.47218397
+obstacle_distance: 1.8332611322402954
+obstacle_distance_vertical: 1.2285804748535156
+Current position: X: 0.12311393022537231 Y: -2.6258137226104736 Z: -4.594951152801514
+Average depth within the bounding box: 0.2538921
+obstacle_distance: 1.6568944454193115
+obstacle_distance_vertical: 1.1196609735488892
+Current position: X: 0.1351109743118286 Y: -2.674501895904541 Z: -4.423471450805664
+Average depth within the bounding box: 0.42230114
+obstacle_distance: 1.5449998378753662
+obstacle_distance_vertical: 1.0749872922897339
+Current position: X: 0.13065142929553986 Y: -2.721618413925171 Z: -4.2517595291137695
+Average depth within the bounding box: 0.49332085
+obstacle_distance: 1.3762691020965576
+obstacle_distance_vertical: 1.025730013847351
+Current position: X: 0.0883278101682663 Y: -2.815284013748169 Z: -4.085934162139893
+Average depth within the bounding box: 0.23623691
+obstacle_distance: 1.2156416177749634
+obstacle_distance_vertical: 0.9303579926490784
+Current position: X: 0.008396090939640999 Y: -2.8828303813934326 Z: -3.9348154067993164
+Average depth within the bounding box: 0.17394672
+obstacle_distance: 1.0775796175003052
+obstacle_distance_vertical: 0.8653908371925354
+Current position: X: -0.09384599328041077 Y: -2.8851912021636963 Z: -3.7968194484710693
+Average depth within the bounding box: 0.19789395
+obstacle_distance: 0.9770213961601257
+obstacle_distance_vertical: 0.8656532168388367
+Current position: X: -0.18778064846992493 Y: -2.9405975341796875 Z: -3.6526262760162354
+Average depth within the bounding box: 0.27432495
+obstacle_distance: 0.8425041437149048
+obstacle_distance_vertical: 0.8054791688919067
+Current position: X: -0.30400681495666504 Y: -3.045727491378784 Z: -3.526723861694336
+Average depth within the bounding box: 0.32164735
+obstacle_distance: 0.8284436464309692
+obstacle_distance_vertical: 0.6999092698097229
+Current position: X: -0.44624391198158264 Y: -3.131256580352783 Z: -3.4315733909606934
+Average depth within the bounding box: 0.22817329
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.6158468127250671
+Current position: X: -0.5990316867828369 Y: -3.120227336883545 Z: -3.3527801036834717
+Average depth within the bounding box: 0.36107716
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.6320744156837463
+Current position: X: -0.7439774870872498 Y: -3.102217197418213 Z: -3.2598776817321777
+Average depth within the bounding box: 0.28655288
+obstacle_distance: 4.0
+obstacle_distance_vertical: 0.647621214389801
+Current position: X: -0.8919085264205933 Y: -3.0520572662353516 Z: -3.171339511871338
+Average depth within the bounding box: 0.28524166
+obstacle_distance: 3.8986427783966064
+obstacle_distance_vertical: 0.7011576294898987
+Current position: X: -1.0399771928787231 Y: -3.025364637374878 Z: -3.0830187797546387
+Average depth within the bounding box: 0.24797201
+obstacle_distance: 3.7753922939300537
+obstacle_distance_vertical: 0.7245055437088013
+Current position: X: -1.1945897340774536 Y: -2.962132453918457 Z: -3.006880521774292
+Average depth within the bounding box: 0.22288458
+obstacle_distance: 3.624486207962036
+obstacle_distance_vertical: 0.7918788194656372
+Current position: X: -1.3476109504699707 Y: -2.8535702228546143 Z: -2.928016185760498
+Average depth within the bounding box: 0.35516042
+obstacle_distance: 3.5157642364501953
+obstacle_distance_vertical: 0.9009563326835632
+Current position: X: -1.4898686408996582 Y: -2.739370584487915 Z: -2.831145763397217
+Average depth within the bounding box: 0.27972287
+obstacle_distance: 3.4601023197174072
+obstacle_distance_vertical: 1.0152196884155273
+Current position: X: -1.6326711177825928 Y: -2.705939292907715 Z: -2.734894037246704
+Average depth within the bounding box: 0.4819229
+obstacle_distance: 3.382500171661377
+obstacle_distance_vertical: 1.0435833930969238
+Current position: X: -1.7586681842803955 Y: -2.745518922805786 Z: -2.6180737018585205
+Average depth within the bounding box: 0.5636736
+obstacle_distance: 3.101287364959717
+obstacle_distance_vertical: 1.0022802352905273
+Current position: X: -1.8646787405014038 Y: -2.758361339569092 Z: -2.4829909801483154
+Average depth within the bounding box: 0.4744124
+obstacle_distance: 2.9623148441314697
+obstacle_distance_vertical: 0.9920644164085388
+Current position: X: -1.9489768743515015 Y: -2.8183441162109375 Z: -2.333061695098877
+Average depth within the bounding box: 0.5148202
+obstacle_distance: 2.8138911724090576
+obstacle_distance_vertical: 0.9276805520057678
+Current position: X: -2.0314269065856934 Y: -2.8961453437805176 Z: -2.1816229820251465
+Average depth within the bounding box: 0.53069097
+obstacle_distance: 2.6746370792388916
+obstacle_distance_vertical: 0.8512229919433594
+Current position: X: -2.111478805541992 Y: -2.962000608444214 Z: -2.028841972351074
+Average depth within the bounding box: 0.39534518
+obstacle_distance: 2.552401542663574
+obstacle_distance_vertical: 0.7853632569313049
+Current position: X: -2.1809089183807373 Y: -2.929129123687744 Z: -1.8713905811309814
+Average depth within the bounding box: 0.24816872
+obstacle_distance: 2.4535534381866455
+obstacle_distance_vertical: 0.8243881464004517
+Current position: X: -2.2285189628601074 Y: -2.887462615966797 Z: -1.7060400247573853
+Average depth within the bounding box: 0.29670283
+obstacle_distance: 2.2881219387054443
+obstacle_distance_vertical: 0.8631716966629028
+Current position: X: -2.2783048152923584 Y: -2.8158669471740723 Z: -1.5410346984863281
+Average depth within the bounding box: 0.21625459
+obstacle_distance: 2.2168478965759277
+obstacle_distance_vertical: 0.9382390379905701
+Current position: X: -2.3122947216033936 Y: -2.7385737895965576 Z: -1.3722281455993652
+Average depth within the bounding box: 0.16359192
+obstacle_distance: 2.072983741760254
+obstacle_distance_vertical: 1.013951301574707
+Current position: X: -2.3261966705322266 Y: -2.6750144958496094 Z: -1.2006970643997192
+Average depth within the bounding box: 0.14278246
+obstacle_distance: 1.9823291301727295
+obstacle_distance_vertical: 1.077536702156067
+Current position: X: -2.323136568069458 Y: -2.6395301818847656 Z: -1.0284403562545776
+Average depth within the bounding box: 0.11914395
+obstacle_distance: 1.903154969215393
+obstacle_distance_vertical: 1.111257553100586
+Current position: X: -2.312948703765869 Y: -2.6955556869506836 Z: -0.8565859794616699
+Average depth within the bounding box: 0.23911342
+obstacle_distance: 1.9103384017944336
+obstacle_distance_vertical: 1.0505142211914062
+Current position: X: -2.2728939056396484 Y: -2.7248573303222656 Z: -0.6896160244941711
+Average depth within the bounding box: 0.29031432
+obstacle_distance: 2.4934518337249756
+obstacle_distance_vertical: 1.0255080461502075
+Current position: X: -2.2056543827056885 Y: -2.6873743534088135 Z: -0.5317741632461548
+Average depth within the bounding box: 0.1407125
+obstacle_distance: 2.480403423309326
+obstacle_distance_vertical: 1.0647562742233276
+Current position: X: -2.103610038757324 Y: -2.6962099075317383 Z: -0.39465415477752686
+Average depth within the bounding box: 0.12504987
+obstacle_distance: 2.9386870861053467
+obstacle_distance_vertical: 1.0520505905151367
+Current position: X: -1.9730818271636963 Y: -2.6561176776885986 Z: -0.28363198041915894
+Average depth within the bounding box: 0.2106675
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0973491668701172
+Current position: X: -1.8262604475021362 Y: -2.6015849113464355 Z: -0.194841206073761
+Average depth within the bounding box: 0.32109812
+obstacle_distance: 1.7151825428009033
+obstacle_distance_vertical: 1.1498783826828003
+Current position: X: -1.668393850326538 Y: -2.520906925201416 Z: -0.12675601243972778
+Average depth within the bounding box: 0.26342428
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2333024740219116
+Current position: X: -1.5132005214691162 Y: -2.4101758003234863 Z: -0.052286699414253235
+Average depth within the bounding box: 0.290054
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3443751335144043
+Current position: X: -1.3484302759170532 Y: -2.345681667327881 Z: -0.004437523894011974
+Average depth within the bounding box: 0.30401993
+obstacle_distance: 1.539461612701416
+obstacle_distance_vertical: 1.4057978391647339
+Current position: X: -1.1776732206344604 Y: -2.369757890701294 Z: 0.008478851988911629
+Average depth within the bounding box: 0.102264896
+obstacle_distance: 1.4006896018981934
+obstacle_distance_vertical: 1.3779162168502808
+Current position: X: -1.0066272020339966 Y: -2.353245735168457 Z: -0.007993610575795174
+Average depth within the bounding box: 0.13698348
+obstacle_distance: 1.3656412363052368
+obstacle_distance_vertical: 1.3990792036056519
+Current position: X: -0.8349786400794983 Y: -2.2631421089172363 Z: -0.02364744059741497
+Average depth within the bounding box: 0.076089494
+obstacle_distance: 1.2807445526123047
+obstacle_distance_vertical: 1.4911744594573975
+Current position: X: -0.6635127067565918 Y: -2.1512386798858643 Z: -0.03963577374815941
+Average depth within the bounding box: 0.27314985
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.6033257246017456
+Current position: X: -0.4916965365409851 Y: -2.050363063812256 Z: -0.03112451173365116
+Average depth within the bounding box: 0.28796694
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.7033754587173462
+Current position: X: -0.3200106918811798 Y: -1.967169165611267 Z: -0.015243674628436565
+Average depth within the bounding box: 0.30736423
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.7859283685684204
+Current position: X: -0.14874348044395447 Y: -1.9705142974853516 Z: 0.004898672457784414
+Average depth within the bounding box: 0.3960293
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.777549147605896
+Current position: X: 0.022240210324525833 Y: -2.0204060077667236 Z: 0.026004141196608543
+Average depth within the bounding box: 0.13350058
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.7275646924972534
+Current position: X: 0.19443157315254211 Y: -2.1072659492492676 Z: 0.027364537119865417
+Average depth within the bounding box: 0.16541265
+obstacle_distance: 3.97312593460083
+obstacle_distance_vertical: 1.6384533643722534
+Current position: X: 0.3668873906135559 Y: -2.1985106468200684 Z: 0.027149725705385208
+Average depth within the bounding box: 0.14348616
+obstacle_distance: 3.9013278484344482
+obstacle_distance_vertical: 1.5481904745101929
+Current position: X: 0.5388604998588562 Y: -2.285884380340576 Z: 0.034747056663036346
+Average depth within the bounding box: 0.4148947
+obstacle_distance: 3.695369005203247
+obstacle_distance_vertical: 1.460510015487671
+Current position: X: 0.7045319676399231 Y: -2.3075218200683594 Z: 0.0776720717549324
+Average depth within the bounding box: 0.44418514
+obstacle_distance: 3.498373508453369
+obstacle_distance_vertical: 1.4431394338607788
+Current position: X: 0.8563283085823059 Y: -2.3185534477233887 Z: 0.1570843756198883
+Average depth within the bounding box: 0.29269785
+obstacle_distance: 3.46136212348938
+obstacle_distance_vertical: 1.4303897619247437
+Current position: X: 0.9983918070793152 Y: -2.33591628074646 Z: 0.2543123960494995
+Average depth within the bounding box: 0.3290613
+obstacle_distance: 3.3030636310577393
+obstacle_distance_vertical: 1.4135903120040894
+Current position: X: 1.1448380947113037 Y: -2.3256988525390625 Z: 0.3446067273616791
+Average depth within the bounding box: 0.50820774
+obstacle_distance: 3.154764175415039
+obstacle_distance_vertical: 1.4252119064331055
+Current position: X: 1.3003103733062744 Y: -2.346125841140747 Z: 0.41819411516189575
+Average depth within the bounding box: 0.37312874
+obstacle_distance: 3.0337917804718018
+obstacle_distance_vertical: 1.4020928144454956
+Current position: X: 1.4428845643997192 Y: -2.300966262817383 Z: 0.5138319730758667
+Average depth within the bounding box: 0.121186234
+obstacle_distance: 2.884740114212036
+obstacle_distance_vertical: 1.452839732170105
+Current position: X: 1.5642651319503784 Y: -2.3239541053771973 Z: 0.6347997784614563
+Average depth within the bounding box: 0.056076333
+obstacle_distance: 2.7846107482910156
+obstacle_distance_vertical: 1.4224909543991089
+Current position: X: 1.6615917682647705 Y: -2.4174227714538574 Z: 0.7763544321060181
+Average depth within the bounding box: 0.060132522
+obstacle_distance: 2.652381658554077
+obstacle_distance_vertical: 1.3287353515625
+Current position: X: 1.748870849609375 Y: -2.4148364067077637 Z: 0.9246834516525269
+Average depth within the bounding box: 0.14083853
+obstacle_distance: 2.5881521701812744
+obstacle_distance_vertical: 1.3374660015106201
+Current position: X: 1.807839274406433 Y: -2.453827381134033 Z: 1.0857806205749512
+Average depth within the bounding box: 0.22871724
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.292458415031433
+Current position: X: 1.8497852087020874 Y: -2.4899182319641113 Z: 1.2525707483291626
+Average depth within the bounding box: 0.13811754
+obstacle_distance: 2.4669694900512695
+obstacle_distance_vertical: 1.259902834892273
+Current position: X: 1.9111117124557495 Y: -2.4442548751831055 Z: 1.4133684635162354
+Average depth within the bounding box: 0.14161034
+obstacle_distance: 2.5076825618743896
+obstacle_distance_vertical: 1.3086891174316406
+Current position: X: 1.9681048393249512 Y: -2.4245729446411133 Z: 1.5757297277450562
+Average depth within the bounding box: 0.22748664
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3250112533569336
+Current position: X: 2.0047807693481445 Y: -2.4937713146209717 Z: 1.743856430053711
+Average depth within the bounding box: 0.15295711
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2521486282348633
+Current position: X: 2.052751302719116 Y: -2.6030750274658203 Z: 1.9093416929244995
+Average depth within the bounding box: 0.13841288
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1423894166946411
+Current position: X: 2.1033477783203125 Y: -2.6375370025634766 Z: 2.0742032527923584
+Average depth within the bounding box: 0.15861106
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.112844467163086
+Current position: X: 2.139897108078003 Y: -2.698010206222534 Z: 2.24233341217041
+Average depth within the bounding box: 0.29290813
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0480090379714966
+Current position: X: 2.15226149559021 Y: -2.676926612854004 Z: 2.413965940475464
+Average depth within the bounding box: 0.2589259
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.0766059160232544
+Current position: X: 2.173211097717285 Y: -2.6141107082366943 Z: 2.584693193435669
+Average depth within the bounding box: 0.107329056
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.137832760810852
+Current position: X: 2.228503704071045 Y: -2.534424304962158 Z: 2.746826171875
+Average depth within the bounding box: 0.10123776
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2194560766220093
+Current position: X: 2.3094117641448975 Y: -2.465636968612671 Z: 2.8985378742218018
+Average depth within the bounding box: 0.07269557
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2864841222763062
+Current position: X: 2.391216993331909 Y: -2.5070641040802 Z: 3.0503153800964355
+Average depth within the bounding box: 0.06992071
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2391709089279175
+Current position: X: 2.4684019088745117 Y: -2.612914800643921 Z: 3.204340934753418
+Average depth within the bounding box: 0.07854931
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.132588267326355
+Current position: X: 2.5174560546875 Y: -2.6057991981506348 Z: 3.3686177730560303
+Average depth within the bounding box: 0.1211643
+obstacle_distance: 3.8909173011779785
+obstacle_distance_vertical: 1.1471506357192993
+Current position: X: 2.5428459644317627 Y: -2.5735390186309814 Z: 3.538569211959839
+Average depth within the bounding box: 0.065998696
+obstacle_distance: 3.8450191020965576
+obstacle_distance_vertical: 1.1768255233764648
+Current position: X: 2.58758282661438 Y: -2.569063186645508 Z: 3.704702854156494
+Average depth within the bounding box: 0.09331525
+obstacle_distance: 3.6882646083831787
+obstacle_distance_vertical: 1.1810115575790405
+Current position: X: 2.6485917568206787 Y: -2.5810441970825195 Z: 3.865480422973633
+Average depth within the bounding box: 0.07140288
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1681671142578125
+Current position: X: 2.7300076484680176 Y: -2.5250229835510254 Z: 4.017035484313965
+Average depth within the bounding box: 0.08400001
+obstacle_distance: 3.6767773628234863
+obstacle_distance_vertical: 1.228906512260437
+Current position: X: 2.809091329574585 Y: -2.4987404346466064 Z: 4.169973373413086
+Average depth within the bounding box: 0.16067356
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.250705599784851
+Current position: X: 2.914226531982422 Y: -2.5353317260742188 Z: 4.305239677429199
+Average depth within the bounding box: 0.1636143
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2126970291137695
+Current position: X: 3.0485923290252686 Y: -2.492255210876465 Z: 4.410823822021484
+Average depth within the bounding box: 0.18115392
+obstacle_distance: 2.4158504009246826
+obstacle_distance_vertical: 1.2615270614624023
+Current position: X: 3.2027528285980225 Y: -2.5155017375946045 Z: 4.4860520362854
+Average depth within the bounding box: 0.16977969
+obstacle_distance: 2.387693405151367
+obstacle_distance_vertical: 1.230940341949463
+Current position: X: 3.363475799560547 Y: -2.540480375289917 Z: 4.547946453094482
+Average depth within the bounding box: 0.18838814
+obstacle_distance: 2.2117486000061035
+obstacle_distance_vertical: 1.209946632385254
+Current position: X: 3.528095245361328 Y: -2.5624492168426514 Z: 4.599125862121582
+Average depth within the bounding box: 0.19478694
+obstacle_distance: 2.2600862979888916
+obstacle_distance_vertical: 1.185943603515625
+Current position: X: 3.6910088062286377 Y: -2.5819287300109863 Z: 4.6552300453186035
+Average depth within the bounding box: 0.176951
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1677532196044922
+Current position: X: 3.84979510307312 Y: -2.5432181358337402 Z: 4.721963882446289
+Average depth within the bounding box: 0.2070854
+obstacle_distance: 2.4532601833343506
+obstacle_distance_vertical: 1.2093706130981445
+Current position: X: 4.016212463378906 Y: -2.450230360031128 Z: 4.763424396514893
+Average depth within the bounding box: 0.1994103
+obstacle_distance: 1.8878092765808105
+obstacle_distance_vertical: 1.3041189908981323
+Current position: X: 4.187685012817383 Y: -2.433711051940918 Z: 4.774569034576416
+Average depth within the bounding box: 0.21961011
+obstacle_distance: 1.89885675907135
+obstacle_distance_vertical: 1.314892292022705
+Current position: X: 4.359504222869873 Y: -2.401158332824707 Z: 4.787815093994141
+Average depth within the bounding box: 0.23771226
+obstacle_distance: 2.3580222129821777
+obstacle_distance_vertical: 1.3516477346420288
+Current position: X: 4.530288219451904 Y: -2.434285879135132 Z: 4.811453819274902
+Average depth within the bounding box: 0.20661244
+obstacle_distance: 2.427622079849243
+obstacle_distance_vertical: 1.3120850324630737
+Current position: X: 4.7017364501953125 Y: -2.4823012351989746 Z: 4.826239109039307
+Average depth within the bounding box: 0.20448722
+obstacle_distance: 1.6991539001464844
+obstacle_distance_vertical: 1.2667301893234253
+Current position: X: 4.8736958503723145 Y: -2.5273427963256836 Z: 4.8204240798950195
+Average depth within the bounding box: 0.20900805
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2203903198242188
+Current position: X: 5.044318199157715 Y: -2.5080740451812744 Z: 4.838192939758301
+Average depth within the bounding box: 0.18873996
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.244389533996582
+Current position: X: 5.210248947143555 Y: -2.4948031902313232 Z: 4.88313102722168
+Average depth within the bounding box: 0.18151732
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.254649043083191
+Current position: X: 5.37892484664917 Y: -2.493983507156372 Z: 4.917909145355225
+Average depth within the bounding box: 0.23695245
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2563722133636475
+Current position: X: 5.5493245124816895 Y: -2.428725004196167 Z: 4.943898677825928
+Average depth within the bounding box: 0.19016783
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3251417875289917
+Current position: X: 5.719376564025879 Y: -2.4281609058380127 Z: 4.9711012840271
+Average depth within the bounding box: 0.2281867
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.319717288017273
+Current position: X: 5.891349792480469 Y: -2.425508499145508 Z: 4.973309516906738
+Average depth within the bounding box: 0.24260603
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3258389234542847
+Current position: X: 6.063665866851807 Y: -2.3461039066314697 Z: 4.968385219573975
+Average depth within the bounding box: 0.2519822
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4080910682678223
+Current position: X: 6.2358551025390625 Y: -2.3479015827178955 Z: 4.974606990814209
+Average depth within the bounding box: 0.21271186
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3996467590332031
+Current position: X: 6.406428337097168 Y: -2.4393820762634277 Z: 4.998522758483887
+Average depth within the bounding box: 0.17271064
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3062846660614014
+Current position: X: 6.5761308670043945 Y: -2.4221551418304443 Z: 5.028665065765381
+Average depth within the bounding box: 0.21313229
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3313329219818115
+Current position: X: 6.74767541885376 Y: -2.3193142414093018 Z: 5.036348342895508
+Average depth within the bounding box: 0.28341484
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4351471662521362
+Current position: X: 6.91550874710083 Y: -2.205826759338379 Z: 5.0038652420043945
+Average depth within the bounding box: 0.31398362
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.548755407333374
+Current position: X: 7.070358753204346 Y: -2.195218563079834 Z: 4.931345462799072
+Average depth within the bounding box: 0.2365745
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.552886962890625
+Current position: X: 7.212319850921631 Y: -2.2806029319763184 Z: 4.834390163421631
+Average depth within the bounding box: 0.22455865
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4651331901550293
+Current position: X: 7.358691692352295 Y: -2.3355700969696045 Z: 4.744068622589111
+Average depth within the bounding box: 0.34784815
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4133820533752441
+Current position: X: 7.5187907218933105 Y: -2.406891107559204 Z: 4.682016849517822
+Average depth within the bounding box: 0.313442
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.339248538017273
+Current position: X: 7.683070659637451 Y: -2.4244675636291504 Z: 4.630354404449463
+Average depth within the bounding box: 0.31356534
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3265883922576904
+Current position: X: 7.843205451965332 Y: -2.3683626651763916 Z: 4.566713333129883
+Average depth within the bounding box: 0.3319613
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3845432996749878
+Current position: X: 8.006661415100098 Y: -2.2719013690948486 Z: 4.512300491333008
+Average depth within the bounding box: 0.3088782
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4824875593185425
+Current position: X: 8.175725936889648 Y: -2.288508892059326 Z: 4.482383728027344
+Average depth within the bounding box: 0.29439858
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4580086469650269
+Current position: X: 8.346693992614746 Y: -2.3696556091308594 Z: 4.490932464599609
+Average depth within the bounding box: 0.24404114
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3772298097610474
+Current position: X: 8.516077041625977 Y: -2.4452812671661377 Z: 4.520194053649902
+Average depth within the bounding box: 0.30920148
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3017429113388062
+Current position: X: 8.687907218933105 Y: -2.413196563720703 Z: 4.528460502624512
+Average depth within the bounding box: 0.32815117
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3404607772827148
+Current position: X: 8.860315322875977 Y: -2.403799533843994 Z: 4.528012752532959
+Average depth within the bounding box: 0.31047153
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3447455167770386
+Current position: X: 9.032296180725098 Y: -2.3665194511413574 Z: 4.5350565910339355
+Average depth within the bounding box: 0.2749933
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3866132497787476
+Current position: X: 9.198265075683594 Y: -2.2675721645355225 Z: 4.577099800109863
+Average depth within the bounding box: 0.18029241
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.4868450164794922
+Current position: X: 9.355103492736816 Y: -2.172327995300293 Z: 4.647350311279297
+Average depth within the bounding box: 0.20221868
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.5811421871185303
+Current position: X: 9.509401321411133 Y: -2.1305510997772217 Z: 4.7236328125
+Average depth within the bounding box: 0.16381001
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.6201159954071045
+Current position: X: 9.647850036621094 Y: -2.155571222305298 Z: 4.825185298919678
+Average depth within the bounding box: 0.24290933
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.5924972295761108
+Current position: X: 9.779524803161621 Y: -2.1744253635406494 Z: 4.935966968536377
+Average depth within the bounding box: 0.20888026
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.575476050376892
+Current position: X: 9.922368049621582 Y: -2.2401490211486816 Z: 5.032052040100098
+Average depth within the bounding box: 0.20938921
+obstacle_distance: 3.98187518119812
+obstacle_distance_vertical: 1.5058106184005737
+Current position: X: 10.062467575073242 Y: -2.3024253845214844 Z: 5.132536888122559
+Average depth within the bounding box: 0.2105782
+obstacle_distance: 3.749223470687866
+obstacle_distance_vertical: 1.4459465742111206
+Current position: X: 10.208344459533691 Y: -2.3848884105682373 Z: 5.2237548828125
+Average depth within the bounding box: 0.16549888
+obstacle_distance: 3.632648468017578
+obstacle_distance_vertical: 1.3608808517456055
+Current position: X: 10.368712425231934 Y: -2.421598196029663 Z: 5.284594535827637
+Average depth within the bounding box: 0.3212611
+obstacle_distance: 3.5137665271759033
+obstacle_distance_vertical: 1.3284729719161987
+Current position: X: 10.53480052947998 Y: -2.4349825382232666 Z: 5.329668045043945
+Average depth within the bounding box: 0.15838708
+obstacle_distance: 3.425863027572632
+obstacle_distance_vertical: 1.314143180847168
+Current position: X: 10.6942138671875 Y: -2.4808125495910645 Z: 5.394215106964111
+Average depth within the bounding box: 0.16764303
+obstacle_distance: 3.369030237197876
+obstacle_distance_vertical: 1.266818881034851
+Current position: X: 10.844518661499023 Y: -2.443398952484131 Z: 5.478093147277832
+Average depth within the bounding box: 0.17674637
+obstacle_distance: 3.2835683822631836
+obstacle_distance_vertical: 1.3102519512176514
+Current position: X: 10.986907958984375 Y: -2.4106369018554688 Z: 5.5751118659973145
+Average depth within the bounding box: 0.24162813
+obstacle_distance: 3.109938144683838
+obstacle_distance_vertical: 1.3393677473068237
+Current position: X: 11.124402046203613 Y: -2.3820736408233643 Z: 5.679180145263672
+Average depth within the bounding box: 0.23716483
+obstacle_distance: 3.024703025817871
+obstacle_distance_vertical: 1.3697021007537842
+Current position: X: 11.266570091247559 Y: -2.403815269470215 Z: 5.776175498962402
+Average depth within the bounding box: 0.2193019
+obstacle_distance: 2.9174063205718994
+obstacle_distance_vertical: 1.3438392877578735
+Current position: X: 11.42137336730957 Y: -2.4628188610076904 Z: 5.851226329803467
+Average depth within the bounding box: 0.24458998
+obstacle_distance: 2.8431766033172607
+obstacle_distance_vertical: 1.2848118543624878
+Current position: X: 11.578548431396484 Y: -2.5533947944641113 Z: 5.921988487243652
+Average depth within the bounding box: 0.21852724
+obstacle_distance: 2.6695191860198975
+obstacle_distance_vertical: 1.1922821998596191
+Current position: X: 11.739470481872559 Y: -2.575812339782715 Z: 5.98384952545166
+Average depth within the bounding box: 0.20080104
+obstacle_distance: 2.5670926570892334
+obstacle_distance_vertical: 1.1752004623413086
+Current position: X: 11.897459983825684 Y: -2.5643997192382812 Z: 6.052827835083008
+Average depth within the bounding box: 0.20854609
+obstacle_distance: 2.504178762435913
+obstacle_distance_vertical: 1.185746192932129
+Current position: X: 12.053752899169922 Y: -2.5160696506500244 Z: 6.125471115112305
+Average depth within the bounding box: 0.26905873
+obstacle_distance: 2.606487512588501
+obstacle_distance_vertical: 1.2368592023849487
+Current position: X: 12.217392921447754 Y: -2.472463846206665 Z: 6.178577423095703
+Average depth within the bounding box: 0.357128
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2786186933517456
+Current position: X: 12.386260986328125 Y: -2.4668614864349365 Z: 6.212259292602539
+Average depth within the bounding box: 0.3670548
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2828830480575562
+Current position: X: 12.555508613586426 Y: -2.4269423484802246 Z: 6.244223117828369
+Average depth within the bounding box: 0.27939832
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.3256864547729492
+Current position: X: 12.719514846801758 Y: -2.462815761566162 Z: 6.296571254730225
+Average depth within the bounding box: 0.30970737
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2834824323654175
+Current position: X: 12.882122993469238 Y: -2.497253894805908 Z: 6.353970527648926
+Average depth within the bounding box: 0.24808438
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.2526636123657227
+Current position: X: 13.044175148010254 Y: -2.562803030014038 Z: 6.413059711456299
+Average depth within the bounding box: 0.28666
+obstacle_distance: 4.0
+obstacle_distance_vertical: 1.1831583976745605

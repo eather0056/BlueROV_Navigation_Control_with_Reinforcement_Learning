@@ -269,7 +269,7 @@ def main_loop():
                 '{}\tT_sample {:.4f}\tT_update {:.4f}\tT_eval {:.4f}\ttrain_R_min {:.2f}\ttrain_R_max {:.2f}\ttrain_R_avg {:.2f}\t'.format(
                     i_iter, log['sample_time'], t1 - t0, t2 - t1, log['min_reward'], log['max_reward'], log['avg_reward']))
                 
-            wandb.log(log_data) # Log metrics to wandb 
+            #wandb.log(log_data) # Log metrics to wandb 
 
         # Write training statistics to a text file.
         if args.randomization == 1:

@@ -9,6 +9,7 @@ import uuid                        # Library for generating universally unique i
 import random                      
 import os                          
 from utils import *                # Custom utility functions
+import csv
 
 # Import specific modules and classes from external libraries
 from typing import List            # Type hinting for Python function and variable annotations
@@ -240,6 +241,9 @@ class PosChannel(SideChannel):
     
     # Message Sending to uniy env
     def assign_testpos_visibility(self, data: List[float]) -> None:
+        """
+        Sends visibility information to Unity.
+        """
         msg = OutgoingMessage() # Creates a new outgoing message.
         msg.write_float32_list(data)
         super().queue_message_to_send(msg) # Adds the message to the queue of messages 
@@ -348,7 +352,7 @@ class Underwater_navigation():
         # Create Unity environment
         #unity_env = UnityEnvironment(os.path.abspath("./") + "/underwater_env/build",
                                      #side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005)
-        unity_env = UnityEnvironment(os.path.abspath("./underwater_env/build/build.x86_64"),
+        unity_env = UnityEnvironment(os.path.abspath("./underwater_env/Env_C/Env_C.x86_64"),
                              side_channels=[config_channel, self.pos_info], worker_id=rank, base_port=5005,seed=0, no_graphics=False)
 
         # Apply randomization if enabled
@@ -512,14 +516,19 @@ class Underwater_navigation():
         average_depth = np.mean(depth_in_box)
 
         # Calculate ray observations #ether
-        # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
-        #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
+        obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
+                                    obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
         
-        obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
-                                    obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
+        # obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
+        #                             obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
         
         # obs_ray = np.array([0]), got goal-related information
         obs_goal_depthfromwater = self.pos_info.goal_depthfromwater_info()
+        #obs_goal_depthfromwater: [horizontal_distance:, vertical_distance:, angle_rb_2_g:, Y_position, X_position, Z_position, angle_rb_2_g:]
+
+        # Access agent's position information from PosChannel
+        agent_position = [obs_goal_depthfromwater[4], obs_goal_depthfromwater[3], obs_goal_depthfromwater[5]]
+        print("Current position: X:", agent_position[0], "Y:", agent_position[1], "Z:", agent_position[2])
 
         """
             compute reward
@@ -534,12 +543,12 @@ class Underwater_navigation():
         obstacle_distance = np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
                              obs_img_ray[1][7], obs_img_ray[1][9], obs_img_ray[1][11],
                              obs_img_ray[1][13], obs_img_ray[1][15], obs_img_ray[1][17]]) * 8 * 0.5
-        # obstacle_distance_vertical = np.min([obs_img_ray[1][81], obs_img_ray[1][79],
-        #                                      obs_img_ray[1][77], obs_img_ray[1][75],
-        #                                      obs_img_ray[1][73], obs_img_ray[1][71]]) * 8 * 0.5
-        obstacle_distance_vertical = np.min([obs_img_ray[0][28], obs_img_ray[0][19],
-                                             obs_img_ray[0][17], obs_img_ray[0][15],
-                                             obs_img_ray[0][13], obs_img_ray[0][11]]) * 8 * 0.5
+        obstacle_distance_vertical = np.min([obs_img_ray[1][81], obs_img_ray[1][79],
+                                             obs_img_ray[1][77], obs_img_ray[1][75],
+                                             obs_img_ray[1][73], obs_img_ray[1][71]]) * 8 * 0.5
+        # obstacle_distance_vertical = np.min([obs_img_ray[0][28], obs_img_ray[0][19],
+        #                                      obs_img_ray[0][17], obs_img_ray[0][15],
+        #                                      obs_img_ray[0][13], obs_img_ray[0][11]]) * 8 * 0.5
 
         print("Average depth within the bounding box:", average_depth)
         print("obstacle_distance:", obstacle_distance)
@@ -548,26 +557,26 @@ class Underwater_navigation():
         # If obstacle_distance is less than 0.5 (indicating that the robot is too close to obstacles).
         # If the absolute value of the robot's y-position (obs_goal_depthfromwater[3]) is less than 0.24 (indicating proximity to the water surface).
         # If obstacle_distance_vertical is less than 0.12 (indicating proximity to obstacles in the vertical direction).
-        # if obstacle_distance < 0.5 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
-        #     reward_obstacle = -10
-        #     done = True # the done flag is set to True to indicate that the episode is finished
-        #     print("Too close to the obstacle, seafloor or water surface!",
-        #           "\nhorizontal distance to nearest obstacle:", obstacle_distance,
-        #           "\ndistance to water surface", np.abs(obs_goal_depthfromwater[3]),
-        #           "\nvertical distance to nearest obstacle:", obstacle_distance_vertical)
-        # else:
-        #     reward_obstacle = 0
-
-        # Training without Sonar reading, obstacal distance estimation using only monocular camera
-        if average_depth > 0.7 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
+        if obstacle_distance < 0.5 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
             reward_obstacle = -10
             done = True # the done flag is set to True to indicate that the episode is finished
             print("Too close to the obstacle, seafloor or water surface!",
-                  "\nhorizontal distance to nearest obstacle:", average_depth,
+                  "\nhorizontal distance to nearest obstacle:", obstacle_distance,
                   "\ndistance to water surface", np.abs(obs_goal_depthfromwater[3]),
                   "\nvertical distance to nearest obstacle:", obstacle_distance_vertical)
         else:
             reward_obstacle = 0
+
+        # # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        # if average_depth > 0.7 or np.abs(obs_goal_depthfromwater[3]) < 0.24 or obstacle_distance_vertical < 0.12:
+        #     reward_obstacle = -10
+        #     done = True # the done flag is set to True to indicate that the episode is finished
+        #     print("Too close to the obstacle, seafloor or water surface!",
+        #           "\nhorizontal distance to nearest obstacle:", average_depth,
+        #           "\ndistance to water surface", np.abs(obs_goal_depthfromwater[3]),
+        #           "\nvertical distance to nearest obstacle:", obstacle_distance_vertical)
+        # else:
+        #     reward_obstacle = 0
 
         '''# 2. give a positive reward if the robot reaches the goal'''
         if self.training:
@@ -607,16 +616,16 @@ class Underwater_navigation():
             
         '''# 4. give negative rewards if the robot too often turns its direction or is near any obstacle'''
         reward_turning = 0 # This component penalizes the agent for excessive changes in direction. 
-        # if 0.5 <= obstacle_distance < 1.:
-        #     reward_goal_reaching_horizontal *= (obstacle_distance - 0.5) / 0.5
-        #     reward_obstacle -= (1 - obstacle_distance) * 2
-        # # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
-        # # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
+        if 0.5 <= obstacle_distance < 1.:
+            reward_goal_reaching_horizontal *= (obstacle_distance - 0.5) / 0.5
+            reward_obstacle -= (1 - obstacle_distance) * 2
+        # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
+        # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
 
-        # Training without Sonar reading, obstacal distance estimation using only monocular camera
-        if 0.5 <= average_depth < .69:
-            reward_goal_reaching_horizontal *= (average_depth - 0.5) / 0.5
-            reward_obstacle -= (1 - average_depth) * 2
+        # # Training without Sonar reading, obstacal distance estimation using only monocular camera
+        # if 0.5 <= average_depth < .69:
+        #     reward_goal_reaching_horizontal *= (average_depth - 0.5) / 0.5
+        #     reward_obstacle -= (1 - average_depth) * 2
         # if the distance to the nearest obstacle falls between 0.5 and 1 units, it scales down the reward based on how close the distance 
         # is to 1. Additionally, it further penalizes the agent by deducting points from the reward_obstacle if it's close to an obstacle.
 
@@ -673,12 +682,26 @@ class Underwater_navigation():
         # cv2.imwrite("img_depth_pred_step.png", 256 * self.obs_preddepths[0])
 
         if self.training == False:
-            my_open = open(os.path.join(assets_dir(), 'learned_models/test_pos.txt'), "a")
-            data = [str(obs_goal_depthfromwater[4]), " ", str(obs_goal_depthfromwater[5]), " ",
-                    str(obs_goal_depthfromwater[3]), "\n"]
-            for element in data:
-                my_open.write(element)
-            my_open.close()
+            # my_open = open(os.path.join(assets_dir(), 'learned_models/agent_trajectory.csv'), "a")
+            # data = [str(agent_position[0]), ",", str(agent_position[1]), ",",
+            #         str(agent_position[2]), "\n"]
+            # for element in data:
+            #     my_open.write(element)
+            # my_open.close()
+
+            # Define the file path for the CSV
+            csv_filename = os.path.join(assets_dir(), 'learned_models/ppo_Env_B_agent_trajectory.csv')
+
+            # Assuming agent_position is defined as described in your previous code
+            agent_position = [obs_goal_depthfromwater[3], obs_goal_depthfromwater[4], obs_goal_depthfromwater[5], obs_goal_depthfromwater[0]]
+
+            # Write the agent_position array to the CSV file
+            with open(csv_filename, 'a', newline='') as csvfile:
+                csv_writer = csv.writer(csvfile)
+                # Write header only if the file is empty
+                if os.path.getsize(csv_filename) == 0:
+                    csv_writer.writerow(['Y', 'X', 'Z', 'H_D'])  # Write header row
+                csv_writer.writerow(agent_position)   # Write agent_position data
 
         return self.obs_preddepths, self.obs_goals, self.obs_rays, self.obs_actions, reward, done, 0
 

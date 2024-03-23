@@ -1,0 +1,19 @@
+[INFO] Connected to Unity environment with package version 2.0.1 and communication version 1.5.0
+[INFO] Connected new brain: My Behavior?team=0
+/home/ether/miniconda3/envs/ROV/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+Loading weights:  /home/ether/Documents/BlueROV_Navigation-Control/DPT/weights/midas_v21_small-70d6b9c8.pt
+Using cache found in /home/ether/.cache/torch/hub/rwightman_gen-efficientnet-pytorch_master
+1710972417.9933028
+Traceback (most recent call last):
+  File "ppo_gym.py", line 319, in <module>
+    main_loop()
+  File "ppo_gym.py", line 232, in main_loop
+    batch, log = agent.collect_samples(args.min_batch_size, render=args.render)
+  File "/home/ether/Documents/BlueROV_Navigation-Control/core/agent.py", line 229, in collect_samples
+    memory, log = collect_samples(0, None, self.env[0], self.policy, self.custom_reward, mean_action,
+  File "/home/ether/Documents/BlueROV_Navigation-Control/core/agent.py", line 69, in collect_samples
+    next_img_depth, next_goal, next_ray, next_hist_action, reward, done, _ = env.step(action)
+  File "/home/ether/Documents/BlueROV_Navigation-Control/core/unity_underwater_env.py", line 545, in step
+    agent_position = self.pos_info.get_agent_position()
+AttributeError: 'PosChannel' object has no attribute 'get_agent_position'

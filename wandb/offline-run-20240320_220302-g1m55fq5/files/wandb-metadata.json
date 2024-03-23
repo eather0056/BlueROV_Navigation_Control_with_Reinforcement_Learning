@@ -1,0 +1,93 @@
+{
+    "os": "Linux-5.4.0-150-generic-x86_64-with-glibc2.17",
+    "python": "3.8.18",
+    "heartbeatAt": "2024-03-20T21:03:02.899243",
+    "startedAt": "2024-03-20T21:03:02.706538",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--save-model-interval",
+        "5",
+        "--env-name",
+        "navigation",
+        "--eval-batch-size",
+        "0",
+        "--min-batch-size",
+        "2048",
+        "--num-threads",
+        "1",
+        "--hist-length",
+        "5"
+    ],
+    "state": "running",
+    "program": "ppo_gym.py",
+    "codePathLocal": "ppo_gym.py",
+    "codePath": "ppo_gym.py",
+    "git": {
+        "remote": "https://github.com/eather0056/BlueROV_Navigation-Control.git",
+        "commit": "5ab93eae135996ceeddbcd96ed2a0207cdd5bd43"
+    },
+    "email": "mdeather0056@gmail.com",
+    "root": "/home/ether/Documents/BlueROV_Navigation-Control",
+    "host": "ether",
+    "username": "ether",
+    "executable": "/home/ether/miniconda3/envs/ROV/bin/python3",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2259.531875,
+        "min": 400.0,
+        "max": 4800.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2197.252,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2287.776,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2171.409,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2291.475,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2286.992,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2282.891,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2270.582,
+            "min": 400.0,
+            "max": 4800.0
+        },
+        {
+            "current": 2287.878,
+            "min": 400.0,
+            "max": 4800.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 118.63518905639648,
+            "used": 103.3561897277832
+        }
+    },
+    "memory": {
+        "total": 15.447891235351562
+    }
+}
