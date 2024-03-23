@@ -85,8 +85,8 @@ This project contributes to the field of underwater robotics by:
 - Providing insights into overcoming navigation failures in constrained underwater environments.
 
 <div style="display:flex;">
-  <img src="assets/learned_models/new_tra_side.gif" width="400" style="margin-right: 20px;">
-  <img src="assets/learned_models/new_tra_top.gif" width="400">
+  <img src="Results/new_tra_side.gif" width="400" style="margin-right: 20px;">
+  <img src="Results/new_tra_top.gif" width="400">
 </div>
 
 ## Acknowledgments
