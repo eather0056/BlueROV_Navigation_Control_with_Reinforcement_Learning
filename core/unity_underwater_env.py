@@ -289,6 +289,9 @@ class Underwater_navigation():
         self.twist_range = 30 # degree
         self.vertical_range = 0.1
         self.depth_prediction_model= depth_prediction_model
+        self.agent_position_history = []  # Initialize as empty
+        self.is_stuck_flag = False
+        self.last_action = []
 
         # Define action space
         self.action_space = spaces.Box(
