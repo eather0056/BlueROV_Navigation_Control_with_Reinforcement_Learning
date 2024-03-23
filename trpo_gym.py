@@ -239,11 +239,11 @@ def main_loop():
         # Write training statistics to a text file.
         if args.randomization == 1:
             if args.adaptation == 1:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_adapt.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_adapt_C.txt'.format(args.env_name)), "a")
             else:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_rand.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_rand_C.txt'.format(args.env_name)), "a")
         else:
-            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_norand.txt'.format(args.env_name)), "a")
+            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_trpo_norand_C.txt'.format(args.env_name)), "a")
         data = [str(i_iter), " ", str(log['avg_reward']), " ", str(log['num_episodes']),
                 " ", str(log['ratio_success']), " ", str(log['avg_steps_success']), " ", str(log['avg_last_reward']), "\n"]
         for element in data:
@@ -258,17 +258,17 @@ def main_loop():
                 if args.adaptation == 1:
                     # Save the networks with adaptation suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_trpo_adapt.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_trpo_adapt_C.p'.format(args.env_name)),
                                      'wb'))
                 else:
                     # Save the networks with randomization suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_trpo_rand.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_trpo_rand_C.p'.format(args.env_name)),
                                      'wb'))
             else:
                 # Save the networks with no randomization suffix in the file name.
                 pickle.dump((policy_net, value_net, running_state),
-                        open(os.path.join(assets_dir(), 'learned_models/{}_trpo_norand.p'.format(args.env_name)), 'wb'))
+                        open(os.path.join(assets_dir(), 'learned_models/{}_trpo_norand_C.p'.format(args.env_name)), 'wb'))
             # Move networks back to the specified device after saving.
             to_device(device, policy_net, value_net)
 

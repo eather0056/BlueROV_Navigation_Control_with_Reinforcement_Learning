@@ -196,10 +196,6 @@ def update_params(batch):
     return avg_policy_loss, avg_value_loss
 
 def main_loop():
-    avgrage_rewards = []
-    policy_losses = []
-    value_losses = []
-
     # Iterate over a specified number of iterations.
     for i_iter in range(args.max_iter_num):
         """generate multiple trajectories that reach the minimum batch_size"""
@@ -249,11 +245,11 @@ def main_loop():
         # Write training statistics to a text file.
         if args.randomization == 1:
             if args.adaptation == 1:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt_Env_C.txt'.format(args.env_name)), "a")
             else:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand_Env_C.txt'.format(args.env_name)), "a")
         else:
-            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand.txt'.format(args.env_name)), "a")
+            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand_Env_C.txt'.format(args.env_name)), "a")
         data = [str(i_iter), " ", str(log['avg_reward']), " ", str(log['num_episodes']),
                 " ", str(log['ratio_success']), " ", str(log['avg_steps_success']), " ", str(log['avg_last_reward']), "\n"]
         for element in data:
@@ -268,17 +264,17 @@ def main_loop():
                 if args.adaptation == 1:
                     # Save the networks with adaptation suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_adapt_Env_C.p'.format(args.env_name)),
                                      'wb'))
                 else:
                     # Save the networks with randomization suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_a2c_rand_Env_C.p'.format(args.env_name)),
                                      'wb'))
             else:
                 # Save the networks with no randomization suffix in the file name.
                 pickle.dump((policy_net, value_net, running_state),
-                        open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand.p'.format(args.env_name)), 'wb'))
+                        open(os.path.join(assets_dir(), 'learned_models/{}_a2c_norand_Env_C.p'.format(args.env_name)), 'wb'))
             # Move networks back to the specified device after saving.
             to_device(device, policy_net, value_net)
 
