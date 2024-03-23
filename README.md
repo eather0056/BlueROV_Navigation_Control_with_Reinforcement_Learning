@@ -78,12 +78,16 @@ For testing the models, run:
 ```bash
 python3 ppo_gym_test.py --env-name navigation --eval-batch-size 2000 --hist-length 5
 ```
-<!-- ## Research Findings and Contributions
+## Research Findings and Contributions
 This project contributes to the field of underwater robotics by:
 - Comparatively analyzing the performance of A2C, PPO, and TRPO in map-less navigation scenarios.
 - Enhancing the robustness of underwater navigation systems through advanced sensor fusion and reward function refinement.
 - Providing insights into overcoming navigation failures in constrained underwater environments.
--->
+
+<div style="display:flex;">
+  <img src="assets/learned_models/new_tra_side.gif" width="400" style="margin-right: 20px;">
+  <img src="assets/learned_models/new_tra_top.gif" width="400">
+</div>
 
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
