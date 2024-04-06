@@ -6,14 +6,14 @@
 #SBATCH -o /mundus/mdeowan698/trpo_result.log #parmeter log
 #SBATCH -e /mundus/mdeowan698/trpo_error.log #error log
 
-#SBATCH --gres=gpu:3090:1
+#SBATCH --gres=gpu:a100-20:1
 #SBATCH --partition=all # any gpu
 
 cd /mundus/mdeowan698/BlueROV_Navigation-Control
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ROV
 
-CUDA_LAUNCH_BLOCKING=1 python3 a2c_env.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5 --gpu-index 0 --adaptation 0 --seed 5 --max-iter-num 200
+CUDA_LAUNCH_BLOCKING=1 python3 sac_env.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5 --gpu-index 0 --adaptation 0 --seed 5 --max-iter-num 200
 #CUDA_LAUNCH_BLOCKING=1 python3 ppo_gym_test.py --env-name navigation --eval-batch-size 2000 --hist-length 5
 # gpu:a100-20:1
 

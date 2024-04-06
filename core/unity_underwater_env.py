@@ -303,6 +303,15 @@ class Underwater_navigation():
         self.observation_space_goal = (self.HIST, DIM_GOAL) # bservations related to the agent's goal.
         self.observation_space_ray = (self.HIST, 1) # observations related to rays, for sonar sensors.
 
+        # Calculate num_inputs based on observation space dimensions
+        num_inputs_img_depth = HIST * DEPTH_IMAGE_HEIGHT * DEPTH_IMAGE_WIDTH
+        num_inputs_goal = HIST * DIM_GOAL
+        num_inputs_ray = HIST * 1  # Assuming the dimension for the ray observation is fixed
+
+        # Sum the sizes of all dimensions
+        self.observation_dim = num_inputs_img_depth + num_inputs_goal + num_inputs_ray
+        self.action_dim = DIM_ACTION
+
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # Initialize PosChannel for communication with Unity environment
@@ -575,12 +584,13 @@ class Underwater_navigation():
         exploration_incentive = 1  # Reward for encouraging movement
         repeat_action_penalty = 2  # Penalty for repeating an action while stuck
 
+        stuck_reward = 0
         # Check if the agent is stuck
         if self.is_stuck_flag:
             # Encourage exploration by rewarding movement
             stuck_reward += exploration_incentive  # Encourage the agent to move to potentially get unstuck
             # Penalize repeating the same action while stuck to encourage trying different strategies
-            if hasattr(self, 'last_action') and self.last_action == action:
+            if hasattr(self, 'last_action') and  np.array_equal(self.last_action, action):
                 stuck_reward -= repeat_action_penalty
         else:
             stuck_reward = 0
