@@ -289,9 +289,6 @@ class Underwater_navigation():
         self.twist_range = 30 # degree
         self.vertical_range = 0.1
         self.depth_prediction_model= depth_prediction_model
-        self.agent_position_history = []  # Initialize as empty
-        self.is_stuck_flag = False
-        self.last_action = []
 
         # Define action space
         self.action_space = spaces.Box(
@@ -475,9 +472,18 @@ class Underwater_navigation():
         # Calculate ray observations
         obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
                                     obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
+        # observations per frame, Get depth predictions from the depth prediction model
+        if self.depth_prediction_model == "dpt":
+            obs_preddepth = self.dpt.run(obs_img_ray[0] ** 0.45)
+        else:
+            obs_preddepth = self.depth_estimator.depth_estimation(obs_img_ray[0] ** 0.45)
+
+        # Calculate ray observations #ether
+        # obs_ray = np.array([np.min([obs_img_ray[1][1], obs_img_ray[1][3], obs_img_ray[1][5],
+        #                             obs_img_ray[1][33], obs_img_ray[1][35]]) * 8 * 0.5])
         
-        # obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
-        #                             obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
+        obs_ray = np.array([np.min([obs_img_ray[0][1], obs_img_ray[0][3], obs_img_ray[0][5],
+                                    obs_img_ray[0][26], obs_img_ray[0][28]]) * 8 * 0.5])
         
         # obs_ray = np.array([0]), got goal-related information
         obs_goal_depthfromwater = self.pos_info.goal_depthfromwater_info()

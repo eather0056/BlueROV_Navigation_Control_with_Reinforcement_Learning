@@ -5,8 +5,7 @@
 #SBATCH --mem=64G #ram alocation
 #SBATCH -o /mundus/mdeowan698/trpo_result.log #parmeter log
 #SBATCH -e /mundus/mdeowan698/trpo_error.log #error log
-
-#SBATCH --gres=gpu:a100-20:1
+#SBATCH --gres=gpu:a40-48:1
 #SBATCH --partition=all # any gpu
 
 cd /mundus/mdeowan698/BlueROV_Navigation-Control
