@@ -10,13 +10,18 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from utils import *  # Import all from the utils module, which include functions and classes for data preprocessing, normalization, etc.
 from models.mlp_policy import Policy  # Import the Policy class from the mlp_policy module, which defines the policy network architecture.
 from models.mlp_critic import Value  # Import the Value class from the mlp_critic module, which defines the value network architecture.
-from core.ppo import ppo_step  # Import the ppo_step function from the ppo module, which implements a single step of the PPO algorithm.
+from core.Q_net import Q_net
+from core.sac import sac_step_with_replay_buffer  # Import the sac_step function from the sac module, which implements a single step of the SAC algorithm.
 from core.common import estimate_advantages  # Import the estimate_advantages function from the common module, which computes advantage estimates for use in policy optimization.
 from core.agent import Agent  # Import the Agent class from the agent module, which encapsulates the interaction between a policy and an environment.
 from core.unity_underwater_env import Underwater_navigation  # Import the Underwater_navigation class from the unity_underwater_env module, which defines the underwater navigation environment.
 
+
+# MBPO imports
+
+
 # Create an argument parser object with a description of the script. take input from command line
-parser = argparse.ArgumentParser(description='PyTorch PPO example')
+parser = argparse.ArgumentParser(description='PyTorch SAC example')
 
 # Argument for specifying the environment name to run. Default is "Hopper-v2".
 parser.add_argument('--env-name', default="Hopper-v2", metavar='G',
@@ -39,7 +44,7 @@ parser.add_argument('--gamma', type=float, default=0.99, metavar='G',
                     help='discount factor (default: 0.99)')
 
 # Argument for specifying the generalized advantage estimation parameter (tau). Default is 0.95.
-parser.add_argument('--tau', type=float, default=0.95, metavar='G',
+parser.add_argument('--tau', type=float, default=0.005, metavar='G',
                     help='gae (default: 0.95)')
 
 # Argument for specifying the L2 regularization strength. Default is 1e-3.
@@ -59,9 +64,9 @@ parser.add_argument('--adaptation', type=int, default=1, metavar='G')
 # Argument for specifying the depth prediction model. Default is "dpt".
 parser.add_argument('--depth-prediction-model', default="dpt", metavar='G')
 
-# Argument for specifying the clipping epsilon for PPO. Default is 0.2.
+# Argument for specifying the clipping epsilon for SAC. Default is 0.2.
 parser.add_argument('--clip-epsilon', type=float, default=0.2, metavar='N',
-                    help='clipping epsilon for PPO')
+                    help='clipping epsilon for SAC')
 
 # Argument for specifying the number of consecutive history infos. Default is 4.
 parser.add_argument('--hist-length', type=int, default=4, metavar='N',
@@ -75,9 +80,9 @@ parser.add_argument('--num-threads', type=int, default=1, metavar='N',
 parser.add_argument('--seed', type=int, default=1, metavar='N',
                     help='random seed (default: 1)')
 
-# Argument for specifying the minimal batch size per PPO update. Default is 2048.
+# Argument for specifying the minimal batch size per SAC update. Default is 2048.
 parser.add_argument('--min-batch-size', type=int, default=2048, metavar='N',
-                    help='minimal batch size per PPO update (default: 2048)')
+                    help='minimal batch size per SAC update (default: 2048)')
 
 # Argument for specifying the minimal batch size for evaluation. Default is 2048.
 parser.add_argument('--eval-batch-size', type=int, default=2048, metavar='N',
@@ -97,6 +102,13 @@ parser.add_argument('--save-model-interval', type=int, default=0, metavar='N',
 
 # Argument for specifying the GPU index to use. Default is 0.
 parser.add_argument('--gpu-index', type=int, default=0, metavar='N')
+
+## Sac Params
+# Gradient Steps for GD
+parser.add_argument('--gradient_steps', default=1, type=int)
+
+
+parser.add_argument('--capacity', default=10000, type=int) # replay buffer size
 
 # Parse the command-line arguments and store them in 'args' object.
 args = parser.parse_args()
@@ -123,6 +135,9 @@ img_depth_dim = env[0].observation_space_img_depth
 goal_dim = env[0].observation_space_goal
 ray_dim = env[0].observation_space_ray
 
+state_dim = env[0].observation_dim
+action_dim = env[0].action_dim
+
 # Check if the action space is discrete or continuous.
 is_disc_action = len(env[0].action_space.shape) == 0
 
@@ -148,12 +163,14 @@ else:
 # Move policy and value networks to the specified device (GPU or CPU).
 policy_net.to(dtype).to(device)
 value_net.to(dtype).to(device)
+Q_Net = Q_net(state_dim, action_dim)
+# Q_net.to(dtype).to(device)
 
 # Initialize Adam optimizers for policy and value networks with the specified learning rate.
 optimizer_policy = torch.optim.Adam(policy_net.parameters(), lr=args.learning_rate)
 optimizer_value = torch.optim.Adam(value_net.parameters(), lr=args.learning_rate)
 
-# Define the number of optimization epochs and batch size for PPO.
+# Define the number of optimization epochs and batch size for SAC.
 optim_epochs = 10
 optim_batch_size = 64
 
@@ -163,6 +180,7 @@ optim_batch_size = 64
 # - running_state: Object used for normalization of observations.
 # - num_threads: Number of threads used for parallel environment interaction.
 agent = Agent(env, policy_net, device, running_state=running_state, num_threads=args.num_threads)
+# agent = SAC(env.observation_space.shape[0], env.action_space, args)
 
 def update_params(batch, i_iter):
     # Convert numpy arrays from the batch to PyTorch tensors and move them to the appropriate device (GPU or CPU).
@@ -186,7 +204,7 @@ def update_params(batch, i_iter):
     # Estimate advantages and returns using the rewards, masks, and values.
     advantages, returns = estimate_advantages(rewards, masks, values, args.gamma, args.tau, device)
 
-    # Perform mini-batch PPO update for multiple epochs.
+    # Perform mini-batch SAC update for multiple epochs.
     optim_iter_num = int(math.ceil(imgs_depth.shape[0] / optim_batch_size))
     for _ in range(optim_epochs):
         # Shuffle indices for mini-batch updates.
@@ -206,10 +224,10 @@ def update_params(batch, i_iter):
                 imgs_depth[ind], goals[ind], rays[ind], hist_actions[ind], \
                 actions[ind], advantages[ind], returns[ind], fixed_log_probs[ind]
 
-            # Call the PPO step function to update the policy and value networks.
-            policy_loss, value_loss = ppo_step(policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
+            # Call the SAC step function to update the policy and value networks.
+            policy_loss, value_loss = sac_step_with_replay_buffer(Q_Net.to(dtype).to(device), policy_net.to(dtype).to(device), value_net.to(dtype).to(device), optimizer_policy, optimizer_value, 1, imgs_depth_b.to(dtype).to(device),
                      goals_b.to(dtype).to(device), rays_b.to(dtype).to(device), hist_actions_b.to(dtype).to(device), actions_b.to(dtype).to(device), returns_b.to(dtype).to(device), advantages_b.to(dtype).to(device),
-                     fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device)
+                     fixed_log_probs_b.to(dtype).to(device), args.clip_epsilon, args.l2_reg, device, args)
 
             total_policy_loss += policy_loss
             total_value_loss += value_loss
@@ -218,9 +236,7 @@ def update_params(batch, i_iter):
     avg_policy_loss = total_value_loss / (optim_iter_num * optim_epochs)
     avg_value_loss = total_value_loss / (optim_iter_num * optim_epochs)
 
-
     return avg_policy_loss, avg_value_loss
-
 
 def main_loop():
     avgrage_rewards = []
@@ -276,11 +292,11 @@ def main_loop():
         # Write training statistics to a text file.
         if args.randomization == 1:
             if args.adaptation == 1:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_adapt_Env_B.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_sac_adapt.txt'.format(args.env_name)), "a")
             else:
-                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand_Env_B.txt'.format(args.env_name)), "a")
+                my_open = open(os.path.join(assets_dir(), 'learned_models/{}_sac_rand.txt'.format(args.env_name)), "a")
         else:
-            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_ppo_norand_Env_B.txt'.format(args.env_name)), "a")
+            my_open = open(os.path.join(assets_dir(), 'learned_models/{}_sac_norand.txt'.format(args.env_name)), "a")
         data = [str(i_iter), " ", str(log['avg_reward']), " ", str(log['num_episodes']),
                 " ", str(log['ratio_success']), " ", str(log['avg_steps_success']), " ", str(log['avg_last_reward']), "\n"]
         for element in data:
@@ -295,17 +311,17 @@ def main_loop():
                 if args.adaptation == 1:
                     # Save the networks with adaptation suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_ppo_adapt_Env_B.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_sac_adapt.p'.format(args.env_name)),
                                      'wb'))
                 else:
                     # Save the networks with randomization suffix in the file name.
                     pickle.dump((policy_net, value_net, running_state),
-                                open(os.path.join(assets_dir(), 'learned_models/{}_ppo_rand_Env_B.p'.format(args.env_name)),
+                                open(os.path.join(assets_dir(), 'learned_models/{}_sac_rand.p'.format(args.env_name)),
                                      'wb'))
             else:
                 # Save the networks with no randomization suffix in the file name.
                 pickle.dump((policy_net, value_net, running_state),
-                        open(os.path.join(assets_dir(), 'learned_models/{}_ppo_norand_Env_B.p'.format(args.env_name)), 'wb'))
+                        open(os.path.join(assets_dir(), 'learned_models/{}_sac_norand.p'.format(args.env_name)), 'wb'))
             # Move networks back to the specified device after saving.
             to_device(device, policy_net, value_net)
 
@@ -313,11 +329,9 @@ def main_loop():
         torch.cuda.empty_cache()
 
 if __name__ == '__main__':
-    try:
-        torch.multiprocessing.set_start_method('spawn')
-    except RuntimeError as e:
-        print(f"Cannot set multiprocessing start method: {e}")
-
+    # Set the start method for multiprocessing to 'spawn'.
+    torch.multiprocessing.set_start_method('spawn')
+    # Call the main loop function to start training.
     main_loop()
     print("Training finished.")
 
