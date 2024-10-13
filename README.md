@@ -215,6 +215,12 @@ Below are six GIFs that demonstrate the results of the navigation control system
    <img src="./Result/analysis.png" alt="WP1" width="500"/>
 </div>
 
+## Video Demonstration
+
+[![Watch the video](https://img.icons8.com/ios-glyphs/90/000000/video--v1.png)](./Result/Implementation.mp4 "Click to download and watch the video")
+
+Click the thumbnail to download and watch the video.
+
 
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
