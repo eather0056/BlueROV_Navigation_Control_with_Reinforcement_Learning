@@ -209,7 +209,7 @@ Below are six GIFs that demonstrate the results of the navigation control system
     <tr>
       <td><img src="./Result/WP4.gif" alt="WP4" width="300"/></td>
       <td><img src="./Result/WP5.gif" alt="WP5" width="300"/></td>
-      <td><img src="./Result/legend.png" alt="WP6" width="300"/></td>
+      <td><img src="./Result/legend.png" alt="WP6" width="100"/></td>
     </tr>
   </table>
    <img src="./Result/analysis.png" alt="WP1" width="500"/>
