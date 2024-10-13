@@ -194,5 +194,27 @@ nvidia-smi
   ```bash
   scancel <job_id>
   ```
+
+## Result
+
+Below are six GIFs that demonstrate the results of the navigation control system.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="./Result/WP1.gif" alt="WP1" width="300"/></td>
+      <td><img src="./Result/WP2.gif" alt="WP2" width="300"/></td>
+      <td><img src="./Result/WP3.gif" alt="WP3" width="300"/></td>
+    </tr>
+    <tr>
+      <td><img src="./Result/WP4.gif" alt="WP4" width="300"/></td>
+      <td><img src="./Result/WP5.gif" alt="WP5" width="300"/></td>
+      <td><img src="./Result/legend.png" alt="WP6" width="300"/></td>
+    </tr>
+  </table>
+   <img src="./Result/analysis.png" alt="WP1" width="500"/>
+</div>
+
+
 ## Acknowledgments
 Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
