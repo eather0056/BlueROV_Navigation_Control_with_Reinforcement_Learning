@@ -217,9 +217,8 @@ Below are six GIFs that demonstrate the results of the navigation control system
 
 ## Video Demonstration
 
-[![Watch the video](https://youtu.be/2yoDlwFw2qQ")
+[![Watch the demo on YouTube](assets/demo-thumbnail.png)](https://youtu.be/2yoDlwFw2qQ)
 
-Click the thumbnail to download and watch the video.
 
 
 ## Acknowledgments
