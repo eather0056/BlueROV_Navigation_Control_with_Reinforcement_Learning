@@ -217,7 +217,7 @@ Below are six GIFs that demonstrate the results of the navigation control system
 
 ## Video Demonstration
 
-[![Watch the video](https://img.icons8.com/ios-glyphs/90/000000/video--v1.png)](./Result/Implementation.mp4 "Click to download and watch the video")
+[![Watch the video](https://youtu.be/2yoDlwFw2qQ")
 
 Click the thumbnail to download and watch the video.
 
