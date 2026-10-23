@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bluerov-nav-drl"
+version = "0.1.0"
+description = "Multimodal reinforcement learning for simulated underwater navigation"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+train = ["torch>=2.1"]
+test = ["pytest>=7"]
+depth = ["torch>=2.1", "transformers"]
+
+[project.scripts]
+bluerov-nav = "bluerov_nav.train:main"
+
+[tool.setuptools.packages.find]
+include = ["bluerov_nav*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]

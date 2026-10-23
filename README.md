@@ -1,225 +1,219 @@
-# Advancing Map-less Underwater Navigation
+# BlueROV Navigation with Deep Reinforcement Learning
 
-## Research Question
-How can the performance and robustness of map-less underwater navigation for low-cost underwater robots be enhanced by comparing and integrating Advanced Actor-Critic (A2C), Proximal Policy Optimization (PPO), and Trust Region Policy Optimization (TRPO) algorithms, while addressing the challenge of navigation failure in constrained environments?
+Multimodal reinforcement learning for **simulated underwater waypoint navigation**.
+The policy combines monocular depth, single-beam echo-sounder (SBES) range,
+relative goal information, and action history. The new implementation supports
+**A2C, PPO, TRPO, SAC and TD3**.
 
-## Project Overview
-This research investigates the efficacy of various reinforcement learning algorithms, including Actor-Critic with Experience Replay (A2C), Proximal Policy Optimization (PPO), and Trust Region Policy Optimization (TRPO), to enhance the navigation capabilities of low-cost underwater robots. The focus is on developing a robust and resilient navigation system integrating advanced sensor fusion techniques for improved depth perception and obstacle avoidance. The project also explores the refinement of reward functions to recover effectively from navigation failures, ensuring consistent progress toward designated goals in diverse underwater environments.
+**Start here:** run the synthetic setup check below, then configure a Unity
+environment. No training, downloads or remote logging starts when you import
+the package.
 
-## Key Components
-- **Unity Environment**: Development of a Unity-based simulation environment for training and testing the reinforcement learning models.
-- **3D Modeling**: Design and integration of detailed 3D models for underwater robots and environments within the Unity framework.
-- **ROS Integration**: Utilization of ROS Melodic on Ubuntu 18.04 for real-world application and testing of trained models.
-- **Reinforcement Learning Models**: Implementation and comparison of A2C, PPO, and TRPO algorithms for underwater navigation.
+> **Reproducibility scope:** this repository contains a new implementation and
+> preserved legacy research code. The new implementation has not reproduced the
+> paper's numerical results. Original run-specific reward values, scene settings
+> and checkpoint provenance are incomplete. Do not substitute demo settings for
+> historical experimental settings. See [Reproducibility](docs/reproducibility.md).
 
-## Setup Instructions
+## 1. Install and check the setup
 
-### Steps to Build the Unity Project:
+Run commands from the repository root:
 
-1. **Open the Project in Unity**:
-   - Launch Unity Hub and add the `Water` project by navigating to the location `/home/ether/Documents/Robotics_Navigation/underwater_env/Water`.
-   - Open the project in the Unity Editor.
+~~~bash
+git clone https://github.com/eather0056/BlueROV_Nav_DRL.git
+cd BlueROV_Nav_DRL
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[test]"
+~~~
 
-2. **Build the Project**:
-   - Within Unity, go to `File` > `Build Settings`.
-   - Select your target platform (for example, Linux if you're on Ubuntu).
-   - Click on `Build And Run` or `Build` if you want to just build without running.
-   - Choose an output directory where the executable will be placed. You could create a new folder within the `underwater_env` directory, like `Water`, and select that.
+On Windows, activate with .venv\Scripts\activate instead. The package declares
+Python 3.8 or newer; the **Unity integration has its own version constraints**
+and must match your ML-Agents build. Do not assume every modern Python version
+is compatible with an older Unity release.
 
-3. **Verify the Build**:
-   - After the build process is complete, navigate to the output directory you selected (e.g., `/home/ether/Documents/Robotics_Navigation/underwater_env/Water`).
-   - Ensure there is an executable file for the Unity environment.
-     
-### Virtual Environment Setup
-Create a Python 3.8 virtual environment named `ROV`:
-```bash
-conda create --name ROV python=3.8
-```
+Check configuration and exercise synthetic observations without PyTorch,
+Unity, pretrained weights, or training:
 
-Activate the virtual environment:
-```bash
-conda activate ROV
-```
-Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
+~~~bash
+python -m bluerov_nav.train --config configs/demo.json --check-config
+python -m bluerov_nav.demo --config configs/demo.json --steps 8
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
+~~~
 
-### CUDA 12.1 (Optional)
-```bash
-pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-```
-### ML-Agents Setup
-Clone the ML-Agents repository and navigate to it:
-```bash
-git clone --branch release_18 https://github.com/Unity-Technologies/ml-agents.git
-cd ml-agents
-```
+The demo reports history shapes, reward components and a timeout at transition 8.
+It is a deterministic **synthetic interface check**, not an underwater simulator
+or navigation benchmark. PyTorch-dependent tests skip if PyTorch is absent.
+The environment-variable prefix disables unrelated globally installed pytest
+plugins; it can be omitted in a clean virtual environment.
 
-Install the `ml-agents-envs` and `gym-unity` packages:
-```bash
-pip install -e ./ml-agents-envs
-pip install gym-unity==0.27.0
-```
-Later you might encounter error is due to the deprecation of the `np.bool` alias in NumPy. To resolve this, you can modify the code where `np.bool` is being used to simply use `bool` instead. Locate the file `BlueROV_Navigation-Control/ml-agents/ml-agents-envs/mlagents_envs/rpc_utils.py` and go to line 376, 392 and 400 where `np.bool` is being used. Change `np.bool` to `bool`. 
-```python
-dtype=bool,
-```
+For neural-network training and update tests:
 
-### Training and Testing
-For training the models, run:
-```bash
-python3 ppo_gym.py --save-model-interval 5 --env-name navigation --eval-batch-size 0 --min-batch-size 2048 --num-threads 1 --hist-length 5
-```
+~~~bash
+python -m pip install -e ".[train,test]"
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
+~~~
 
-For testing the models, run:
-```bash
-python3 ppo_gym_test.py --env-name navigation --eval-batch-size 2000 --hist-length 5
-```
-<!-- ## Research Findings and Contributions
-This project contributes to the field of underwater robotics by:
-- Comparatively analyzing the performance of A2C, PPO, and TRPO in map-less navigation scenarios.
-- Enhancing the robustness of underwater navigation systems through advanced sensor fusion and reward function refinement.
-- Providing insights into overcoming navigation failures in constrained underwater environments.
--->
+Use a PyTorch build appropriate to your machine if you need GPU support.
+The dependency declarations are not a verified historical environment lockfile.
 
-### Running on cluster
-Install wireguard to you local machine:
-   ```bash
-   sudo apt install wireguard
-   ```
-Up the wiregrad interface
-   ```bash
-   sudo wg-quick up ~/Downloads/mdeowan698.conf
-   ```
-Connect with cluster for hosting VS Code:
-   ```bash
-   srun --time=05:00:00 --gres=gpu:1 --mem=64G --partition=mundus --pty bash -l
-   ```
-Adjust host configuration based on the node requirements.
-To monitor the process usage, execute: htop --user <user_id>.
+## 2. Optional synthetic training check
 
-Connect with cluster:
-   ```bash
-   ssh <<username>>@sms.lis-lab.fr
-   ```
-Create a new Conda environment:
-   ```bash
-   conda create --name <env-name>
-   ```
-Activate the Conda environment:
-   ```bash
-   conda activate <env-name>
-   ```
-Install Python 3.6:
-   ```bash
-   conda install python=3.8
-   ```
-Install gdown for downloading files from Google Drive:
-   ```bash
-   pip install gdown
-   ```
-Downloading Files from Google Drive
-To download files from Google Drive, you can use the `gdown` command followed by the file ID:
-```bash
-gdown --id <file_id>
-```
-Running Jupyter Notebook Locally
+The following commands **do perform training**, but only on the tiny synthetic
+demo. They require PyTorch and are not research experiments:
 
-To run Jupyter Notebook locally, you can use SSH tunneling:
-```bash
-ssh -N -L 8888:localhost:8888 mdeowan698@sms.lis-lab.fr
-```
-Then access Jupyter Notebook in your web browser using:
-```
-http://localhost:8888/
-```
-Install project dependencies follow Environment Setup
+~~~bash
+python -m bluerov_nav.train --config configs/demo.json \
+  --train --output runs/demo_ppo
 
+python -m bluerov_nav.train --config configs/demo.json \
+  --evaluate runs/demo_ppo/policy-0002.pt \
+  --episodes 5 --output runs/demo_ppo_eval
+~~~
 
-### Modificaion for running on Cluster
+Every output directory must be new. This prevents accidental overwriting of
+previous results. The installed console command bluerov-nav is equivalent to
+python -m bluerov_nav.train.
 
-Set UnityEnvironment() parameter, Underwater_navigation class line around 320
-```python
-no_graphics=True
-```
-### Running on Cluster GPU
+## 3. Configure a Unity navigation experiment
 
-Before running your code on the Cluster GPU, please ensure that a GPU is available and allocate the necessary resources.
+You need:
 
-### Check GPU Availability
+- A compatible Unity executable and its scene/agent configuration.
+- Matching ML-Agents and gym-unity Python dependencies.
+- An exact local depth-model checkpoint and its image processor.
+- Verified RGB, SBES/ray and side-channel telemetry mappings.
+- Explicit reward coefficients, thresholds and training settings.
 
-To check the availability of GPUs on the cluster, run:
+See [Unity setup and sensor contract](docs/unity_setup.md) before running.
+The executable and depth weights are **not bundled by this new implementation**.
+Submodule declarations alone do not establish that the original simulator is
+available or compatible.
 
-```bash
-info-cluster
-```
+~~~bash
+cp configs/navigation.template.json configs/my_navigation.json
+~~~
 
-### Select GPU and Allocate Time
+Edit the copied file. Relevant null entries are intentional: required settings
+are not inferred from an unrelated implementation. See the
+[configuration reference](docs/configuration.md) for each group.
 
-Once you've verified GPU availability, select a specific GPU and allocate the desired runtime using the following command:
+~~~bash
+python -m bluerov_nav.train --config configs/my_navigation.json --check-config
+python -m bluerov_nav.train --config configs/my_navigation.json \
+  --train --output runs/ppo_wp1_seed1
+~~~
 
-```bash
-srun --time=02:00:00 --gres=gpu:1 --partition=mundus --mem=64G --pty bash -l
-```
+Configuration checking validates required settings; it does not launch Unity,
+verify a checkpoint's compatibility, or prove the sensor mapping is correct.
 
-Replace `--gres=gpu:1` with the number of GPUs you need, `--partition=mundus` with the appropriate partition, and adjust `--time` and `--mem` as needed.
+Choose the algorithm by setting algorithm to a2c, ppo, trpo, sac or td3.
+PPO/A2C/TRPO use on-policy rollouts; SAC/TD3 use replay and action-value critics.
+Each algorithm has explicitly required optimizer settings.
 
-### GPU Status
+## 4. Evaluate a checkpoint
 
-To check the status of the GPU, use the following command:
+Use the matching experiment configuration and a **trusted new-format** checkpoint:
 
-```bash
-nvidia-smi
-```
+~~~bash
+python -m bluerov_nav.train --config configs/my_navigation.json \
+  --evaluate runs/ppo_wp1_seed1/policy-0200.pt \
+  --episodes 5 --output runs/ppo_wp1_seed1_eval
+~~~
 
-### Additional Commands
+The checkpoint number depends on iterations and checkpoint_interval. Evaluation
+uses deterministic mean actions. Legacy pickled models are not interchangeable
+with new checkpoints. Exact training resume is not implemented.
 
-- Check GPU status for a specific GPU type:
-  ```bash
-  srun --time=02:00:00 --gres=gpu:2080:1 --partition=all --mem=64G --pty bash -l
-  ```
+## 5. Outputs and metric definitions
 
-- View queued jobs for a specific user:
-  ```bash
-  squeue --user  mdeowan698
-  ```
-  
-- Submit a job file using `.slurm` file:
-  ```bash
-  sbatch <file_name>
-  ```
+| File | Contents |
+|---|---|
+| config.json | Exact supplied experiment configuration |
+| provenance.txt | Implementation scope, NumPy/PyTorch versions and device |
+| metrics.jsonl | Training iteration, transitions, cumulative episodes and losses |
+| episodes.jsonl | Completed training episodes, returns, step counts and outcomes |
+| policy-NNNN.pt | Model weights for evaluation |
+| evaluation.jsonl | Per-episode deterministic evaluation records |
 
-- Cancel the job
-  ```bash
-  scancel <job_id>
-  ```
+- **iteration** is the training-update iteration, not an environment transition.
+- **cumulative_episodes** never resets between iterations within a training run.
+- **success_ratio** in an iteration uses episodes completed in that iteration.
+  JSON null means no completed episodes, not zero success.
+- Evaluation success is horizontal goal acceptance without simultaneous clearance
+  violation on the final frame. It is not inferred from positive reward.
+- **simulation_time** is step count multiplied by the configured simulation
+  decision period, not measured wall-clock runtime.
+- New metrics are explicit implementation conventions, not reconstructed
+  definitions of the original published aggregate results.
 
-## Result
+For multi-seed or multi-waypoint studies, use separate saved configurations and
+output directories. Keep all failures and denominators when aggregating results.
+See the [experiment checklist](docs/reproducibility.md).
 
-Below are six GIFs that demonstrate the results of the navigation control system.
+## Repository organization
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="./Result/WP1.gif" alt="WP1" width="300"/></td>
-      <td><img src="./Result/WP2.gif" alt="WP2" width="300"/></td>
-      <td><img src="./Result/WP3.gif" alt="WP3" width="300"/></td>
-    </tr>
-    <tr>
-      <td><img src="./Result/WP4.gif" alt="WP4" width="300"/></td>
-      <td><img src="./Result/WP5.gif" alt="WP5" width="300"/></td>
-      <td><img src="./Result/legend.png" alt="WP6" width="100"/></td>
-    </tr>
-  </table>
-   <img src="./Result/analysis.png" alt="WP1" width="500"/>
-</div>
+~~~text
+bluerov_nav/                  Recommended package for new experiments
+  reward.py                   Five-component reward and branch conditions
+  environment.py              Observation history and episode adapter
+  networks.py                 Multimodal actor, value and twin-Q networks
+  algorithms.py               A2C/PPO/TRPO/SAC/TD3 update routines
+  replay.py                   Bounded multimodal replay
+  config.py                   Configuration validation
+  train.py                    Explicit training/evaluation CLI
+  unity.py                    Optional Unity and depth-model adapter
+  demo.py                     Synthetic setup check
+configs/
+  demo.json                   Runnable synthetic example, not paper settings
+  navigation.template.json    Required fields for a real simulation experiment
+tests/unit/                   Reward, adapter, configuration and update tests
+docs/
+  configuration.md
+  unity_setup.md
+  implementation.md
+  reproducibility.md
+  legacy.md
+pyproject.toml                Package metadata and optional dependencies
+requirements-dev.txt          Editable development installation
+requirements.txt              Preserved legacy dependencies
+core/, models/, utils/        Legacy research implementation
+*_gym.py, *_env.py            Legacy launch scripts
+DPT/, assets/, Result/        Preserved models, assets and demonstrations
+~~~
 
-## Video Demonstration
+Legacy scripts remain at their existing paths to avoid breaking their imports
+and asset references. They do not invoke the new package. Historical migration
+details are documented in [Legacy code](docs/legacy.md).
 
-[![Watch the demo on YouTube](assets/demo-thumbnail.png)](https://youtu.be/2yoDlwFw2qQ)
+## Troubleshooting
 
+| Problem | What to check |
+|---|---|
+| Missing numerical reward setting | Fill the required field; do not copy demo values as historical values |
+| Cannot import bluerov_nav | Run from the repository root or install with pip install -e . |
+| Cannot import torch | Install the train extra in the active environment |
+| Cannot import mlagents_envs/gym_unity | Install versions compatible with your Unity build |
+| Missing local depth checkpoint | Set env.unity.depth.model_id to a complete local model directory compatible with the selected loader |
+| No fresh side-channel telemetry | Verify UUID, sender, field order and reset/step transmission |
+| RGB/ray shape error | Correct sensor indices; RGB is not a substitute for SBES |
+| Output directory already exists | Choose a new run directory |
+| Replay runs out of memory | Reduce replay capacity; full depth histories are memory intensive |
+| Different results across machines | Record versions, hardware and seeds; GPU determinism is not guaranteed |
 
+## Research and acknowledgments
 
-## Acknowledgments
-Special thanks to Prof. Ricard Marxer for supervising this project and the University of Toulon for providing the necessary resources and support. Additionally, gratitude is extended to the open-source communities of ROS, Unity, and ML-Agents for their invaluable tools and frameworks.
+Related publication: **Optimizing Underwater Robot Navigation: A Study of DRL
+Algorithms and Multi-Modal Sensor Fusion**, Md Ether Deowan, Md Shamin Yeasher
+Yousha, Tihan Mahmud Hossain, Shahriar Hassan and Ricard Marxer, ICRA 2025,
+pp. 11270–11277.
+
+The existing [demonstrations](Result/) and
+[video](https://youtu.be/2yoDlwFw2qQ) are historical research artifacts, not outputs
+generated by the new implementation.
+
+Thanks to Ricard Marxer, the University of Toulon, and the ROS, Unity, ML-Agents
+and reinforcement-learning communities. See [LICENSE](LICENSE) for the
+repository's Apache-2.0 license; third-party assets and weights may have
+separate terms.

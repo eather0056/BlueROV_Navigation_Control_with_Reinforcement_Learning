@@ -1,0 +1,3 @@
+# Editable install with numerical tests and the optional depth loader.
+# Unity dependencies must match your simulator build; see docs/unity_setup.md.
+-e .[train,test,depth]

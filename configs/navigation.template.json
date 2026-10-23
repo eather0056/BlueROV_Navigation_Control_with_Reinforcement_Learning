@@ -1,0 +1,69 @@
+{
+  "algorithm": "ppo",
+  "seed": 1,
+  "device": "cpu",
+  "history_length": 5,
+  "iterations": 200,
+  "batch_steps": 2048,
+  "checkpoint_interval": 10,
+  "env_factory": "bluerov_nav.unity:make_env",
+  "optimizer": {
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": null,
+    "l2_reg": null,
+    "clip": 0.2,
+    "epochs": null,
+    "minibatch_size": null,
+    "max_kl": 0.01,
+    "damping": null,
+    "target_tau": null,
+    "entropy_temperature": null,
+    "replay_capacity": null,
+    "replay_batch": null,
+    "warmup_steps": null,
+    "gradient_steps": null,
+    "target_noise": null,
+    "noise_clip": null,
+    "policy_delay": null,
+    "exploration_noise": null
+  },
+  "env": {
+    "reward": {
+      "delta_h": null, "delta_v": null, "goal_radius": null,
+      "crash_penalty": null, "success_bonus": null,
+      "s0": null, "s1": null, "s2": null, "s3": null, "s4": null,
+      "stuck_threshold": null, "movement_bonus": null, "repeat_penalty": null
+    },
+    "adapter": {
+      "decision_period": null,
+      "displacement_window": null,
+      "repeat_tolerance": null,
+      "terminate_on_goal": null,
+      "max_steps": 500,
+      "use_sbes": true
+    },
+    "unity": {
+      "executable": null,
+      "worker_id": 0,
+      "no_graphics": true,
+      "time_scale": 1,
+      "side_channel_uuid": "621f0a70-4f87-11ea-a6bf-784f4387d1f7",
+      "depth_factory": "bluerov_nav.unity:make_hf_depth",
+      "depth": {"model_id": null, "local_files_only": true, "device": "cpu"},
+      "rgb_observation": null,
+      "ray_observation": null,
+      "sbes_indices": null,
+      "horizontal_ray_indices": null,
+      "vertical_ray_indices": null,
+      "ray_scale": null,
+      "goal_indices": null,
+      "position_indices": null,
+      "surface_index": null,
+      "heading_units": "degrees",
+      "action_scale": null,
+      "reset_payload": null,
+      "randomize_visibility": false
+    }
+  }
+}
